@@ -79,4 +79,24 @@ export default {
     // Return the constructed ListNode (ignoring the first dummy entry)
     return newListNode.next;
   },
+  isPalindrome(x) {
+    //   /**
+    //  * @param {number} x
+    //  * @return {boolean}
+    //  */
+    let _isPalindrome = false;
+
+    if (x.toString().length == 1) {
+      _isPalindrome = true;
+    } else {
+      if (x > 0 && x % 1 === 0) {
+        let reversed = x.toString().split("").reverse().join("");
+        if (reversed == x) {
+          _isPalindrome = true;
+        }
+      }
+    }
+
+    return _isPalindrome;
+  },
 };
