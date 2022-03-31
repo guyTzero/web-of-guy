@@ -99,4 +99,128 @@ export default {
 
     return _isPalindrome;
   },
+
+  romanToInt(s) {
+    //   /**
+    //  * @param {string} s
+    //  * @return {number}
+    //  */
+    let bigData = [[], [], [], []];
+
+    let max = 3999;
+
+    for (let i = 0; i < max; i++) {
+      let number = i.toString();
+      number.split("").reverse().join("");
+
+      for (let k = 0; k < number.length; k++) {
+        let current = parseInt(number[k]);
+        // หน่วย
+        if (k == 0 && bigData[0].length < 10) {
+          if (current == 4) {
+            prefix = "";
+            bigData[0].push({ roman: "IV", val: current });
+          } else if (current == 9) {
+            bigData[0].push({ roman: "IX", val: current });
+          } else if (current < 4) {
+            bigData[0].push({ roman: "I".repeat(current), val: current });
+          } else if (current == 5) {
+            bigData[0].push({ roman: "V", val: current });
+          } else if (current > 5) {
+            bigData[0].push({
+              roman: "V" + "I".repeat(current - 5),
+              val: current,
+            });
+          }
+        }
+        // สิบ
+        if (k == 0 && bigData[1].length < 10) {
+          if (current == 4) {
+            prefix = "";
+            bigData[1].push({ roman: "XL", val: current });
+          } else if (current == 9) {
+            bigData[1].push({ roman: "XC", val: current });
+          } else if (current < 4) {
+            bigData[1].push({ roman: "X".repeat(current), val: current });
+          } else if (current == 5) {
+            bigData[1].push({ roman: "L", val: current });
+          } else if (current > 5) {
+            bigData[1].push({
+              roman: "L" + "X".repeat(current - 5),
+              val: current,
+            });
+          }
+        }
+        // ร้อย
+        if (k == 2 && bigData[2].length < 10) {
+          if (current == 4) {
+            prefix = "";
+            bigData[2].push({ roman: "CD", val: current });
+          } else if (current == 9) {
+            bigData[2].push({ roman: "CM", val: current });
+          } else if (current < 4) {
+            bigData[2].push({ roman: "C".repeat(current), val: current });
+          } else if (current == 5) {
+            bigData[2].push({ roman: "D", val: current });
+          } else if (current > 5) {
+            bigData[2].push({
+              roman: "D" + "C".repeat(current - 5),
+              val: current,
+            });
+          }
+        }
+        // พัน
+        if (k == 3 && bigData[3].length < 4) {
+          if (current == 4) {
+            prefix = "";
+            bigData[3].push({ roman: "", val: current });
+          } else if (current == 9) {
+            bigData[3].push({ roman: "", val: current });
+          } else if (current < 4) {
+            bigData[3].push({ roman: "M".repeat(current), val: current });
+          } else if (current == 5) {
+            bigData[3].push({ roman: "", val: current });
+          } else if (current > 5) {
+            bigData[3].push({
+              roman: "" + "".repeat(current - 5),
+              val: current,
+            });
+          }
+        }
+      }
+    }
+    // console.log(bigData)
+    bigData.reverse();
+    let BiggerData = [];
+
+    for (let i = 0; i < bigData[0].length; i++) {
+      for (let o = 0; o < bigData[1].length; o++) {
+        for (let p = 0; p < bigData[2].length; p++) {
+          for (let n = 0; n < bigData[3].length; n++) {
+            BiggerData.push({
+              roman:
+                bigData[0][i].roman +
+                bigData[1][o].roman +
+                bigData[2][p].roman +
+                bigData[3][n].roman,
+              val:
+                bigData[0][i].val.toString() +
+                bigData[1][o].val.toString() +
+                bigData[2][p].val.toString() +
+                bigData[3][n].val.toString(),
+            });
+          }
+        }
+      }
+    }
+
+    console.log(BiggerData);
+    let ans = "";
+    for (let i = 0; i < BiggerData.length; i++) {
+      if (BiggerData[i].roman == s) {
+        ans = parseInt(BiggerData[i].val);
+      }
+    }
+    return ans;
+  },
 };
