@@ -293,4 +293,44 @@ export default {
   //      console.log(top)
   //     return strs.length == 1 ? strs[0] :  top[0].name
   // };
+  isValid(s) {
+    //     /**
+    //  * @param {string} s
+    //  * @return {boolean}
+    //  */
+    let startFun = new Date();
+    if (!s) {
+      return false;
+    }
+    if (s.length % 2 !== 0) {
+      return false;
+    }
+
+    let string = s;
+
+    let i = 0;
+    for (; i < string.length; ) {
+      let match = false;
+      if (string[i] == "(" || string[i] == "{" || string[i] == "[") {
+        if (
+          (string[i] == "(" && string[i + 1] == ")") ||
+          (string[i] == "{" && string[i + 1] == "}") ||
+          (string[i] == "[" && string[i + 1] == "]")
+        ) {
+          string = string.slice(0, i) + string.slice(i + 2);
+          match = true;
+        }
+      }
+      // console.log(i)
+      if (match) {
+        match = false;
+        i = 0;
+      } else {
+        i = i + 1;
+      }
+    }
+    let endFun = new Date();
+    console.log("perf", (endFun.getTime() - startFun.getTime()) / 1000);
+    return !string ? true : false;
+  },
 };
