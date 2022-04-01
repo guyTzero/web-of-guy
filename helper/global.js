@@ -223,4 +223,74 @@ export default {
     }
     return ans;
   },
+  //   /**
+  //  * @param {string[]} strs
+  //  * @return {string}
+  //  */
+  longestCommonPrefix(strs) {
+    if (!strs.length) return "";
+
+    for (let i = 0; i <= strs[0].length; i++) {
+      if (!strs.every((string) => string[i] === strs[0][i])) {
+        return strs[0].slice(0, i);
+      }
+    }
+
+    return strs[0];
+  },
+  // var longestCommonPrefix = function(strs) {
+  //     // let strs =["dog","racecar","car"]
+  //     let _amt_word = [{name:'',count:0}]
+
+  //     for (let i = 0; i < strs.length; i++) {
+  //         let prepName = strs[i]
+
+  //      for (let k = 0; k < strs[i].length; k++) {
+
+  //         for (let l = i; l < strs.length; l++) {
+  //             if(strs[l].includes(prepName)){
+  //             let foundDuplicate = false
+  //             for (let q = 0; q < _amt_word.length; q++) {
+  //                 if(_amt_word[q].name == prepName){
+  //                    let clone = _amt_word
+  //                    clone[q].count =   clone[q].count + 1
+  //                    _amt_word = clone
+  //                    foundDuplicate = true
+  //                 }
+  //             }
+  //             if(foundDuplicate == false){
+  //                 _amt_word.push({name: prepName , count : 1 })
+  //              }
+  //             }
+
+  //         }
+  //          prepName = prepName.slice(0, -1);
+  //          // console.log(prepName)
+  //      }
+  //     }
+  //     // console.log(_amt_word)
+  //     let top = [{name:'',count:0}]
+  //     for (let k = 0; k < _amt_word.length; k++) {
+  //         if(_amt_word[k].count > top[0].count){
+  //            top[0] = _amt_word[k]
+  //         }
+  //     }
+  //    let checkWhat = 0
+  //     if(top[0].name.length == 1){
+
+  //         for (let k = 0; k < strs.length; k++) {
+  //             console.log(strs[k][0] , top[0].name)
+  //             if(strs[k][0] == top[0].name){
+  //                 checkWhat = checkWhat + 1
+  //                }
+  //         }
+  //     }
+  //     console.log(checkWhat)
+  //     if(top[0].name.length == 1 && checkWhat == 1){
+  //         console.log('-----------')
+  //        top[0].name = ''
+  //      }
+  //      console.log(top)
+  //     return strs.length == 1 ? strs[0] :  top[0].name
+  // };
 };
