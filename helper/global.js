@@ -333,4 +333,85 @@ export default {
     console.log("perf", (endFun.getTime() - startFun.getTime()) / 1000);
     return !string ? true : false;
   },
+  mergeTwoLists(l1, l2) {
+    // /**
+    //  * Definition for singly-linked list.
+    //  * function ListNode(val, next) {
+    //  *     this.val = (val===undefined ? 0 : val)
+    //  *     this.next = (next===undefined ? null : next)
+    //  * }
+    //  */
+    // /**
+    //  * @param {ListNode} list1
+    //  * @param {ListNode} list2
+    //  * @return {ListNode}
+    //  */
+    var newListNode = new ListNode(0);
+    var headOfNewListNode = newListNode;
+
+    var sum = 0;
+    var carry = 0;
+    var from = 0;
+    var equal = false;
+
+    while (l1 !== null || l2 !== null) {
+      if (l1 !== null && l2 !== null) {
+        let l1_val = l1.val;
+        let l2_val = l2.val;
+        if (carry !== 0 && from == 1) {
+          l1_val = carry;
+        } else if (carry !== 0 && from == 2) {
+          l2_val = carry;
+        }
+        // console.log(l1 , l2)
+        // console.log(l1_val < l2_val)
+        if (l1_val < l2_val) {
+          sum = l1.val;
+          l1 = l1.next;
+          carry = l2.val;
+          from = 2;
+          equal = false;
+        } else if (l1_val > l2_val) {
+          sum = l2.val;
+          l2 = l2.next;
+          carry = l1.val;
+          from = 1;
+          equal = false;
+        } else if (l1_val == l2_val) {
+          equal = true;
+          sum = l1.val;
+          carry = 0;
+          from = 0;
+          l1 = l1.next;
+          l2 = l2.next;
+        }
+      } else {
+        carry = 0;
+        from = 0;
+        equal = false;
+        if (l1 !== null) {
+          sum = l1.val;
+          l1 = l1.next;
+        }
+
+        if (l2 !== null) {
+          sum = l2.val;
+          l2 = l2.next;
+        }
+      }
+
+      if (equal == true) {
+        headOfNewListNode.next = new ListNode(sum);
+        headOfNewListNode = headOfNewListNode.next;
+        headOfNewListNode.next = new ListNode(sum);
+        headOfNewListNode = headOfNewListNode.next;
+        equel = false;
+      } else {
+        headOfNewListNode.next = new ListNode(sum);
+        headOfNewListNode = headOfNewListNode.next;
+      }
+    }
+    console.log(newListNode);
+    return newListNode.next;
+  },
 };
