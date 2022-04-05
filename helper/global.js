@@ -438,6 +438,7 @@ export default {
     return i + 1;
   },
   // xxxxx
+  // xxxxx
   strStr(haystack, needle) {
     if (needle.length === 0) return 0;
 
