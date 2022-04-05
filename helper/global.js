@@ -450,4 +450,53 @@ export default {
 
     return -1;
   },
+  searchInsert(nums, target) {
+    //   /**
+    //  * @param {number[]} nums
+    //  * @param {number} target
+    //  * @return {number}
+    //  */
+    if (!nums || nums.length == 0) {
+      return;
+    }
+    const half = Math.ceil(nums.length / 2);
+    let head = [];
+    let tail = [];
+    let answer = null;
+    if (nums.length % 2 == 0) {
+      head = nums.slice(0, half);
+      tail = nums.slice(-half);
+    } else if (nums.length == 1) {
+      head = nums;
+      tail = [];
+    } else {
+      head = nums.slice(0, half);
+      tail = nums.slice(half, nums.length);
+    }
+
+    if (target > tail[0]) {
+      for (let i = 0; i < tail.length; i++) {
+        if (target > tail[i]) {
+          answer = i + head.length + 1;
+        } else if (target == tail[i]) {
+          answer = i + head.length;
+        }
+      }
+    } else {
+      for (let i = 0; i < head.length; i++) {
+        if (target > head[0] || target == head[0]) {
+          if (target > head[i]) {
+            answer = i + 1;
+          } else if (target == head[i]) {
+            answer = i;
+          }
+        } else {
+          answer = 0;
+        }
+      }
+    }
+    console.log(head);
+    console.log(tail);
+    return answer;
+  },
 };
