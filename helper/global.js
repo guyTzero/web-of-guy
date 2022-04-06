@@ -499,4 +499,27 @@ export default {
     console.log(tail);
     return answer;
   },
+  maxSubArray(nums) {
+    //   /**
+    //  * @param {number[]} nums
+    //  * @return {number}
+    //  */
+    let currSum = -Infinity;
+    let maxSum = -Infinity;
+    // console.log('start_currSum',currSum)
+    // console.log('start_maxSum',maxSum)
+    for (let i = 0; i < nums.length; i++) {
+      // console.log('------------'+i+'----------------')
+      currSum = Math.max(0, currSum);
+      // console.log('currSum = Math.max(0, currSum) =>',currSum)
+      currSum += nums[i];
+      // console.log('currSum += nums[i] =>',currSum)
+      maxSum = Math.max(maxSum, currSum);
+      // console.log('maxSum = Math.max(maxSum, currSum) =>',maxSum)
+      // console.log('---------------------------------')
+    }
+    // console.log('end_currSum',currSum)
+    // console.log('end_maxSum',maxSum)
+    return maxSum;
+  },
 };
