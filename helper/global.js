@@ -522,4 +522,18 @@ export default {
     // console.log('end_maxSum',maxSum)
     return maxSum;
   },
+  lengthOfLastWord(s) {
+    if (!s) {
+      return;
+    }
+    let string = s.split(" ");
+    console.log(string);
+    let answer = 0;
+    for (let i = 0; i < string.length; i++) {
+      if (string[i]) {
+        answer = string[i].length;
+      }
+    }
+    return answer;
+  },
 };
