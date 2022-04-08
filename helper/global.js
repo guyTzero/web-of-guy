@@ -536,4 +536,42 @@ export default {
     }
     return answer;
   },
+  vplusOne(digits) {
+    //  /*
+    //  * @param {number[]} digits
+    //  * @return {number[]}
+    //  */
+    if (!digits || digits.length == 0) {
+      return;
+    }
+    let number = [];
+    let moreThanNine = 0;
+
+    for (let i = digits.length - 1; i >= 0; i--) {
+      if (moreThanNine > 0) {
+        if (digits[i] + 1 > 9) {
+          number.push(0);
+        } else {
+          moreThanNine = 0;
+          number.push(digits[i] + 1);
+        }
+      } else {
+        if (i == digits.length - 1) {
+          if (digits[i] + 1 > 9) {
+            moreThanNine = 1;
+            number.push(0);
+          } else {
+            number.push(digits[i] + 1);
+          }
+        } else {
+          number.push(digits[i]);
+        }
+      }
+    }
+    if (moreThanNine > 0) {
+      number.push(moreThanNine);
+    }
+    let answer = number.reverse();
+    return answer;
+  },
 };
