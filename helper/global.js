@@ -690,4 +690,101 @@ export default {
 
     return res;
   },
+  /**
+   * Definition for a binary tree node.
+   * function TreeNode(val, left, right) {
+   *     this.val = (val===undefined ? 0 : val)
+   *     this.left = (left===undefined ? null : left)
+   *     this.right = (right===undefined ? null : right)
+   * }
+   */
+  // /**
+  //  * @param {TreeNode} p
+  //  * @param {TreeNode} q
+  //  * @return {boolean}
+  //  */
+
+  //  class Node {
+  //   constructor(item) {
+  //     this.data = item;
+  //     this.left = null;
+  //     this.right = null;
+  //   }
+  // }
+
+  // /* Class to find size of Binary Tree */
+  // class BinaryTree {
+  //   constructor() {
+  //     this.root = null;
+  //   }
+  //   /* computes number of nodes in tree */
+  //   size(node = this.root) {
+  //     if (node == null) {
+  //       return 0;
+  //     } else {
+  //       return this.size(node.left) + 1 + this.size(node.right);
+  //     }
+  //   }
+  // }
+  // var tree = new BinaryTree();
+  // tree.root = new Node(1);
+  // tree.root.left = new Node(2);
+  // tree.root.right = new Node(3);
+  // tree.root.left.left = new Node(4);
+  // tree.root.left.right = new Node(5);
+
+  // console.log("Size of the tree is " + tree.size())
+
+  isSameTree(p, q) {
+    if ((!p && q) || (p && !q) || (p && q && p.val !== q.val)) return false;
+    if (p && q)
+      return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+    return true;
+  },
+
+  // var isSameTree = function(p, q) {
+
+  //    function inorderTraversal(root) {
+  //     var stack = [];
+  //     var now = root;
+  //     var res = [];
+  //     var checkNull = 0
+
+  //     while (now || stack.length) {
+  //         if(!now){
+  //             checkNull = checkNull + 1
+  //         }
+  //       while (now) {
+  //         stack.push(now);
+  //         now = now.left;
+  //       }
+  //       now = stack.pop();
+  //       res.push(now.val);
+  //       now = now.right;
+  //     }
+  //     return [res,checkNull];
+  //     }
+  //     function arraysEqual(a, b) {
+  //       if (a === b) return true;
+  //       if (a == null || b == null) return false;
+  //       if (a.length !== b.length) return false;
+
+  //       for (var i = 0; i < a.length; ++i) {
+  //         if (a[i] !== b[i]) return false;
+  //       }
+  //       return true;
+  //     }
+  //     let treeA = inorderTraversal(p)
+  //     let treeB = inorderTraversal(q)
+  //     let check = false
+
+  //     console.log('treeA',treeA[0])
+  //     console.log('treeB',treeB[0])
+
+  //     if(treeA[1] == treeB[1] &&  arraysEqual(treeA[0],treeB[0])){
+  //        check = true
+  //     }
+
+  //     return check
+  // };
 };
