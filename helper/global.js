@@ -787,4 +787,28 @@ export default {
 
   //     return check
   // };
+  //   /**
+  //  * @param {number[]} nums
+  //  * @return {number}
+  //  */
+  singleNumber(nums) {
+    if (!nums || nums.length == 0) {
+      return;
+    }
+    if (nums.length == 1) {
+      return nums[0];
+    }
+    let box = [];
+    for (let i = 0; i < nums.length; i++) {
+      if (box.includes(nums[i])) {
+        let index = box.indexOf(nums[i]);
+        if (index > -1) {
+          box.splice(index, 1);
+        }
+      } else {
+        box.push(nums[i]);
+      }
+    }
+    return box[0];
+  },
 };
