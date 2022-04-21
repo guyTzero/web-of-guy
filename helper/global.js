@@ -885,4 +885,39 @@ export default {
 
     return longestStringLength;
   },
+  zigzag_conversion(s, numRows) {
+    //      /**
+    //  * @param {string} s
+    //  * @param {number} numRows
+    //  * @return {string}
+    //  */
+    let res = [];
+    let way = "down";
+    let index = 0;
+
+    for (let i = 0; i < s.length; i++) {
+      res.push({ val: s[i], num: index });
+      if (way == "down") {
+        index = index + 1;
+        if (index == numRows - 1) {
+          way = "up";
+        }
+      } else {
+        index = index - 1;
+        if (index == 0) {
+          way = "down";
+        }
+      }
+    }
+    let ans = "";
+    for (let i = 0; i < numRows; i++) {
+      for (let p = 0; p < res.length; p++) {
+        if (res[p].num == i) {
+          ans = ans + res[p].val;
+        }
+      }
+    }
+
+    return numRows == 1 ? s : ans;
+  },
 };
