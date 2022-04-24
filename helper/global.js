@@ -949,4 +949,24 @@ export default {
 
     return j;
   },
+  reverseInt32(x) {
+    if (!x) {
+      return 0;
+    }
+    let isNegative = x < 0 ? true : false;
+    let abs = Math.abs(x);
+    let x_str = abs.toString();
+    x_str = x_str.split("").reverse().join("");
+    if (x_str[0] == "0") {
+      x_str = x_str.substring(1);
+    }
+    parseInt(x_str);
+    if (isNegative) {
+      x_str = -Math.abs(x_str);
+    }
+    if (x_str > 2147483647 || x_str < -2147483647) {
+      return 0;
+    }
+    return x_str;
+  },
 };
