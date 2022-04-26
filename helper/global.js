@@ -1005,4 +1005,72 @@ export default {
     // Right-hand swap not found, return lowest permutation instead
     nums.sort((a, b) => a - b);
   },
+  generateParenthesis(n) {
+    //      /**
+    //  * @param {number} n
+    //  * @return {string[]}
+    //  */
+    const result = [];
+    breathFirstSearch("", 0, 0);
+    return result;
+    function breathFirstSearch(str, left, right) {
+      if (left === n && right === n) {
+        result.push(str);
+        return;
+      }
+      if (left !== n) {
+        breathFirstSearch(str + "(", left + 1, right);
+      }
+      if (left > right) {
+        breathFirstSearch(str + ")", left, right + 1);
+      }
+    }
+    // let init = "";
+    // for (let i = 0; i < n; i++) {
+    //   init = init + "()";
+    // }
+    // let l = init.length / 2 - 1;
+    // let r = init.length - 1;
+    // let act = "";
+
+    // while (l !== 0 && r !== 0) {
+    //   let def = init;
+    //   init[l] = def[r];
+    //   init[r] = def[l];
+
+    //   // x = x.split('');
+    //   // x[0] = y[0]
+    //   // x = x.join('');
+
+    //   if (l + 1 !== r && !act) {
+    //     r = r - 1;
+    //     l = l + 1;
+    //   }
+    //   if (l + 1 == r && !act) {
+    //     act = "right";
+    //     l = init.length / 2 + 2;
+    //     r = init.length / 2 + 3;
+    //   }
+
+    //   if (act == "right" && r + 1 !== init.length - 1) {
+    //     l = l + 1;
+    //     r = r + 1;
+    //   }
+    //   if (act == "right" && r + 1 == init.length - 1) {
+    //     act = "left";
+    //     l = 0;
+    //     r = 1;
+    //   }
+
+    //   if (act == "left" && l + 1 !== init.length / 2 - 1) {
+    //     l = l + 1;
+    //     r = r + 1;
+    //   }
+    //   if (act == "left" && l + 1 == init.length / 2 - 1) {
+    //     act = "";
+    //     l = 0;
+    //     r = 0;
+    //   }
+    // }
+  },
 };
