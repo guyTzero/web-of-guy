@@ -34,11 +34,11 @@ export default {
      *     this.next = (next===undefined ? null : next)
      * }
      */
-    // /**
-    //  * @param {ListNode} l1
-    //  * @param {ListNode} l2
-    //  * @return {ListNode}
-    //  */
+    /**
+     * @param {ListNode} l1
+     * @param {ListNode} l2
+     * @return {ListNode}
+     */
     // Initialise a new ListNode to be returned
     var newListNode = new ListNode(0);
     var headOfNewListNode = newListNode;
@@ -80,10 +80,10 @@ export default {
     return newListNode.next;
   },
   isPalindrome(x) {
-    //   /**
-    //  * @param {number} x
-    //  * @return {boolean}
-    //  */
+    /**
+     * @param {number} x
+     * @return {boolean}
+     */
     let _isPalindrome = false;
 
     if (x.toString().length == 1) {
@@ -101,10 +101,10 @@ export default {
   },
 
   romanToInt(s) {
-    //   /**
-    //  * @param {string} s
-    //  * @return {number}
-    //  */
+    /**
+     * @param {string} s
+     * @return {number}
+     */
     let bigData = [[], [], [], []];
 
     let max = 3999;
@@ -223,10 +223,10 @@ export default {
     }
     return ans;
   },
-  //   /**
-  //  * @param {string[]} strs
-  //  * @return {string}
-  //  */
+  /**
+   * @param {string[]} strs
+   * @return {string}
+   */
   longestCommonPrefix(strs) {
     if (!strs.length) return "";
 
@@ -294,10 +294,10 @@ export default {
   //     return strs.length == 1 ? strs[0] :  top[0].name
   // };
   isValid(s) {
-    //     /**
-    //  * @param {string} s
-    //  * @return {boolean}
-    //  */
+    /**
+     * @param {string} s
+     * @return {boolean}
+     */
     let startFun = new Date();
     if (!s) {
       return false;
@@ -334,18 +334,18 @@ export default {
     return !string ? true : false;
   },
   mergeTwoLists(l1, l2) {
-    // /**
-    //  * Definition for singly-linked list.
-    //  * function ListNode(val, next) {
-    //  *     this.val = (val===undefined ? 0 : val)
-    //  *     this.next = (next===undefined ? null : next)
-    //  * }
-    //  */
-    // /**
-    //  * @param {ListNode} list1
-    //  * @param {ListNode} list2
-    //  * @return {ListNode}
-    //  */
+    /**
+     * Definition for singly-linked list.
+     * function ListNode(val, next) {
+     *     this.val = (val===undefined ? 0 : val)
+     *     this.next = (next===undefined ? null : next)
+     * }
+     */
+    /**
+     * @param {ListNode} list1
+     * @param {ListNode} list2
+     * @return {ListNode}
+     */
     var newListNode = new ListNode(0);
     var headOfNewListNode = newListNode;
 
@@ -415,10 +415,10 @@ export default {
     return newListNode.next;
   },
   removeDuplicates(nums) {
-    //   /**
-    //  * @param {number[]} nums
-    //  * @return {number}
-    //  */
+    /**
+     * @param {number[]} nums
+     * @return {number}
+     */
     if (!nums || nums.length == 0) {
       return 0;
     }
@@ -451,11 +451,11 @@ export default {
     return -1;
   },
   searchInsert(nums, target) {
-    //   /**
-    //  * @param {number[]} nums
-    //  * @param {number} target
-    //  * @return {number}
-    //  */
+    /**
+     * @param {number[]} nums
+     * @param {number} target
+     * @return {number}
+     */
     if (!nums || nums.length == 0) {
       return;
     }
@@ -500,10 +500,10 @@ export default {
     return answer;
   },
   maxSubArray(nums) {
-    //   /**
-    //  * @param {number[]} nums
-    //  * @return {number}
-    //  */
+    /**
+     * @param {number[]} nums
+     * @return {number}
+     */
     let currSum = -Infinity;
     let maxSum = -Infinity;
     // console.log('start_currSum',currSum)
@@ -537,10 +537,10 @@ export default {
     return answer;
   },
   vplusOne(digits) {
-    //  /*
-    //  * @param {number[]} digits
-    //  * @return {number[]}
-    //  */
+    /**
+     * @param {number[]} digits
+     * @return {number[]}
+     */
     if (!digits || digits.length == 0) {
       return;
     }
@@ -575,11 +575,11 @@ export default {
     return answer;
   },
   addBinary(a, b) {
-    //   /**
-    //  * @param {string} a
-    //  * @param {string} b
-    //  * @return {string}
-    //  */
+    /**
+     * @param {string} a
+     * @param {string} b
+     * @return {string}
+     */
     let result = "";
     let i = a.length - 1;
     let j = b.length - 1;
@@ -621,10 +621,10 @@ export default {
     return left - 1;
   },
   climbStairs(n) {
-    //  /**
-    //  * @param {number} n
-    //  * @return {number}
-    //  */
+    /**
+     * @param {number} n
+     * @return {number}
+     */
     if (n == 1 || n == 0) return 1;
 
     let first = 1;
@@ -661,19 +661,19 @@ export default {
     }
     return head;
   },
-  //   /**
-  //  * Definition for a binary tree node.
-  //  * function TreeNode(val, left, right) {
-  //  *     this.val = (val===undefined ? 0 : val)
-  //  *     this.left = (left===undefined ? null : left)
-  //  *     this.right = (right===undefined ? null : right)
-  //  * }
-  //  */
-  // /**
-  //  * @param {TreeNode} root
-  //  * @return {number[]}
-  //  */
   inorderTraversal(root) {
+    /**
+     * Definition for a binary tree node.
+     * function TreeNode(val, left, right) {
+     *     this.val = (val===undefined ? 0 : val)
+     *     this.left = (left===undefined ? null : left)
+     *     this.right = (right===undefined ? null : right)
+     * }
+     */
+    /**
+     * @param {TreeNode} root
+     * @return {number[]}
+     */
     var stack = [];
     var now = root;
     var res = [];
@@ -787,11 +787,11 @@ export default {
 
   //     return check
   // };
-  //   /**
-  //  * @param {number[]} nums
-  //  * @return {number}
-  //  */
   singleNumber(nums) {
+    /**
+     * @param {number[]} nums
+     * @return {number}
+     */
     if (!nums || nums.length == 0) {
       return;
     }
@@ -812,18 +812,18 @@ export default {
     return box[0];
   },
   isSymmetric(root) {
-    //   /**
-    //  * Definition for a binary tree node.
-    //  * function TreeNode(val, left, right) {
-    //  *     this.val = (val===undefined ? 0 : val)
-    //  *     this.left = (left===undefined ? null : left)
-    //  *     this.right = (right===undefined ? null : right)
-    //  * }
-    //  */
-    // /**
-    //  * @param {TreeNode} root
-    //  * @return {boolean}
-    //  */
+    /**
+     * Definition for a binary tree node.
+     * function TreeNode(val, left, right) {
+     *     this.val = (val===undefined ? 0 : val)
+     *     this.left = (left===undefined ? null : left)
+     *     this.right = (right===undefined ? null : right)
+     * }
+     */
+    /**
+     * @param {TreeNode} root
+     * @return {boolean}
+     */
     function helper(p, q) {
       if ((!p && q) || (p && !q) || (p && q && p.val !== q.val)) return false;
       if (p && q) return helper(p.left, q.right) && helper(p.right, q.left);
@@ -833,10 +833,10 @@ export default {
     return helper(root.left, root.right);
   },
   isPalindrome(s) {
-    //  /**
-    //  * @param {string} s
-    //  * @return {boolean}
-    //  */
+    /**
+     * @param {string} s
+     * @return {boolean}
+     */
     if (s.length === 0) return true;
 
     s = s.toLowerCase();
@@ -861,10 +861,10 @@ export default {
     return true;
   },
   lengthOfLongestSubstring(s) {
-    //     /**
-    //  * @param {string} s
-    //  * @return {number}
-    //  */
+    /**
+     * @param {string} s
+     * @return {number}
+     */
     let longestStringLength = 0;
 
     for (let i = 0; i < s.length; i++) {
@@ -886,11 +886,11 @@ export default {
     return longestStringLength;
   },
   zigzag_conversion(s, numRows) {
-    //      /**
-    //  * @param {string} s
-    //  * @param {number} numRows
-    //  * @return {string}
-    //  */
+    /**
+     * @param {string} s
+     * @param {number} numRows
+     * @return {string}
+     */
     let res = [];
     let way = "down";
     let index = 0;
@@ -970,10 +970,10 @@ export default {
     return x_str;
   },
   nextPermutation(nums) {
-    // /**
-    //  * @param {number[]} nums
-    //  * @return {void} Do not return anything, modify nums in-place instead.
-    //  */
+    /**
+     * @param {number[]} nums
+     * @return {void} Do not return anything, modify nums in-place instead.
+     */
     if (nums.length <= 1) return;
 
     let leftHandSwap;
@@ -1006,10 +1006,10 @@ export default {
     nums.sort((a, b) => a - b);
   },
   generateParenthesis(n) {
-    //      /**
-    //  * @param {number} n
-    //  * @return {string[]}
-    //  */
+    /**
+     * @param {number} n
+     * @return {string[]}
+     */
     const result = [];
     breathFirstSearch("", 0, 0);
     return result;
@@ -1072,5 +1072,27 @@ export default {
     //     r = 0;
     //   }
     // }
+  },
+  merge(nums1, m, nums2, n) {
+    /**
+     * @param {number[]} nums1
+     * @param {number} m
+     * @param {number[]} nums2
+     * @param {number} n
+     * @return {void} Do not return anything, modify nums1 in-place instead.
+     */
+    m--;
+    n--;
+    let i = nums1.length - 1;
+    while (i >= 0) {
+      if (n > -1 && m > -1 && nums1[m] >= nums2[n]) {
+        nums1[i] = nums1[m];
+        nums1[m] = nums2[n];
+        m--;
+      } else if (n > -1) {
+        nums1[i] = nums2[n--];
+      }
+      i--;
+    }
   },
 };
