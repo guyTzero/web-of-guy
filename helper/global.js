@@ -1095,4 +1095,45 @@ export default {
       i--;
     }
   },
+  isHappy(n) {
+    /**
+     * @param {number} n
+     * @return {boolean}
+     */
+    if (!n) {
+      return false;
+    }
+    let n_string = n.toString();
+
+    n_string = n_string.split("");
+
+    let res = [];
+    let isTrue = false;
+    let i = 0;
+
+    while (i < 100 && !isTrue) {
+      if (n_string) {
+        res = n_string;
+        n_string = null;
+      }
+      let box = [];
+      for (let k = 0; k < res.length; k++) {
+        let pow = Math.pow(parseInt(res[k]), 2);
+        box.push(pow);
+      }
+      box = box.reduce((a, b) => a + b, 0);
+      if (box == 1) {
+        isTrue = true;
+      }
+      box = box.toString();
+      box = box.split("");
+      res = box;
+
+      console.log(res);
+
+      i++;
+    }
+
+    return isTrue;
+  },
 };
