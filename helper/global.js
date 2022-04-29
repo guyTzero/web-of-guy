@@ -1136,4 +1136,40 @@ export default {
 
     return isTrue;
   },
+  /**
+   * @param {number[][]} graph
+   * @return {boolean}
+   */
+  isBipartite(graph) {
+    let len = graph.length,
+      s = [],
+      vis = new Uint8Array(len);
+    console.log("vis", vis);
+    for (let i = 0; i < len; i++) {
+      if (vis[i]) continue;
+      (vis[i] = 1), s.push(i);
+      console.log(`-----------------------------`);
+      while (s.length) {
+        console.log(`++++++++++${s.length}+++++++++++++`);
+        let curr = s.pop(),
+          edges = graph[curr];
+        for (let j = 0; j < edges.length; j++) {
+          let next = edges[j];
+          console.log("vis[curr] : " + vis[curr], "vis[next] : " + vis[next]);
+          if (!vis[next]) (vis[next] = vis[curr] ^ 3), s.push(next);
+          else if (vis[curr] === vis[next]) return false;
+        }
+      }
+    }
+    return true;
+    //     let box = []
+    //     for(let i = 0 ; i < graph.length ; i++){
+    //         box.push(graph[i].toString())
+    //     }
+    //     console.log(box)
+    //     let set = new Set(box);
+    //     console.log(set.size)
+
+    //     return set.size == (graph.length / 2) ? true :false
+  },
 };
