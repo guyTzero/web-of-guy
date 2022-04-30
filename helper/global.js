@@ -1172,4 +1172,151 @@ export default {
 
     //     return set.size == (graph.length / 2) ? true :false
   },
+  calcEquation(equations, values, queries) {
+    var calcEquation = function (equations, values, queries) {
+      let neighbors = {};
+
+      equations.forEach(([nom, denom], idx) => {
+        const curValue = values[idx];
+        neighbors[nom] = neighbors[nom] || [];
+        neighbors[nom].push([denom, curValue]);
+
+        neighbors[denom] = neighbors[denom] || [];
+        neighbors[denom].push([nom, 1 / curValue]);
+      });
+
+      let result = [];
+      for (let query of queries) {
+        result.push(evaluate(query, neighbors));
+      }
+
+      return result;
+    };
+
+    function evaluate(query, neighbors) {
+      const [nom, denom] = query;
+      if (!(nom in neighbors) || !(denom in neighbors)) return -1;
+      if (nom === denom) return 1;
+
+      let queue = neighbors[nom].slice();
+      let visited = new Set();
+
+      while (queue.length) {
+        const [variable, value] = queue.shift();
+
+        if (variable === denom) return value;
+        visited.add(variable);
+
+        const next = neighbors[variable];
+        next.forEach(([next, nextValue]) => {
+          if (visited.has(next)) return;
+          queue.push([next, nextValue * value]);
+        });
+      }
+
+      return -1;
+    }
+    return calcEquation(equations, values, queries);
+    // let ansBox = [];
+    // let allChar = [];
+    // for (let i = 0; i < equations.length; i++) {
+    //   ansBox.push(false);
+    //   for (let k = 0; k < equations[i].length; k++) {
+    //     allChar.push(equations[i][k]);
+    //   }
+    // }
+    // let setChar = new Set(allChar);
+    // setChar = Array.from(setChar);
+    // console.log("setChar", setChar);
+    // let setCharWithValue = [];
+    // for (let i = 0; i < setChar.length; i++) {
+    //   setCharWithValue.push({ name: setChar[i], value: 0, ans: 0 });
+    // }
+    // console.log("setCharWithValue", setCharWithValue);
+
+    // let last = setCharWithValue.length - 1;
+    // let checker = (arr) => arr.every((v) => v === true);
+    // while (setCharWithValue[0].value < 20) {
+    //   //////
+    //   let main = 0;
+    //   let sec = 0;
+    //   for (let i = 0; i < equations.length; i++) {
+    //     for (let k = 0; k < setCharWithValue.length; k++) {
+    //       if (setCharWithValue[k].name == equations[i][0]) {
+    //         main = setCharWithValue[k].value;
+    //       }
+    //       if (setCharWithValue[k].name == equations[i][1]) {
+    //         sec = setCharWithValue[k].value;
+    //       }
+    //     }
+    //     // console.log('main / sec == values[i]',main , sec , values[i])
+    //     if (main / sec == values[i]) {
+    //       ansBox[i] = true;
+    //       for (let k = 0; k < setCharWithValue.length; k++) {
+    //         if (setCharWithValue[k].name == equations[i][0]) {
+    //           setCharWithValue[k].ans = main;
+    //         }
+    //         if (setCharWithValue[k].name == equations[i][1]) {
+    //           setCharWithValue[k].ans = sec;
+    //         }
+    //       }
+    //     } else {
+    //       ansBox[i] = false;
+    //       // for(let k = 0;k < setCharWithValue.length ;k++){
+    //       //  if(setCharWithValue[k].name == equations[i][0]){setCharWithValue[k].ans = 0}
+    //       //  if(setCharWithValue[k].name == equations[i][1]){setCharWithValue[k].ans = 0}
+    //       //  }
+    //     }
+
+    //     if (checker(ansBox)) {
+    //       console.log(
+    //         "equations",
+    //         equations[i] + " : " + main + "/" + sec + " = ",
+    //         values[i]
+    //       );
+    //       console.log("answer", setCharWithValue);
+    //     }
+    //   }
+    //   if (checker(ansBox)) {
+    //     break;
+    //   }
+    //   //////
+    //   setCharWithValue[last].value = setCharWithValue[last].value + 1;
+    //   if (setCharWithValue[last].value == 20) {
+    //     let plus = true;
+    //     for (let k = last - 1; k >= 0; k--) {
+    //       if (plus == true) {
+    //         setCharWithValue[k].value = setCharWithValue[k].value + 1;
+    //         plus = false;
+    //         if (setCharWithValue[k].value == 20) {
+    //           if (k == 0) return;
+    //           setCharWithValue[k].value = 0;
+    //           plus = true;
+    //         }
+    //       }
+    //     }
+    //     setCharWithValue[last].value = 0;
+    //   }
+    // }
+    // let answerQueries = [];
+    // for (let i = 0; i < queries.length; i++) {
+    //   let main = 0;
+    //   let sec = 0;
+    //   for (let k = 0; k < setCharWithValue.length; k++) {
+    //     if (setCharWithValue[k].name == queries[i][0]) {
+    //       main = setCharWithValue[k].ans;
+    //     }
+    //     if (setCharWithValue[k].name == queries[i][1]) {
+    //       sec = setCharWithValue[k].ans;
+    //     }
+    //   }
+    //   if (main / sec > -1 && main / sec < 1000000) {
+    //     answerQueries.push(main / sec);
+    //   } else {
+    //     answerQueries.push(-1.0);
+    //   }
+    // }
+    // console.log("answerQueries", answerQueries);
+    // return answerQueries;
+  },
 };
