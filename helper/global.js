@@ -1319,4 +1319,78 @@ export default {
     // console.log("answerQueries", answerQueries);
     // return answerQueries;
   },
+  backspaceCompare(s, t) {
+    /**
+     * @param {string} s
+     * @param {string} t
+     * @return {boolean}
+     */
+    const getHashBackPointer = (input, p) => {
+      if (input[p] === "#") {
+        let hashBackCounter = 2;
+        while (hashBackCounter > 0) {
+          hashBackCounter--;
+          p--;
+          if (input[p] === "#") {
+            hashBackCounter += 2;
+          }
+        }
+      }
+      return p;
+    };
+    const backSpaceCompareThirdWay = (s, t) => {
+      let p1 = s.length - 1;
+      let p2 = t.length - 1;
+      while (p1 >= 0 || p2 >= 0) {
+        p1 = getHashBackPointer(s, p1);
+        p2 = getHashBackPointer(t, p2);
+        if (s[p1] !== t[p2]) {
+          return false;
+        } else {
+          p1--;
+          p2--;
+        }
+      }
+      return true;
+    };
+    return backSpaceCompareThirdWay(s, t);
+    //     const getFormattedString = (input) => {
+    //   const output = [];
+    //   for (let i = 0; i < input.length; i++) {
+    //     if (input[i] === '#') {
+    //       output.pop();
+    //     } else {
+    //       output.push(input[i]);
+    //     }
+    //   }
+    //   return output.join('');
+    // };
+    // const backSpaceCompareFirstWay = (stringOne, stringTwo) => {
+    //   const s = getFormattedString(stringOne);
+    //   const t = getFormattedString(stringTwo);
+    //   if (s === t) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // };
+    //     return backSpaceCompareFirstWay(s,t)
+    // let box = [s,t]
+    // for(let k = 0; k < box.length ; k++){
+    //     for(let i = 0 ; i < box[k].length ;i++){
+    //         if(i+1 < box[k].length && box[k][i+1] == "#"){
+    //             box[k] = box[k].split('');
+    //             box[k][i] = ''
+    //             box[k][i+1] = ''
+    //             box[k] =  box[k].join("");
+    //             i = -1
+    //            }
+    //         if(i == box[k].length-1){
+    //            box[k] = box[k].replace('#', '');
+    //            }
+    //     }
+    // }
+    // // console.log('res',box)
+    // return box[0] == box[1] ? true : false
+  },
 };
