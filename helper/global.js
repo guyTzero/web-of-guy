@@ -1393,4 +1393,32 @@ export default {
     // // console.log('res',box)
     // return box[0] == box[1] ? true : false
   },
+  Glife() {
+    let life = ["goal"];
+
+    if (life.includes("goal")) life.push("pain/suffering");
+
+    if (life.includes("pain/suffering")) life.push("experience");
+
+    if (life.includes("experience"))
+      life.push(["pattern", "perspective", "understanding"]);
+  },
+  sortArrayByParity(nums) {
+    /**
+     * @param {number[]} nums
+     * @return {number[]}
+     */
+    let even = [];
+    let odd = [];
+    for (let i = 0; i < nums.length; i++) {
+      if (nums[i] % 2 == 0) {
+        even.push(nums[i]);
+      } else {
+        odd.push(nums[i]);
+      }
+    }
+    let res = even.concat(odd);
+    // console.log(res)
+    return res;
+  },
 };

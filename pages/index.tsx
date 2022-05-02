@@ -10,7 +10,7 @@ const Home: NextPage = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    helper.calcEquation();
+    helper.Glife();
   }, []);
   return <div>guy</div>;
 };
