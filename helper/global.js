@@ -1421,4 +1421,21 @@ export default {
     // console.log(res)
     return res;
   },
+  containsDuplicate(nums) {
+    /**
+     * @param {number[]} nums
+     * @return {boolean}
+     */
+    let arr = [];
+    let dup = false;
+    for (let i = 0; i < nums.length; i++) {
+      if (arr.includes(nums[i])) {
+        dup = true;
+        break;
+      } else {
+        arr.push(nums[i]);
+      }
+    }
+    return dup;
+  },
 };
