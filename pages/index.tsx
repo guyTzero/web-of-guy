@@ -10,7 +10,7 @@ const Home: NextPage = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    helper.Glife();
+    // console.log(helper.find132pattern(data));
   }, []);
   return <div>guy</div>;
 };

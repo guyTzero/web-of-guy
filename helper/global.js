@@ -1516,4 +1516,36 @@ export default {
     }
     return SC.slice(0, i + 1).join("");
   },
+  find132pattern(nums) {
+    // let res = false;
+    // console.log(nums.length);
+    // for (let i = 0; i < nums.length; i++) {
+    //   console.log(i);
+    //   if (res) break;
+    //   for (let k = i + 1; k < nums.length; k++) {
+    //     if (res) break;
+    //     for (let j = k; j < nums.length; j++) {
+    //       if (nums[k] > nums[j] && nums[j] > nums[i]) {
+    //         console.log(nums[i], nums[k], nums[j]);
+    //         res = true;
+    //         break;
+    //       }
+    //     }
+    //   }
+    // }
+    // console.log(res);
+    // return res;
+    let max = -Infinity;
+    const stack = [];
+    for (let i = nums.length - 1; i >= 0; i--) {
+      while (nums[i] > stack[stack.length - 1]) {
+        max = stack.pop();
+      }
+      if (nums[i] < max) {
+        return true;
+      }
+      stack.push(nums[i]);
+    }
+    return false;
+  },
 };
