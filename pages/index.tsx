@@ -10,7 +10,7 @@ const Home: NextPage = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // console.log(helper.find132pattern(data));
+    // helper.combinationSum3(3, 7);
   }, []);
   return <div>guy</div>;
 };

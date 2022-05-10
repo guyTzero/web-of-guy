@@ -1605,21 +1605,68 @@ export default {
     NestedIterator.prototype.next = function () {
       return this.list[this.count++];
     };
-  }, containsNearbyDuplicate (nums, k) {
-  const map = new Map();
+  },
+  containsNearbyDuplicate(nums, k) {
+    const map = new Map();
 
-  for (let i = 0; i < nums.length; i++) {
-    if (map.has(nums[i])) {
-      const j = map.get(nums[i]);
-      
-      if (Math.abs(i - j) <= k) {
-        return true;
+    for (let i = 0; i < nums.length; i++) {
+      if (map.has(nums[i])) {
+        const j = map.get(nums[i]);
+
+        if (Math.abs(i - j) <= k) {
+          return true;
+        }
       }
+
+      map.set(nums[i], i);
     }
 
-    map.set(nums[i], i);
-  }
-
-  return false;
-}
+    return false;
+  },
+  combinationSum3(k, n) {
+    let res = [];
+    let avaNum = [];
+    for (let i = 1; i <= k; i++) {
+      avaNum.push(i);
+    }
+    const all_9 = (currentValue) => currentValue == 9;
+    let check = avaNum.every(all_9);
+    while (check == false) {
+      let sum = avaNum.reduce((a, b) => a + b, 0);
+      if (sum == n) {
+        const mySet = new Set(avaNum);
+        if (mySet.size == k) {
+          let sorted = true;
+          let isPattern = true;
+          for (let i = 0; i < avaNum.length - 1; i++) {
+            if (avaNum[i] + 1 !== avaNum[i + 1]) isPattern = false;
+            if (avaNum[i] > avaNum[i + 1]) {
+              sorted = false;
+              break;
+            }
+          }
+          if (sorted) {
+            res.push(avaNum);
+            console.log(res);
+            if (isPattern) break;
+          }
+        }
+      }
+      let str = "";
+      for (let i = 0; i < avaNum.length; i++) {
+        str = str + avaNum[i];
+      }
+      if (str[0] + "00000000" == str || str[0] + "0000000" == str) {
+        console.log(str);
+      }
+      str = parseInt(str);
+      str = str + 1;
+      let convert = (num) => Number(num);
+      let intArr = Array.from(String(str), convert);
+      avaNum = intArr;
+      check = avaNum.every(all_9);
+    }
+    console.log(res);
+    return res;
+  },
 };
