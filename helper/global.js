@@ -1669,4 +1669,60 @@ export default {
     console.log(res);
     return res;
   },
+  countVowelStrings(n) {
+    /**
+     * @param {number} n
+     * @return {number}
+     */
+    // let checker = (arr) => arr.every((v) => v === 5);
+    // let box = [];
+    // let max = "";
+    // let c = 0;
+    // for (let k = 0; k < n; k++) {
+    //   box.push(1);
+    //   max = max + "5";
+    // }
+    // max = parseInt(max);
+    // while (checker(box) == false) {
+    //   let str = box.toString();
+    //   str = str.replace(/,/g, "");
+    //   let number = parseInt(str);
+    //   if (number <= max) {
+    //     let sorted = true;
+    //     for (let i = 0; i < box.length - 1; i++) {
+    //       if (box[i] > box[i + 1]) {
+    //         sorted = false;
+    //         break;
+    //       }
+    //     }
+    //     if (sorted) {
+    //       c = c + 1;
+    //       console.log(c + 1);
+    //     }
+    //   }
+    //   if (str[str.length - 1] == "5") {
+    //     number = number + 5;
+    //   } else {
+    //     number = number + 1;
+    //   }
+    //   let numberStr = number.toString();
+    //   let arrayOfDigits = Array.from(String(numberStr), Number);
+    //   box = arrayOfDigits;
+    // }
+    // console.log("fin");
+    // return c + 1;
+    if (n === 1) return 5;
+    let values = [1, 1, 1, 1, 1];
+    for (let k = 2; k <= n; k++) {
+      for (let i = 1; i < 5; i++) {
+        values[i] += values[i - 1];
+      }
+    }
+    let ret = 0;
+    for (let e of values) {
+      ret += e;
+    }
+    console.log(ret);
+    return ret;
+  },
 };

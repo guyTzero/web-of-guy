@@ -10,7 +10,7 @@ const Home: NextPage = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // helper.combinationSum3(3, 7);
+    // helper.countVowelStrings(10);
   }, []);
   return <div>guy</div>;
 };
