@@ -1725,4 +1725,114 @@ export default {
     console.log(ret);
     return ret;
   },
+  // var permuteUnique = function(nums) {
+
+  //     let res = []
+
+  //             let a = []
+  //         for(let k = 0; k< nums.length ; k++){
+  //             a.push(nums[k])
+  //         }
+  //     res.push(a)
+
+  //     let isReversed = false
+  //     let i = 0
+  //     while(i < nums.length  && i < 100 ){
+  //         let array = []
+  //         for(let k = 0; k< nums.length ; k++){
+  //             array.push(nums[k])
+  //         }
+  //          console.log('---------'+i+'---------')
+  //         if(1+1 == 3){
+  //             res.push(array)
+  //             console.log('start',i)
+  //             i = i + 1
+  //         }else if(i == nums.length -1 ){
+  //             console.log('end',i)
+
+  //                  array.reverse()
+
+  //                  res.push(array)
+  //             if( isReversed == false){
+  //                 i = 0
+  //             }else{
+  //                 i = i + 1
+  //             }
+
+  //             isReversed= true
+  //                  }else{
+  //                      if(i <= nums.length -2){
+
+  //                      console.log('logic',i)
+
+  //                      let prep = array[i]
+
+  //                      array[i] = array[i+1]
+  //                      array[i+1] = prep
+
+  //                      nums = array
+  //                      res.push(array)
+
+  //         }
+  //                      i = i + 1
+
+  //                  }
+  //         nums = array
+  //     }
+  //     console.log(res)
+  //     let ret = []
+  //     for(let i = 0 ; i < res.length ; i++){
+  //         if(ret.length == 0){
+  //             ret.push(res[i])
+  //         }else{
+  //             let dup = false
+  //         for(let k = 0 ; k < ret.length ; k++){
+  //         if(res[i].toString() == ret[k].toString()){
+  //            dup = true
+  //            }
+  //        }
+  //                         if(dup == false){
+  //                 ret.push(res[i])
+  //             }
+  // }
+
+  //     }
+  //     console.log(ret)
+  //     return ret
+  // };
+  permuteUnique(nums) {
+    /**
+     * @param {number[]} nums
+     * @return {number[][]}
+     */
+    var permuteUnique = function (nums) {
+      var res = [];
+
+      nums.sort((a, b) => a - b);
+      dfs(res, [], nums);
+
+      return res;
+    };
+
+    var dfs = function (res, arr, nums) {
+      var len = nums.length;
+      var tmp1 = null;
+      var tmp2 = null;
+
+      if (!len) return res.push(arr);
+
+      for (var i = 0; i < len; i++) {
+        if (nums[i] === nums[i - 1]) continue;
+
+        tmp1 = Array.from(arr);
+        tmp1.push(nums[i]);
+
+        tmp2 = Array.from(nums);
+        tmp2.splice(i, 1);
+
+        dfs(res, tmp1, tmp2);
+      }
+    };
+    return permuteUnique(nums);
+  },
 };
