@@ -1835,4 +1835,32 @@ export default {
     };
     return permuteUnique(nums);
   },
+  findWords(words) {
+    let keyboard = ["qwertyuiop", "asdfghjkl", "zxcvbnm"];
+    let ret = [];
+    let checker = (arr) => arr.every((v) => v === true);
+    for (let i = 0; i < words.length; i++) {
+      let a = [];
+      let b = [];
+      let c = [];
+      for (let k = 0; k < words[i].length; k++) {
+        a.push(keyboard[0].includes(words[i][k].toLowerCase()));
+        b.push(keyboard[1].includes(words[i][k].toLowerCase()));
+        c.push(keyboard[2].includes(words[i][k].toLowerCase()));
+      }
+      // console.log(a , b , c)
+      // console.log(checker(a) , checker(b) , checker(c))
+      if (checker(a) && !checker(b) && !checker(c)) {
+        ret.push(words[i]);
+      }
+      if (!checker(a) && checker(b) && !checker(c)) {
+        ret.push(words[i]);
+      }
+      if (!checker(a) && !checker(b) && checker(c)) {
+        ret.push(words[i]);
+      }
+    }
+    // console.log(ret)
+    return ret;
+  },
 };
