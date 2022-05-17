@@ -1899,4 +1899,31 @@ export default {
     }
     return -1;
   },
+
+  getTargetCopy(original, cloned, target) {
+    /**
+     * Definition for a binary tree node.
+     * function TreeNode(val) {
+     *     this.val = val;
+     *     this.left = this.right = null;
+     * }
+     */
+    /**
+     * @param {TreeNode} original
+     * @param {TreeNode} cloned
+     * @param {TreeNode} target
+     * @return {TreeNode}
+     */
+    // corner case
+    if (original === null || original === target) {
+      return cloned;
+    }
+
+    // normal case
+    var res = getTargetCopy(original.left, cloned.left, target);
+    if (res !== null) {
+      return res;
+    }
+    return getTargetCopy(original.right, cloned.right, target);
+  },
 };
