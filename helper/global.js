@@ -1926,4 +1926,7 @@ export default {
     }
     return getTargetCopy(original.right, cloned.right, target);
   },
+  reverseString(s) {
+    return s ? s.reverse() : false;
+  },
 };
