@@ -1929,4 +1929,7 @@ export default {
   reverseString(s) {
     return s ? s.reverse() : false;
   },
+  getConcatenation(nums) {
+    return nums.concat(nums);
+  },
 };
