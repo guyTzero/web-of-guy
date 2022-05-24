@@ -1932,4 +1932,15 @@ export default {
   getConcatenation(nums) {
     return nums.concat(nums);
   },
+  buildArray(nums) {
+    /**
+     * @param {number[]} nums
+     * @return {number[]}
+     */
+    let ans = [];
+    for (let i = 0; i < nums.length; i++) {
+      ans.push(nums[nums[i]]);
+    }
+    return ans;
+  },
 };
