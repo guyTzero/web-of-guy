@@ -1943,4 +1943,15 @@ export default {
     }
     return ans;
   },
+  runningSum(nums) {
+    let ans = [];
+    for (let i = 0; i < nums.length; i++) {
+      let sum = 0;
+      for (let k = 0; k <= i; k++) {
+        sum = sum + nums[k];
+      }
+      ans.push(sum);
+    }
+    return ans;
+  },
 };
