@@ -1954,4 +1954,15 @@ export default {
     }
     return ans;
   },
+  finalValueAfterOperations(operations) {
+    let ans = 0;
+    for (let i = 0; i < operations.length; i++) {
+      if (operations[i].includes("+")) {
+        ans = ans + 1;
+      } else {
+        ans = ans - 1;
+      }
+    }
+    return ans;
+  },
 };
