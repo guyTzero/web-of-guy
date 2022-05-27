@@ -1965,4 +1965,14 @@ export default {
     }
     return ans;
   },
+  maximumWealth(accounts) {
+    let most = 0;
+    for (let i = 0; i < accounts.length; i++) {
+      let sum = accounts[i].reduce((a, b) => a + b, 0);
+      if (most < sum) {
+        most = sum;
+      }
+    }
+    return most;
+  },
 };
