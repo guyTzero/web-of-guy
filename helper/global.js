@@ -1989,4 +1989,15 @@ export default {
 
     return <button onClick={() => setValue(value + 1)}>{value}</button>;
   },
+  defangIPaddr(address) {
+    let res = "";
+    for (let i = 0; i < address.length; i++) {
+      if (address[i] == ".") {
+        res = res + "[.]";
+      } else {
+        res = res + address[i];
+      }
+    }
+    return res;
+  },
 };
