@@ -1,18 +1,33 @@
 import { useState, useEffect } from "react";
+import global from "../helper/global";
 
 const App = () => {
-  const useDebouncedEffect = (effect, deps, delay) => {
-    useEffect(() => {
-      const handler = setTimeout(() => effect(), delay);
+  useEffect(() => {
+    console.log("-------------");
+    console.log(global.longestPalindrome("cbbd"));
+  }, []);
 
-      return () => clearTimeout(handler);
-    }, [...(deps || []), delay]);
-  };
-  const [value, setValue] = useState(0);
+  function longestPalindrome(string) {
+    if (!string) return;
 
-  useDebouncedEffect(() => console.log(value), [value], 1000);
+    let ll = 0;
+    let rr = 0;
 
-  return <button onClick={() => setValue(value + 1)}>{value}</button>;
+    for (let i = 0; i < string.length; i++) {
+      for (let j of [i, i + 1]) {
+        for (let l = i, r = j; string[l] && string[l] === string[r]; l--, r++) {
+          [ll, rr] = r - l + 1 > rr - ll + 1 ? [l, r] : [ll, rr];
+        }
+      }
+    }
+    return string.substring(ll, rr + 1);
+  }
+
+  return (
+    <div>
+      <div>xxx</div>
+    </div>
+  );
 };
 
 export default App;

@@ -920,24 +920,24 @@ export default {
 
     return numRows == 1 ? s : ans;
   },
-  longestPalindrome(s) {
-    // ll: Left index of the longest palindrome.
-    // rr: Right index of the longest palindrome.
-    let ll = 0,
-      rr = 0;
+  longestPalindrome(string) {
+    if (!string) return;
 
-    // Iterate all palindromes with center indices
-    // [..., i, ...] or [... i, i+1, ...]
-    for (let i = 0; i < s.length; i++) {
+    let ll = 0;
+    let rr = 0;
+
+    for (let i = 0; i < string.length; i++) {
+      console.log("--------------------------------------------------");
       for (let j of [i, i + 1]) {
-        for (l = i, r = j; s[l] && s[l] === s[r]; l--, r++)
-          // Found a new palindrome [l, ..., i, j, ..., r]
-          // Update the ll, rr if the newly found palindrome is longer than the
-          // existing one.
+        console.log("_______________ " + j + " ___________________");
+        for (let l = i, r = j; string[l] && string[l] === string[r]; l--, r++) {
           [ll, rr] = r - l + 1 > rr - ll + 1 ? [l, r] : [ll, rr];
+          console.log("+++++++++++++++++++++");
+          console.log("result", [ll, rr]);
+        }
       }
     }
-    return s.substring(ll, rr + 1);
+    return string.substring(ll, rr + 1);
   },
   removeElement(nums, val) {
     let j = 0;
