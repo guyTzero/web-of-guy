@@ -2010,4 +2010,26 @@ export default {
     }
     return max;
   },
+  minimumSum(num) {
+    function solve(arr, n) {
+      arr.sort();
+
+      let a = 0,
+        b = 0;
+      for (let i = 0; i < n; i++) {
+        if (i % 2 != 0) a = a * 10 + arr[i];
+        else b = b * 10 + arr[i];
+      }
+
+      return a + b;
+    }
+
+    var myArr = String(num)
+      .split("")
+      .map((num) => {
+        return Number(num);
+      });
+
+    return solve(myArr, myArr.length);
+  },
 };
