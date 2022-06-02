@@ -2032,4 +2032,29 @@ export default {
 
     return solve(myArr, myArr.length);
   },
+  transposeMatrix(matrix) {
+    let i = 0;
+    let b = [];
+
+    while (i < matrix[0].length) {
+      let ii = 0;
+      let arr = [];
+      while (ii < matrix.length) {
+        arr.push(matrix[ii][i]);
+        ii = ii + 1;
+      }
+      b.push(arr);
+      i = i + 1;
+    }
+
+    return b;
+  },
+  splitArrayEqual(array, n) {
+    let [...arr] = array;
+    var res = [];
+    while (arr.length) {
+      res.push(arr.splice(0, n));
+    }
+    return res;
+  },
 };
