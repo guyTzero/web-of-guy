@@ -2083,3 +2083,28 @@ export class NumMatrix {
     );
   }
 }
+
+export class SubrectangleQueries {
+  constructor(rectangle) {
+    this.rectangle = rectangle;
+    console.log(this.rectangle);
+  }
+
+  updateSubrectangle = function (row1, col1, row2, col2, newValue) {
+    // console.log('xxx',row1, col1, row2, col2, newValue)
+    // let box = []
+    for (let i = row1; i <= row2; i++) {
+      // let arr = []
+      for (let j = col1; j <= col2; j++) {
+        // arr.push(this.rectangle[i][j])
+        this.rectangle[i][j] = newValue;
+      }
+      // box.push(arr)
+    }
+    // console.log(box)
+  };
+
+  getValue(row, col) {
+    return this.rectangle[row][col];
+  }
+}
