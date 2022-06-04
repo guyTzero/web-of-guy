@@ -2057,6 +2057,18 @@ export default {
     }
     return res;
   },
+  shuffle(nums, n) {
+    let left = [];
+    let right = [];
+    for (let i = 0; i < nums.length - n; i++) left.push(nums[i]);
+    for (let i = n; i < nums.length; i++) right.push(nums[i]);
+    let box = [];
+    for (let i = 0; i < left.length; i++) {
+      box.push(left[i]);
+      box.push(right[i]);
+    }
+    return box;
+  },
 };
 
 export class NumMatrix {
