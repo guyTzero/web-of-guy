@@ -29,4 +29,30 @@ export default {
     }
     s = s.split(",");
   },
+  countPoints(points, queries) {
+    /**
+     * @param {number[][]} points
+     * @param {number[][]} queries
+     * @return {number[]}
+     */
+    let res = queries.map((e) => solve(e));
+
+    function solve([qX, qY, qR]) {
+      let res = 0;
+      for (let [x, y] of points) {
+        let [nX, nY] = [x - qX, y - qY];
+        console.log([nX, nY]);
+        console.log(nX ** 2, nY ** 2);
+        console.log(nX ** 2 + nY ** 2);
+        console.log("Math.sqrt", Math.sqrt(nX ** 2 + nY ** 2));
+        console.log("qR ", qR);
+        console.log("res", Math.sqrt(nX ** 2 + nY ** 2) <= qR);
+        res += Math.sqrt(nX ** 2 + nY ** 2) <= qR;
+        console.log("result ", res);
+      }
+      return res;
+    }
+
+    return res;
+  },
 };
