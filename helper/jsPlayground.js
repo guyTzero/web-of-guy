@@ -1,9 +1,5 @@
-import { useState, useEffect } from "react";
-import global from "../helper/global";
-
-const App = () => {
-  const [s, setS] = useState([]);
-  useEffect(() => {
+export default {
+  makeCircle() {
     function makeCircle(centerX, centerY, radius, a, arrayWidth, arrayHeight) {
       var x, y, d, yDiff, threshold, radiusSq;
       radius = radius * 2 + 1;
@@ -32,17 +28,5 @@ const App = () => {
       s = s + ",";
     }
     s = s.split(",");
-  }, []);
-
-  return (
-    <div>
-      <div style={{ textAlign: "center" }}>
-        {s.map((e) => (
-          <p>{e}</p>
-        ))}
-      </div>
-    </div>
-  );
+  },
 };
-
-export default App;
