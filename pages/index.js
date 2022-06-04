@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import global from "../helper/global";
+import global from "../helper/jsPlay";
 
 const App = () => {
   const [s, setS] = useState([]);
