@@ -55,4 +55,21 @@ export default {
 
     return res;
   },
+  subarraySum(nums, k) {
+    let to = 0; // total
+    let pr = 0; // prefix sum
+    let ma = new Map(); // map of  prefix sums & their count
+
+    ma.set(pr, (ma.get(pr) || 0) + 1);
+
+    console.log(ma);
+
+    for (let num of nums) {
+      pr += num;
+      to += ma.get(pr - k) || 0;
+      ma.set(pr, (ma.get(pr) || 0) + 1);
+    }
+
+    return to;
+  },
 };
