@@ -72,4 +72,46 @@ export default {
 
     return to;
   },
+  singleNumber(arr) {
+    let s = new Set();
+    for (let i = 0; i < arr.length; i++) {
+      if (s.has(arr[i])) s.delete(arr[i]);
+      else s.add(arr[i]);
+    }
+    return Array.from(s).sort(function (a, b) {
+      return a - b;
+    });
+    //   let box = []
+    //   for(let i = 0 ;i < nums.length ; i++ ){
+    //       let ele = nums[i]
+    //       nums[i] = null
+    //       if(!nums.includes(ele)){
+    //           box.push(ele)
+    //       }
+    //       nums[i] = ele
+    //   }
+    //   return box.sort(function(a, b){return a - b});
+  },
+  maxIndexDiff(arr, n) {
+    var rightMax = new Array(n).fill(0);
+    rightMax[n - 1] = arr[n - 1];
+    for (var i = n - 2; i >= 0; i--) {
+      rightMax[i] = Math.max(rightMax[i + 1], arr[i]);
+    }
+
+    // rightMax[i] = max{ arr[i...(n-1] }
+    var maxDist = Number.MIN_VALUE;
+    var i = 0;
+    var j = 0;
+    while (i < n && j < n) {
+      if (rightMax[j] >= arr[i]) {
+        maxDist = Math.max(maxDist, j - i);
+        j++;
+      } // if(rightMax[j] < leftMin[i])
+      else {
+        i++;
+      }
+    }
+    return maxDist == 5e-324 ? 0 : maxDist;
+  },
 };
