@@ -114,4 +114,133 @@ export default {
     }
     return maxDist == 5e-324 ? 0 : maxDist;
   },
+
+  getCount(node, low, high) {
+    //Function to count number of nodes in BST that lie in the given range.
+    if (node == null) return 0;
+
+    // If current node is in range, then
+    // include it in count and recur for
+    // left and right children of it
+    if (node.data >= low && node.data <= high)
+      return (
+        1 +
+        this.getCount(node.left, low, high) +
+        this.getCount(node.right, low, high)
+      );
+    // If current node is smaller than low,
+    // then recur for right child
+    else if (node.data < low) return this.getCount(node.right, low, high);
+    // Else recur for left child
+    else return this.getCount(node.left, low, high);
+  },
+  isInterleave(A, B, C) {
+    // The main function that
+    // returns true if C is
+    // an interleaving of A
+    // and B, otherwise false.
+
+    // Find lengths of the two strings
+    let M = A.length,
+      N = B.length;
+
+    // Let us create a 2D table
+    // to store solutions of
+    // subproblems.  C[i][j] will
+    // be true if C[0..i+j-1]
+    // is an interleaving of
+    // A[0..i-1] and B[0..j-1].
+    // Initialize all values as false.
+    let IL = new Array(M + 1);
+
+    for (let i = 0; i < M + 1; i++) {
+      IL[i] = new Array(N + 1).fill(0);
+    }
+
+    // C can be an interleaving of
+    // A and B only of the sum
+    // of lengths of A & B is equal
+    // to the length of C.
+    if (M + N != C.length) return false;
+
+    // Process all characters of A and B
+    for (let i = 0; i <= M; ++i) {
+      for (let j = 0; j <= N; ++j) {
+        // two empty strings have an
+        // empty string as interleaving
+        if (i == 0 && j == 0) IL[i][j] = true;
+        // A is empty
+        else if (i == 0) {
+          if (B[j - 1] == C[j - 1]) IL[i][j] = IL[i][j - 1];
+        }
+
+        // B is empty
+        else if (j == 0) {
+          if (A[i - 1] == C[i - 1]) IL[i][j] = IL[i - 1][j];
+        }
+
+        // Current character of C matches
+        // with current character of A,
+        // but doesn't match with current
+        // character of B
+        else if (A[i - 1] == C[i + j - 1] && B[j - 1] != C[i + j - 1])
+          IL[i][j] = IL[i - 1][j];
+        // Current character of C matches
+        // with current character of B,
+        // but doesn't match with current
+        // character of A
+        else if (A[i - 1] != C[i + j - 1] && B[j - 1] == C[i + j - 1])
+          IL[i][j] = IL[i][j - 1];
+        // Current character of C matches
+        // with that of both A and B
+        else if (A[i - 1] == C[i + j - 1] && B[j - 1] == C[i + j - 1])
+          IL[i][j] = IL[i - 1][j] || IL[i][j - 1];
+      }
+    }
+
+    return IL[M][N];
+  },
+  findTriplets(arr, n) {
+    let found = false;
+
+    // sort array elements
+    arr.sort((a, b) => a - b);
+
+    for (let i = 0; i < n - 1; i++) {
+      // initialize left and right
+      let l = i + 1;
+      let r = n - 1;
+      let x = arr[i];
+      while (l < r) {
+        if (x + arr[l] + arr[r] == 0) {
+          // print elements if it's sum is zero
+
+          l++;
+          r--;
+          found = true;
+          return 1;
+        }
+
+        // If sum of three elements is less
+        // than zero then increment in left
+        else if (x + arr[l] + arr[r] < 0) l++;
+        // if sum is greater than zero then
+        // decrement in right side
+        else r--;
+      }
+    }
+
+    if (found == false) return 0;
+    //     let res = 0
+    //   for(let i = 0 ; i < arr.length-2 ; i++){
+    //       for(let j = i+1 ; j < arr.length-1 ; j++){
+    //           for(let k = j + 1 ; k < arr.length ; k++){
+    //               if(arr[i] + arr[j] + arr[k] == 0 ){
+    //                   res = 1
+    //               }
+    //           }
+    //       }
+    //   }
+    //   return res
+  },
 };
