@@ -243,4 +243,30 @@ export default {
     //   }
     //   return res
   },
+  findLongestWord(s, d) {
+    let res = "";
+    function check(d, s) {
+      let i = 0;
+      let j = 0;
+      while (i < d.length && j < s.length) {
+        if (d[i] == s[j]) {
+          i++;
+          j++;
+        } else j++;
+      }
+      if (i == d.length && res.length < d.length) {
+        res = d;
+      }
+    }
+    function LongestWord(d, S) {
+      // sort the dictionary word
+      // for smallest lexicographical order
+      d.sort();
+      for (let c of d) {
+        check(c, S);
+      }
+      return res;
+    }
+    return LongestWord(d, s);
+  },
 };
