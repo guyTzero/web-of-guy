@@ -269,4 +269,7 @@ export default {
     }
     return LongestWord(d, s);
   },
+  goalParserInterpretation(command) {
+    return command.replaceAll("(al)", "al").replaceAll("()", "o");
+  },
 };
