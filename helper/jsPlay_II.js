@@ -272,4 +272,21 @@ export default {
   goalParserInterpretation(command) {
     return command.replaceAll("(al)", "al").replaceAll("()", "o");
   },
+  kidsWithCandies(candies, extraCandies) {
+    let res = [];
+    let checker = (arr) => arr.every((v) => v === true);
+    for (let i = 0; i < candies.length; i++) {
+      let ans = [];
+      let curr = candies[i] + extraCandies;
+      for (let j = 0; j < candies.length; j++) {
+        if (curr >= candies[j]) {
+          ans.push(true);
+        } else {
+          ans.push(false);
+        }
+      }
+      res.push(checker(ans));
+    }
+    return res;
+  },
 };
