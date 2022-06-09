@@ -2,46 +2,103 @@ import { useState, useEffect } from "react";
 import global from "../helper/jsPlay";
 
 const App = () => {
-  const [s, setS] = useState([]);
-  useEffect(() => {
-    function makeCircle(centerX, centerY, radius, a, arrayWidth, arrayHeight) {
-      var x, y, d, yDiff, threshold, radiusSq;
-      radius = radius * 2 + 1;
-      radiusSq = (radius * radius) / 4;
-      for (y = 0; y < arrayHeight; y++) {
-        yDiff = y - centerY;
-        threshold = radiusSq - yDiff * yDiff;
-        for (x = 0; x < arrayWidth; x++) {
-          d = x - centerX;
-          a[y][x] = d * d > threshold ? 0 : 1;
-        }
-      }
-    }
-
-    // test code:
-    var width = 20;
-    var dim = width * 2 + 1;
-    var array = new Array(dim);
-    for (let row = 0; row < dim; row++) array[row] = new Array(dim);
-
-    makeCircle(width, width, width, array, dim, dim);
-    for (var y = 0, s = ""; y < dim; y++) {
-      for (var x = 0; x < dim; x++) {
-        s += array[y][x];
-      }
-      s = s + ",";
-    }
-    s = s.split(",");
-  }, []);
-
   return (
-    <div>
-      <div style={{ textAlign: "center" }}>
-        {s.map((e) => (
-          <p>{e}</p>
-        ))}
+    <>
+      <div
+        style={{
+          backgroundColor: "red",
+          flexDirection: "row",
+          display: "flex",
+        }}
+      >
+        <div style={{ flex: 1, backgroundColor: "green" }}>
+          <div style={{ height: 100, margin: 10, backgroundColor: "pink" }}>
+            {" "}
+          </div>
+        </div>
+        <div
+          style={{
+            flex: 1,
+            backgroundColor: "yellow",
+            flexDirection: "column",
+            display: "flex",
+            margin: 10,
+          }}
+        >
+          <div style={{}}>
+            <p>asdasdsd</p>
+            <p>asdasdsd</p>
+            <p>asdasdsd</p>
+          </div>
+          <div
+            style={{
+              height: "100%",
+              backgroundColor: "orange",
+              overflow: "scroll",
+            }}
+          >
+            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
+            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
+            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
+            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
+            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
+            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
+            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
+            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
+          </div>
+          <div style={{ height: "100%", backgroundColor: "greenyellow" }}>
+            asdasdsd
+          </div>
+        </div>
       </div>
-    </div>
+
+      <div
+        style={{
+          backgroundColor: "red",
+          flexDirection: "row",
+          display: "flex",
+          marginTop: 100,
+        }}
+      >
+        <div style={{ flex: 1, backgroundColor: "green" }}>
+          <div style={{ height: 100, margin: 10, backgroundColor: "pink" }}>
+            {" "}
+          </div>
+        </div>
+        <div
+          style={{
+            flex: 1,
+            backgroundColor: "yellow",
+            flexDirection: "column",
+            display: "flex",
+            margin: 10,
+          }}
+        >
+          <div style={{}}>
+            <p>asdasdsd</p>
+          </div>
+          <div
+            style={{
+              height: "100%",
+              backgroundColor: "orange",
+              overflow: "scroll",
+            }}
+          >
+            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
+            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
+            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
+            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
+            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
+            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
+            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
+            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
+          </div>
+          <div style={{ height: "100%", backgroundColor: "greenyellow" }}>
+            asdasdsd
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
