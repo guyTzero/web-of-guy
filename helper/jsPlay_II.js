@@ -331,4 +331,21 @@ export default {
 
     return longestStringLength;
   },
+  restoreString(s, indices, type = 1) {
+    if (type == 1) {
+      let _s = new Array(s.length).fill("");
+      for (let i = 0; i < indices.length; i++) {
+        _s[indices[i]] = s[i];
+      }
+      return _s.join("");
+    } else {
+      let [_s, obj] = [new Array(s.length).fill(""), {}];
+      return _s
+        .map((e, k) => {
+          obj[indices[k]] = s[k];
+        })
+        .map((e, k) => obj[k])
+        .join("");
+    }
+  },
 };
