@@ -348,4 +348,11 @@ export default {
         .join("");
     }
   },
+  createTargetArray(nums, index) {
+    let res = new Array(nums.length).fill(null);
+    for (let i = 0; i < nums.length; i++) {
+      res.splice(index[i], 0, nums[i]);
+    }
+    return res.filter((e) => e !== null);
+  },
 };
