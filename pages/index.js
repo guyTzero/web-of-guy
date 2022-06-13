@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
-import global from "../helper/jsPlay";
+import global from "../helper/jsPlay_II";
 
 const App = () => {
+  useEffect(() => {
+    global.makeTree();
+  }, []);
   return (
     <>
       <div
