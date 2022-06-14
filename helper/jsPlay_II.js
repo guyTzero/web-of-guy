@@ -381,4 +381,18 @@ export default {
 
     console.log(tree);
   },
+  cellsInRange(s) {
+    let _s = s.split(":");
+    let start = _s[0][0].charCodeAt(0);
+    let end = _s[1][0].charCodeAt(0);
+    let s_start = _s[0][1];
+    let s_end = _s[1][1];
+    let res = [];
+    for (let i = start; i <= end; i++) {
+      for (let k = s_start; k <= s_end; k++) {
+        res.push(String.fromCharCode(i) + k);
+      }
+    }
+    return res;
+  },
 };
