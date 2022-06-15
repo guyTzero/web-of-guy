@@ -395,4 +395,10 @@ export default {
     }
     return res;
   },
+  countMatches(items, ruleKey, ruleValue) {
+    return items.filter(
+      (e, k) =>
+        e[ruleKey == "type" ? 0 : ruleKey == "color" ? 1 : 2] == ruleValue
+    ).length;
+  },
 };
