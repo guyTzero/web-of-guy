@@ -401,4 +401,11 @@ export default {
         e[ruleKey == "type" ? 0 : ruleKey == "color" ? 1 : 2] == ruleValue
     ).length;
   },
+  decodeWithXor(encoded, first) {
+    let ans = [first];
+    for (let i = 0; i < encoded.length; i++) {
+      ans.push(ans[ans.length - 1] ^ encoded[i]);
+    }
+    return ans;
+  },
 };

@@ -1,108 +1,22 @@
-import { useState, useEffect } from "react";
-import global from "../helper/jsPlay_II";
+import React, { useState, useEffect } from "react";
 
-const App = () => {
+export default function Example() {
+  const [count, setCount] = useState(0);
+  const [x, xx] = useState(0);
+
+  // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    global.makeTree();
-  }, []);
+    // Update the document title using the browser API
+    console.log(`You clicked ${count} times`);
+    console.log(`You clicked ${x} times`);
+    // document.title = `You clicked ${count} times`;
+  });
+
   return (
-    <>
-      <div
-        style={{
-          backgroundColor: "red",
-          flexDirection: "row",
-          display: "flex",
-        }}
-      >
-        <div style={{ flex: 1, backgroundColor: "green" }}>
-          <div style={{ height: 100, margin: 10, backgroundColor: "pink" }}>
-            {" "}
-          </div>
-        </div>
-        <div
-          style={{
-            flex: 1,
-            backgroundColor: "yellow",
-            flexDirection: "column",
-            display: "flex",
-            margin: 10,
-          }}
-        >
-          <div style={{}}>
-            <p>asdasdsd</p>
-            <p>asdasdsd</p>
-            <p>asdasdsd</p>
-          </div>
-          <div
-            style={{
-              height: "100%",
-              backgroundColor: "orange",
-              overflow: "scroll",
-            }}
-          >
-            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
-            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
-            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
-            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
-            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
-            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
-            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
-            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
-          </div>
-          <div style={{ height: "100%", backgroundColor: "greenyellow" }}>
-            asdasdsd
-          </div>
-        </div>
-      </div>
-
-      <div
-        style={{
-          backgroundColor: "red",
-          flexDirection: "row",
-          display: "flex",
-          marginTop: 100,
-        }}
-      >
-        <div style={{ flex: 1, backgroundColor: "green" }}>
-          <div style={{ height: 100, margin: 10, backgroundColor: "pink" }}>
-            {" "}
-          </div>
-        </div>
-        <div
-          style={{
-            flex: 1,
-            backgroundColor: "yellow",
-            flexDirection: "column",
-            display: "flex",
-            margin: 10,
-          }}
-        >
-          <div style={{}}>
-            <p>asdasdsd</p>
-          </div>
-          <div
-            style={{
-              height: "100%",
-              backgroundColor: "orange",
-              overflow: "scroll",
-            }}
-          >
-            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
-            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
-            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
-            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
-            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
-            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
-            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
-            sadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsdasadasdsda
-          </div>
-          <div style={{ height: "100%", backgroundColor: "greenyellow" }}>
-            asdasdsd
-          </div>
-        </div>
-      </div>
-    </>
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>Click me</button>
+      <button onClick={() => xx(x + 1)}>Click me</button>
+    </div>
   );
-};
-
-export default App;
+}
