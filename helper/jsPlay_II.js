@@ -425,4 +425,17 @@ export default {
     // Return the final sum
     return sum;
   },
+  minMovesToSeat(seats, students) {
+    let ans = 0;
+    seats.sort(function (a, b) {
+      return a - b;
+    });
+    students.sort(function (a, b) {
+      return a - b;
+    });
+    for (let i = 0; i < seats.length; i++) {
+      ans = ans + Math.abs(seats[i] - students[i]);
+    }
+    return ans;
+  },
 };

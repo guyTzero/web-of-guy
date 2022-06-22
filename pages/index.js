@@ -1,22 +1,36 @@
 import React, { useState, useEffect } from "react";
 
 export default function Example() {
-  const [count, setCount] = useState(0);
-  const [x, xx] = useState(0);
-
-  // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    // Update the document title using the browser API
-    console.log(`You clicked ${count} times`);
-    console.log(`You clicked ${x} times`);
-    // document.title = `You clicked ${count} times`;
-  });
+    const sendSmsVerification = async (phoneNumber) => {
+      try {
+        const data = JSON.stringify({
+          to: "+66945926126",
+          channel: "sms",
+        });
+        console.log("data", data);
 
-  return (
-    <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>Click me</button>
-      <button onClick={() => xx(x + 1)}>Click me</button>
-    </div>
-  );
+        const response = await fetch(
+          `${"https://verify-1234-abcdef.twil.io"}/start-verify`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: data,
+          }
+        );
+        console.log("response", response);
+
+        const json = await response.json();
+        return json.success;
+      } catch (error) {
+        console.error(error);
+        return false;
+      }
+    };
+    sendSmsVerification();
+  }, []);
+
+  return <div></div>;
 }
