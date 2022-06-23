@@ -438,4 +438,15 @@ export default {
     }
     return ans;
   },
+  countKDifference(nums, k) {
+    let res = 0;
+    for (let i = 0; i < nums.length; i++) {
+      for (let j = i; j < nums.length; j++) {
+        if (Math.abs(nums[i] - nums[j]) == k) {
+          res = res + 1;
+        }
+      }
+    }
+    return res;
+  },
 };
