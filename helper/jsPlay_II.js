@@ -449,4 +449,24 @@ export default {
     }
     return res;
   },
+  countConsistentStrings(allowed, words) {
+    allowed = allowed.split("");
+    let res = 0;
+    for (let i = 0; i < words.length; i++) {
+      let c = 0;
+      // console.log('------------'+ words[i] +'---------------')
+      for (let j = 0; j < words[i].length; j++) {
+        // console.log('============'+ words[i][j] +'===============')
+        if (allowed.includes(words[i][j])) {
+          // console.log('is_correct')
+          c = c + 1;
+        }
+      }
+      if (c == words[i].length) {
+        // console.log('added')
+        res = res + 1;
+      }
+    }
+    return res;
+  },
 };
