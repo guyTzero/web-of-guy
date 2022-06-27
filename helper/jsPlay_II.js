@@ -472,4 +472,23 @@ export default {
   truncateSentence(s, k) {
     return s.split(" ").slice(0, k).join(" ");
   },
+  maxProductDifference(nums) {
+    let max = 0;
+    let min = 0;
+    for (let i = 0; i < nums.length; i++) {
+      for (let k = 0; k < nums.length; k++) {
+        if (k !== i) {
+          if (nums[i] * nums[k] >= max) {
+            max = nums[i] * nums[k];
+            if (i == 0) {
+              min = nums[i] * nums[k];
+            }
+          } else if (nums[i] * nums[k] <= min) {
+            min = nums[i] * nums[k];
+          }
+        }
+      }
+    }
+    return max - min;
+  },
 };
