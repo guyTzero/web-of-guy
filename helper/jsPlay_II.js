@@ -491,4 +491,17 @@ export default {
     }
     return max - min;
   },
+   uniqueMorseRepresentations (words) {
+    let trans = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
+    let ans = []
+    for(let i = 0 ; i < words.length ; i++){
+        let s = ''
+    for(let j = 0 ; j < words[i].length ; j++){
+       s = s + trans[words[i][j].charCodeAt(0) - 97]
+    }
+        ans.push(s)
+    }
+    let res = new Set(ans)
+    return res.size
+}
 };
