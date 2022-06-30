@@ -1,36 +1,25 @@
 import React, { useState, useEffect } from "react";
 
-export default function Example() {
-  useEffect(() => {
-    const sendSmsVerification = async (phoneNumber) => {
-      try {
-        const data = JSON.stringify({
-          to: "+66945926126",
-          channel: "sms",
-        });
-        console.log("data", data);
+export default function App() {
+  useEffect(() => {}, []);
 
-        const response = await fetch(
-          `${"https://verify-1234-abcdef.twil.io"}/start-verify`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: data,
-          }
-        );
-        console.log("response", response);
+  return (
+    <div
+      style={{
+        backgroundColor: "red",
+        top:0,
+        left:0,
+        position:'absolute',
+        height: "100vh",
+        width:"100vw",
+        overflow:'auto'
+      }}
+    >
+      
+     
+     {[...Array(100)].map(() => <div style={{backgroundColor:"yellow",height:100,width:100,margin:10}}/>)}   
+    
 
-        const json = await response.json();
-        return json.success;
-      } catch (error) {
-        console.error(error);
-        return false;
-      }
-    };
-    sendSmsVerification();
-  }, []);
-
-  return <div></div>;
+    </div>
+  );
 }
