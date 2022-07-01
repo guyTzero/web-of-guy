@@ -503,5 +503,28 @@ export default {
     }
     let res = new Set(ans)
     return res.size
+},
+ diagonalSum (mat) {
+  let sum = 0
+  let mid = Math.floor(mat.length / 2)
+  let isOdd = (mat.length % 2  == 0) ? false : true;
+
+  for(let i = 0 ; i < mat.length ; i++){
+      if(i == mid && isOdd){
+          sum = sum + mat[i][i]
+         }else{
+          sum = sum + mat[i][i]
+      }
+  }
+  mat.reverse()
+  for(let i = 0 ; i < mat.length ; i++){
+      if(i == mid && isOdd){
+          
+         }else{
+          sum = sum + mat[i][i]
+      }
+  }
+
+  return sum
 }
 };
