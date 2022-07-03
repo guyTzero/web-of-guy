@@ -491,40 +491,95 @@ export default {
     }
     return max - min;
   },
-   uniqueMorseRepresentations (words) {
-    let trans = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
-    let ans = []
-    for(let i = 0 ; i < words.length ; i++){
-        let s = ''
-    for(let j = 0 ; j < words[i].length ; j++){
-       s = s + trans[words[i][j].charCodeAt(0) - 97]
-    }
-        ans.push(s)
-    }
-    let res = new Set(ans)
-    return res.size
-},
- diagonalSum (mat) {
-  let sum = 0
-  let mid = Math.floor(mat.length / 2)
-  let isOdd = (mat.length % 2  == 0) ? false : true;
-
-  for(let i = 0 ; i < mat.length ; i++){
-      if(i == mid && isOdd){
-          sum = sum + mat[i][i]
-         }else{
-          sum = sum + mat[i][i]
+  uniqueMorseRepresentations(words) {
+    let trans = [
+      ".-",
+      "-...",
+      "-.-.",
+      "-..",
+      ".",
+      "..-.",
+      "--.",
+      "....",
+      "..",
+      ".---",
+      "-.-",
+      ".-..",
+      "--",
+      "-.",
+      "---",
+      ".--.",
+      "--.-",
+      ".-.",
+      "...",
+      "-",
+      "..-",
+      "...-",
+      ".--",
+      "-..-",
+      "-.--",
+      "--..",
+    ];
+    let ans = [];
+    for (let i = 0; i < words.length; i++) {
+      let s = "";
+      for (let j = 0; j < words[i].length; j++) {
+        s = s + trans[words[i][j].charCodeAt(0) - 97];
       }
-  }
-  mat.reverse()
-  for(let i = 0 ; i < mat.length ; i++){
-      if(i == mid && isOdd){
-          
-         }else{
-          sum = sum + mat[i][i]
-      }
-  }
+      ans.push(s);
+    }
+    let res = new Set(ans);
+    return res.size;
+  },
+  diagonalSum(mat) {
+    let sum = 0;
+    let mid = Math.floor(mat.length / 2);
+    let isOdd = mat.length % 2 == 0 ? false : true;
 
-  return sum
-}
+    for (let i = 0; i < mat.length; i++) {
+      if (i == mid && isOdd) {
+        sum = sum + mat[i][i];
+      } else {
+        sum = sum + mat[i][i];
+      }
+    }
+    mat.reverse();
+    for (let i = 0; i < mat.length; i++) {
+      if (i == mid && isOdd) {
+      } else {
+        sum = sum + mat[i][i];
+      }
+    }
+
+    return sum;
+  },
+  minTimeToVisitAllPoints(points) {
+    let allCount = 0;
+    for (let i = 0; i < points.length - 1; i++) {
+      let x = points[i][0];
+      let y = points[i][1];
+      let _x = points[i + 1][0];
+      let _y = points[i + 1][1];
+      let count = 0;
+      while (x !== _x || y !== _y) {
+        if (x !== _x) {
+          if (x < _x) {
+            x = x + 1;
+          } else {
+            x = x - 1;
+          }
+        }
+        if (y !== _y) {
+          if (y < _y) {
+            y = y + 1;
+          } else {
+            y = y - 1;
+          }
+        }
+        count = count + 1;
+      }
+      allCount = allCount + count;
+    }
+    return allCount;
+  },
 };
