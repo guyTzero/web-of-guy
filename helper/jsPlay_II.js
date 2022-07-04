@@ -583,6 +583,7 @@ export default {
     return allCount;
   },
    countGoodRectangles (rectangles) {
+     // sexy code ayy?
     let box = rectangles.map(e => e[0] > e[1] ? e[1] : e[0])
     const most = Math.max(...box);
     return box.filter(e => e == most).length
