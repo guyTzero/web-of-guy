@@ -587,5 +587,13 @@ export default {
     let box = rectangles.map(e => e[0] > e[1] ? e[1] : e[0])
     const most = Math.max(...box);
     return box.filter(e => e == most).length
+},
+  firstPalindrome(words) {
+    for(let i = 0 ; i < words.length ; i++){
+        if(words[i] == words[i].split('').reverse().join('')){
+           return words[i]
+           }
+    }
+    return ''
 }
 };
