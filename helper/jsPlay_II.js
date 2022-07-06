@@ -595,5 +595,9 @@ export default {
            }
     }
     return ''
-}
+},
+  maxProduct(nums) {
+    nums = nums.sort(function (a, b) {  return a - b;  });
+    return (nums[nums.length - 2]-1)*(nums[nums.length - 1]-1)
+  }
 };
