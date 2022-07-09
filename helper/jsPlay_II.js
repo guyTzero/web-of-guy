@@ -628,5 +628,13 @@ export default {
   }
 
   return count;
+},
+   targetIndices (nums, target) {
+    nums.sort((a, b) => a - b)
+    nums = nums.map((e,k) => {
+        if(e == target ){
+            return k
+        }})
+    return nums.filter(e => e > -1)
 }
 };
