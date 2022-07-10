@@ -636,5 +636,25 @@ export default {
             return k
         }})
     return nums.filter(e => e > -1)
+},
+  findGCD (nums) {
+    function isInt(n){
+        return Number(n) === n && n % 1 == 0
+    }
+    nums = nums.sort((a,b) => a - b)
+    
+    let min = nums[0]
+    let max = nums[nums.length - 1]
+    // let min = Math.min(...nums)
+    // let max = Math.max(...nums)
+    let res = null
+    for(let i = min ; i > -1 ; i--){
+        if(isInt(min / i) && isInt(max / i)){
+            res = i
+            break
+        }
+    }
+    return res
+    
 }
 };
