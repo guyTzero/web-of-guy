@@ -582,79 +582,81 @@ export default {
     }
     return allCount;
   },
-   countGoodRectangles (rectangles) {
-     // sexy code ayy?
-    let box = rectangles.map(e => e[0] > e[1] ? e[1] : e[0])
+  countGoodRectangles(rectangles) {
+    // sexy code ayy?
+    let box = rectangles.map((e) => (e[0] > e[1] ? e[1] : e[0]));
     const most = Math.max(...box);
-    return box.filter(e => e == most).length
-},
-  firstPalindrome(words) {
-    for(let i = 0 ; i < words.length ; i++){
-        if(words[i] == words[i].split('').reverse().join('')){
-           return words[i]
-           }
-    }
-    return ''
-},
-  maxProduct(nums) {
-    nums = nums.sort(function (a, b) {  return a - b;  });
-    return (nums[nums.length - 2]-1)*(nums[nums.length - 1]-1)
+    return box.filter((e) => e == most).length;
   },
-  largestAltitude (gain) {
-    let res = [0]
-    for(let i = 0 ; i < gain.length ; i++){
-        res.push(res[i] + gain[i])
-    }
-    return Math.max(...res)
-},
- oddCells(n, m, indices) {
-  const row = new Array(n).fill(0)
-  const col = new Array(m).fill(0)
-  console.log(row,col)
-
-  for (let i = 0; i < indices.length; i++) {
-    row[indices[i][0]]++;
-    col[indices[i][1]]++;
-  }
-
-  let count = 0;
-
-  for (let i = 0; i < n; i++) {
-    for (let j = 0; j < m; j++) {
-      if ((row[i] + col[j]) % 2 !== 0) {
-        count++;
+  firstPalindrome(words) {
+    for (let i = 0; i < words.length; i++) {
+      if (words[i] == words[i].split("").reverse().join("")) {
+        return words[i];
       }
     }
-  }
-
-  return count;
-},
-   targetIndices (nums, target) {
-    nums.sort((a, b) => a - b)
-    nums = nums.map((e,k) => {
-        if(e == target ){
-            return k
-        }})
-    return nums.filter(e => e > -1)
-},
-  findGCD (nums) {
-    function isInt(n){
-        return Number(n) === n && n % 1 == 0
+    return "";
+  },
+  maxProduct(nums) {
+    nums = nums.sort(function (a, b) {
+      return a - b;
+    });
+    return (nums[nums.length - 2] - 1) * (nums[nums.length - 1] - 1);
+  },
+  largestAltitude(gain) {
+    let res = [0];
+    for (let i = 0; i < gain.length; i++) {
+      res.push(res[i] + gain[i]);
     }
-    nums = nums.sort((a,b) => a - b)
-    
-    let min = nums[0]
-    let max = nums[nums.length - 1]
+    return Math.max(...res);
+  },
+  oddCells(n, m, indices) {
+    const row = new Array(n).fill(0);
+    const col = new Array(m).fill(0);
+    console.log(row, col);
+
+    for (let i = 0; i < indices.length; i++) {
+      row[indices[i][0]]++;
+      col[indices[i][1]]++;
+    }
+
+    let count = 0;
+
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < m; j++) {
+        if ((row[i] + col[j]) % 2 !== 0) {
+          count++;
+        }
+      }
+    }
+
+    return count;
+  },
+  targetIndices(nums, target) {
+    nums.sort((a, b) => a - b);
+    nums = nums.map((e, k) => {
+      if (e == target) {
+        return k;
+      }
+    });
+    return nums.filter((e) => e > -1);
+  },
+  findGCD(nums) {
+    function isInt(n) {
+      return Number(n) === n && n % 1 == 0;
+    }
+    nums = nums.sort((a, b) => a - b);
+
+    let min = nums[0];
+    let max = nums[nums.length - 1];
     // let min = Math.min(...nums)
     // let max = Math.max(...nums)
-    let res = null
-    for(let i = min ; i > -1 ; i--){
-        if(isInt(min / i) && isInt(max / i)){
-            res = i
-            break
-        }
+    let res = null;
+    for (let i = min; i > -1; i--) {
+      if (isInt(min / i) && isInt(max / i)) {
+        res = i;
+        break;
+      }
     }
-    return res
-    
-}
+    return res;
+  },
 };
