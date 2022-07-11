@@ -659,4 +659,7 @@ export default {
     }
     return res;
   },
+  prefixCount(words, pref) {
+    return  words.filter(e => e.substring(0,pref.length ) == pref  ).length
+  }
 };
