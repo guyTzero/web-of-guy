@@ -661,5 +661,23 @@ export default {
   },
   prefixCount(words, pref) {
     return  words.filter(e => e.substring(0,pref.length ) == pref  ).length
-  }
+  },
+  sumZero(n) {
+    // faster
+    if(n == 1) return [0]
+    let res = []
+    if(n % 2 !== 0 ? true : false) res.push(0)
+    for(let i = 1 ; i <= parseInt(n/2) ; i++){
+        res.push(Math.abs(i))
+        res.push(-Math.abs(i))
+    }
+    return res
+    // slower
+    // if(n == 1) return [0]
+    // const values = new Array(parseInt(n/2)).fill(1).reduce((acc, cur ,i) => {
+    //     return acc.concat([Math.abs(i+1),-Math.abs(i+1)]);
+    // }, []);
+    // n % 2 !== 0 ? values.push(0) : null   
+    // return values
+}
 };
