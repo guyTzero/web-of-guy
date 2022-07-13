@@ -679,5 +679,8 @@ export default {
     // }, []);
     // n % 2 !== 0 ? values.push(0) : null   
     // return values
-}
+},
+  findNumbers(nums) {
+    return nums.filter((e,k) => String(e).length % 2 == 0).length
+  }
 };
