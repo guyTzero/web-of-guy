@@ -682,5 +682,8 @@ export default {
 },
   findNumbers(nums) {
     return nums.filter((e,k) => String(e).length % 2 == 0).length
+  },
+  busyStudent(startTime, endTime, queryTime) {
+   return  startTime.filter((e,k) =>  e <= queryTime && endTime[k] >= queryTime ).length
   }
 };
