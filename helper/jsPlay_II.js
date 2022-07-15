@@ -685,5 +685,26 @@ export default {
   },
   busyStudent(startTime, endTime, queryTime) {
    return  startTime.filter((e,k) =>  e <= queryTime && endTime[k] >= queryTime ).length
+  },
+  diStringMatch(s) {
+    let numArr = []
+    for(let i = 0 ; i <= s.length ; i++){
+        numArr.push(i)
+    }    
+    let res = []
+    for(let i = 0 ; i < s.length ; i++){
+        if(s[i] == 'I'){
+            let min =  Math.min(...numArr)
+            let index = numArr.indexOf(Math.min(...numArr));
+            res.push(min)
+            numArr.splice(index, 1);
+           }else{
+            let max =  Math.max(...numArr)
+            let index = numArr.indexOf(max);
+            res.push(max)
+            numArr.splice(index, 1);            
+        } 
+    }
+    return res.concat(numArr)
   }
 };
