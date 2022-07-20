@@ -740,5 +740,38 @@ export default {
            }
     }
     return check
-};
+},
+//     const useDebouncedEffect = (effect, deps, delay) => {
+//     useEffect(() => {
+//       const handler = setTimeout(() => effect(), delay);
+
+//       return () => clearTimeout(handler);
+//     }, [...(deps || []), delay]);
+//   };
+//   useDebouncedEffect(
+//     () => {
+//       if (onScrollLoad > 1) {
+//         console.log('DebounceSetPage');
+//         setPage(page + 1);
+//       }
+//     },
+//     [onScrollLoad],
+//     1000,
+//   );
+//   const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
+//     const paddingToBottom = 20;
+//     return (
+//       layoutMeasurement.height + contentOffset.y >=
+//       contentSize.height - paddingToBottom
+//     );
+//   };
+//   return (
+//     <View style={{flex: 1, height: '100%'}}>
+//         <ScrollView
+//           onScroll={({nativeEvent}) => {
+//             if (isCloseToBottom(nativeEvent) && onScrollLoad) {
+//               setOnScrollLoad(onScrollLoad + 1);
+//             }
+//           }}
+//           scrollEventThrottle={400}
 };
