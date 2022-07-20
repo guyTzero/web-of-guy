@@ -722,5 +722,23 @@ export default {
         res.push(Math.min(...sp[i]))
     }
     return res.reduce((partialSum, a) => partialSum + a, 0)  
-  }
+  },
+  divideArray(nums) {
+    nums.sort(function (a, b) {  return a - b;  })
+    function splitToChunks(array, parts) {
+        let result = [];
+        for (let i = parts; i > 0; i--) {
+        result.push(array.splice(0, Math.ceil(array.length / i)));
+        }
+        return result
+    }
+    let sp = splitToChunks(nums,nums.length/2)
+    let check = true
+    for(let i = 0 ; i < sp.length ; i++){
+        if(sp[i][0] !== sp[i][1]){
+           check = false
+           }
+    }
+    return check
+};
 };
