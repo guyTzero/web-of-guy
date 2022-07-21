@@ -774,4 +774,14 @@ export default {
 //             }
 //           }}
 //           scrollEventThrottle={400}
+  repeatedNTimes(nums) {
+    // let q = nums.map(v => nums.filter(e => e == v)).filter(e => e.length == nums.length/2)
+    // return q[0][0]
+    for(let i = 0 ; i < nums.length ; i++){
+        if(nums.filter(e => e == nums[i]).length == nums.length / 2  ){
+           return  nums[i]
+           }
+    }
+    
+};
 };
