@@ -660,128 +660,132 @@ export default {
     return res;
   },
   prefixCount(words, pref) {
-    return  words.filter(e => e.substring(0,pref.length ) == pref  ).length
+    return words.filter((e) => e.substring(0, pref.length) == pref).length;
   },
   sumZero(n) {
     // faster
-    if(n == 1) return [0]
-    let res = []
-    if(n % 2 !== 0 ? true : false) res.push(0)
-    for(let i = 1 ; i <= parseInt(n/2) ; i++){
-        res.push(Math.abs(i))
-        res.push(-Math.abs(i))
+    if (n == 1) return [0];
+    let res = [];
+    if (n % 2 !== 0 ? true : false) res.push(0);
+    for (let i = 1; i <= parseInt(n / 2); i++) {
+      res.push(Math.abs(i));
+      res.push(-Math.abs(i));
     }
-    return res
+    return res;
     // slower
     // if(n == 1) return [0]
     // const values = new Array(parseInt(n/2)).fill(1).reduce((acc, cur ,i) => {
     //     return acc.concat([Math.abs(i+1),-Math.abs(i+1)]);
     // }, []);
-    // n % 2 !== 0 ? values.push(0) : null   
+    // n % 2 !== 0 ? values.push(0) : null
     // return values
-},
+  },
   findNumbers(nums) {
-    return nums.filter((e,k) => String(e).length % 2 == 0).length
+    return nums.filter((e, k) => String(e).length % 2 == 0).length;
   },
   busyStudent(startTime, endTime, queryTime) {
-   return  startTime.filter((e,k) =>  e <= queryTime && endTime[k] >= queryTime ).length
+    return startTime.filter((e, k) => e <= queryTime && endTime[k] >= queryTime)
+      .length;
   },
   diStringMatch(s) {
-    let numArr = []
-    for(let i = 0 ; i <= s.length ; i++){
-        numArr.push(i)
-    }    
-    let res = []
-    for(let i = 0 ; i < s.length ; i++){
-        if(s[i] == 'I'){
-            let min =  Math.min(...numArr)
-            let index = numArr.indexOf(Math.min(...numArr));
-            res.push(min)
-            numArr.splice(index, 1);
-           }else{
-            let max =  Math.max(...numArr)
-            let index = numArr.indexOf(max);
-            res.push(max)
-            numArr.splice(index, 1);            
-        } 
+    let numArr = [];
+    for (let i = 0; i <= s.length; i++) {
+      numArr.push(i);
     }
-    return res.concat(numArr)
+    let res = [];
+    for (let i = 0; i < s.length; i++) {
+      if (s[i] == "I") {
+        let min = Math.min(...numArr);
+        let index = numArr.indexOf(Math.min(...numArr));
+        res.push(min);
+        numArr.splice(index, 1);
+      } else {
+        let max = Math.max(...numArr);
+        let index = numArr.indexOf(max);
+        res.push(max);
+        numArr.splice(index, 1);
+      }
+    }
+    return res.concat(numArr);
   },
-  arrayPairSum (nums) {
-    nums.sort(function (a, b) {  return a - b;  })
+  arrayPairSum(nums) {
+    nums.sort(function (a, b) {
+      return a - b;
+    });
     function splitToChunks(array, parts) {
-        let result = [];
-        for (let i = parts; i > 0; i--) {
+      let result = [];
+      for (let i = parts; i > 0; i--) {
         result.push(array.splice(0, Math.ceil(array.length / i)));
-        }
-        return result
+      }
+      return result;
     }
-    let sp = splitToChunks(nums,nums.length/2)
-    let res = []
-    for(let i = 0 ; i < sp.length ; i ++){
-        res.push(Math.min(...sp[i]))
+    let sp = splitToChunks(nums, nums.length / 2);
+    let res = [];
+    for (let i = 0; i < sp.length; i++) {
+      res.push(Math.min(...sp[i]));
     }
-    return res.reduce((partialSum, a) => partialSum + a, 0)  
+    return res.reduce((partialSum, a) => partialSum + a, 0);
   },
   divideArray(nums) {
-    nums.sort(function (a, b) {  return a - b;  })
+    nums.sort(function (a, b) {
+      return a - b;
+    });
     function splitToChunks(array, parts) {
-        let result = [];
-        for (let i = parts; i > 0; i--) {
+      let result = [];
+      for (let i = parts; i > 0; i--) {
         result.push(array.splice(0, Math.ceil(array.length / i)));
-        }
-        return result
+      }
+      return result;
     }
-    let sp = splitToChunks(nums,nums.length/2)
-    let check = true
-    for(let i = 0 ; i < sp.length ; i++){
-        if(sp[i][0] !== sp[i][1]){
-           check = false
-           }
+    let sp = splitToChunks(nums, nums.length / 2);
+    let check = true;
+    for (let i = 0; i < sp.length; i++) {
+      if (sp[i][0] !== sp[i][1]) {
+        check = false;
+      }
     }
-    return check
-},
-//     const useDebouncedEffect = (effect, deps, delay) => {
-//     useEffect(() => {
-//       const handler = setTimeout(() => effect(), delay);
+    return check;
+  },
+  //     const useDebouncedEffect = (effect, deps, delay) => {
+  //     useEffect(() => {
+  //       const handler = setTimeout(() => effect(), delay);
 
-//       return () => clearTimeout(handler);
-//     }, [...(deps || []), delay]);
-//   };
-//   useDebouncedEffect(
-//     () => {
-//       if (onScrollLoad > 1) {
-//         console.log('DebounceSetPage');
-//         setPage(page + 1);
-//       }
-//     },
-//     [onScrollLoad],
-//     1000,
-//   );
-//   const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
-//     const paddingToBottom = 20;
-//     return (
-//       layoutMeasurement.height + contentOffset.y >=
-//       contentSize.height - paddingToBottom
-//     );
-//   };
-//   return (
-//     <View style={{flex: 1, height: '100%'}}>
-//         <ScrollView
-//           onScroll={({nativeEvent}) => {
-//             if (isCloseToBottom(nativeEvent) && onScrollLoad) {
-//               setOnScrollLoad(onScrollLoad + 1);
-//             }
-//           }}
-//           scrollEventThrottle={400}
+  //       return () => clearTimeout(handler);
+  //     }, [...(deps || []), delay]);
+  //   };
+  //   useDebouncedEffect(
+  //     () => {
+  //       if (onScrollLoad > 1) {
+  //         console.log('DebounceSetPage');
+  //         setPage(page + 1);
+  //       }
+  //     },
+  //     [onScrollLoad],
+  //     1000,
+  //   );
+  //   const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
+  //     const paddingToBottom = 20;
+  //     return (
+  //       layoutMeasurement.height + contentOffset.y >=
+  //       contentSize.height - paddingToBottom
+  //     );
+  //   };
+  //   return (
+  //     <View style={{flex: 1, height: '100%'}}>
+  //         <ScrollView
+  //           onScroll={({nativeEvent}) => {
+  //             if (isCloseToBottom(nativeEvent) && onScrollLoad) {
+  //               setOnScrollLoad(onScrollLoad + 1);
+  //             }
+  //           }}
+  //           scrollEventThrottle={400}
   repeatedNTimes(nums) {
     // let q = nums.map(v => nums.filter(e => e == v)).filter(e => e.length == nums.length/2)
     // return q[0][0]
-    for(let i = 0 ; i < nums.length ; i++){
-        if(nums.filter(e => e == nums[i]).length == nums.length / 2  ){
-           return  nums[i]
-           }
+    for (let i = 0; i < nums.length; i++) {
+      if (nums.filter((e) => e == nums[i]).length == nums.length / 2) {
+        return nums[i];
+      }
     }
-    
-};
+  },
 };
