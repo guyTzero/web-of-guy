@@ -788,4 +788,24 @@ export default {
       }
     }
   },
+   sumOfUnique (nums) {
+    let res = 0
+    for(let i = 0 ; i < nums.length ; i++){
+        let count = 1
+        for(let j = 0 ; j < nums.length ; j++){
+            if(j !== i){
+                if(count !== 1){
+                    break
+                }
+               if(nums[i] == nums[j]){
+                  count = count + 1
+                  }
+               }
+            }
+        if(count == 1){
+            res = res + nums[i]
+        }
+    }
+    return res == 0 ? 0 : res
+}
 };
