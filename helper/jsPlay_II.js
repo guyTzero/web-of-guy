@@ -807,5 +807,23 @@ export default {
         }
     }
     return res == 0 ? 0 : res
-}
+},
+  finalPrices(prices) {
+    let res = []
+    for(let i = 0 ; i < prices.length ; i++){
+        let dis = null
+        for(let j = i+1 ; j < prices.length ; j++){
+            if(prices[i] >= prices[j]){
+                dis = prices[i] - prices[j]
+                break
+            }
+        }  
+        if(dis == null){
+            res.push(prices[i])
+        }else{
+            res.push(dis)   
+        }
+    }
+    return res
+},
 };
