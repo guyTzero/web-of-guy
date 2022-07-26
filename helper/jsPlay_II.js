@@ -834,5 +834,10 @@ export default {
         }     
     }
     return c
-}
+},
+  heightChecker(heights) {
+    let unsort = heights.map(e => e)
+    let sorted = heights.sort((a,b)=>a-b)
+    return unsort.filter((e,k) =>  e !== sorted[k]).length
+  }
 };
