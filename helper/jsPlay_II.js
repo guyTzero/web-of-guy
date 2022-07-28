@@ -839,5 +839,18 @@ export default {
     let unsort = heights.map(e => e)
     let sorted = heights.sort((a,b)=>a-b)
     return unsort.filter((e,k) =>  e !== sorted[k]).length
+  },
+  findFinalValue(nums, original) {
+    let i = 0
+    let res = original
+    while(i !== nums.length){
+        if(nums[i] == res){
+            res = res * 2
+            i = 0
+            continue
+        }
+        i = i + 1
+          }
+    return res
   }
 };
