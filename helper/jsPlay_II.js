@@ -852,5 +852,20 @@ export default {
         i = i + 1
           }
     return res
+  },
+  calPoints(ops) {
+    let res = []
+    for(let i = 0 ; i < ops.length ; i++){
+        if(ops[i] == 'C'){
+            res.pop()
+        }else if(ops[i] == 'D'){
+            res.push(res[res.length - 1] * 2)
+        }else if(ops[i] == '+'){
+            res.push(res[res.length - 1] + res[res.length - 2])
+        }else{
+            res.push(parseInt(ops[i]))
+        }
+    }
+    return res.length > 0 ? res.reduce((a,b) => a + b) : 0
   }
 };
