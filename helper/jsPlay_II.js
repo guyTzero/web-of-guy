@@ -867,5 +867,21 @@ export default {
         }
     }
     return res.length > 0 ? res.reduce((a,b) => a + b) : 0
-  }
+  },
+countPrefixes (words, s) {    
+    let c = 0
+    for(let i = 0; i < words.length ; i++){
+        let n = 0
+      for(let j = 0 ; j < s.length ; j++){
+         if(words[i].length < j ) break 
+         if(words[i][j] == s[j]){
+             n = n + 1
+         } 
+      }  
+        if(n == words[i].length  ){
+           c = c + 1 
+        }
+    }
+    return c
+}
 };
