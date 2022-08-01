@@ -788,4 +788,29 @@ export default {
       }
     }
   },
+  twoOutOfThree(nums1, nums2, nums3) {
+    let box = [nums1, nums2, nums3];
+    let res = [];
+    for (let i = 0; i < box.length; i++) {
+      for (let j = 0; j < box[i].length; j++) {
+        let c = 0;
+        if (nums1.includes(box[i][j])) {
+          c = c + 1;
+        }
+        if (nums2.includes(box[i][j])) {
+          c = c + 1;
+        }
+        if (nums3.includes(box[i][j])) {
+          c = c + 1;
+        }
+
+        if (c > 1) {
+          res.push(box[i][j]);
+        }
+      }
+    }
+    const mySet = new Set(res);
+    let x = Array.from(mySet);
+    return x;
+  },
 };
