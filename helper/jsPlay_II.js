@@ -788,4 +788,17 @@ export default {
       }
     }
   },
+  minCostToMoveChips(position) {
+    let odd = 0
+    let even = 0
+    for(let i = 0 ; i < position.length ; i++){
+        if(position[i] % 2){
+            even++
+        }else{
+            odd++
+        }
+    }
+
+    return even > odd ? odd : even
+  }
 };
