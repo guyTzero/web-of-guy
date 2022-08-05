@@ -800,5 +800,9 @@ export default {
     }
 
     return even > odd ? odd : even
+  },
+  canBeEqual(target, arr){
+    arr.sort()
+    return target.sort().filter((e , k) => e == arr[k]).length == target.length 
   }
 };
