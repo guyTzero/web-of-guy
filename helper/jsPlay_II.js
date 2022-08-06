@@ -804,5 +804,8 @@ export default {
   canBeEqual(target, arr){
     arr.sort()
     return target.sort().filter((e , k) => e == arr[k]).length == target.length 
+  },
+  kthDistinct(arr, k) {
+    return arr.filter(e => arr.filter(x => x == e).length == 1 )[k-1] ?? ""
   }
 };
