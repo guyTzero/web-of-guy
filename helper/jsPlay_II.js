@@ -807,5 +807,14 @@ export default {
   },
   kthDistinct(arr, k) {
     return arr.filter(e => arr.filter(x => x == e).length == 1 )[k-1] ?? ""
+  },
+  minSubsequence(nums) {
+ 
+    let min = nums.sort(function (a, b) {  return a - b  })
+    let max = []
+    while(min.reduce((a, b) => a + b, 0) < max.reduce((a, b) => a + b, 0) == false){
+        max.push(min.pop())
+    }
+    return max
   }
 };
