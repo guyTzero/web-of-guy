@@ -816,5 +816,8 @@ export default {
         max.push(min.pop())
     }
     return max
+  },
+  sortedSquares(nums) {
+    return nums.map(e => e*e).sort(function (a, b) {  return a - b  })
   }
 };
