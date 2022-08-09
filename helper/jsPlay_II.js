@@ -819,5 +819,9 @@ export default {
   },
   sortedSquares(nums) {
     return nums.map(e => e*e).sort(function (a, b) {  return a - b  })
+  },
+  smallestEqual(nums) {
+    let res = nums.map((e,k) =>   (k % 10) ==  e ? k : null ).filter(e => e !== null)
+    return  res.length > 1 ? res[0] : res.length == 0 ?  -1 : res[0]
   }
 };
