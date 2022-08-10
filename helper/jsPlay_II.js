@@ -789,77 +789,83 @@ export default {
     }
   },
   minCostToMoveChips(position) {
-    let odd = 0
-    let even = 0
-    for(let i = 0 ; i < position.length ; i++){
-        if(position[i] % 2){
-            even++
-        }else{
-            odd++
-        }
+    let odd = 0;
+    let even = 0;
+    for (let i = 0; i < position.length; i++) {
+      if (position[i] % 2) {
+        even++;
+      } else {
+        odd++;
+      }
     }
 
-    return even > odd ? odd : even
+    return even > odd ? odd : even;
   },
-  canBeEqual(target, arr){
-    arr.sort()
-    return target.sort().filter((e , k) => e == arr[k]).length == target.length 
+  canBeEqual(target, arr) {
+    arr.sort();
+    return target.sort().filter((e, k) => e == arr[k]).length == target.length;
   },
   kthDistinct(arr, k) {
-    return arr.filter(e => arr.filter(x => x == e).length == 1 )[k-1] ?? ""
+    return (
+      arr.filter((e) => arr.filter((x) => x == e).length == 1)[k - 1] ?? ""
+    );
   },
   minSubsequence(nums) {
- 
-    let min = nums.sort(function (a, b) {  return a - b  })
-    let max = []
-    while(min.reduce((a, b) => a + b, 0) < max.reduce((a, b) => a + b, 0) == false){
-        max.push(min.pop())
+    let min = nums.sort(function (a, b) {
+      return a - b;
+    });
+    let max = [];
+    while (
+      min.reduce((a, b) => a + b, 0) < max.reduce((a, b) => a + b, 0) ==
+      false
+    ) {
+      max.push(min.pop());
     }
-    return max
+    return max;
   },
   sortedSquares(nums) {
-    return nums.map(e => e*e).sort(function (a, b) {  return a - b  })
+    return nums
+      .map((e) => e * e)
+      .sort(function (a, b) {
+        return a - b;
+      });
   },
   smallestEqual(nums) {
-    let res = nums.map((e,k) =>   (k % 10) ==  e ? k : null ).filter(e => e !== null)
-    return  res.length > 1 ? res[0] : res.length == 0 ?  -1 : res[0]
+    let res = nums
+      .map((e, k) => (k % 10 == e ? k : null))
+      .filter((e) => e !== null);
+    return res.length > 1 ? res[0] : res.length == 0 ? -1 : res[0];
   },
-   sortByBits (arr) {
+  sortByBits(arr) {
     function dec2binOne(v) {
-        let dec = '' + v;
-        return  ((dec >>> 0).toString(2).match(/1/g) || []).length 
+      let dec = "" + v;
+      return ((dec >>> 0).toString(2).match(/1/g) || []).length;
     }
-    let res = arr.map(e => {
-        return {val:dec2binOne(e),label:e}
-    })
-     res.sort((a, b) => {
-    return a.val - b.val 
-});
-    
-    let num = res.map(e => e.val)
-    num = new Set(num)
-    num = Array.from(num)
+    let res = arr.map((e) => {
+      return { val: dec2binOne(e), label: e };
+    });
+    res.sort((a, b) => {
+      return a.val - b.val;
+    });
 
-    
-    let yo = num.map(val =>  res.filter(e => e.val == val))
-    yo.map(val =>  {
-        val.sort((a, b) => {
-            return a.label - b.label 
-        });
-    })
+    let num = res.map((e) => e.val);
+    num = new Set(num);
+    num = Array.from(num);
 
-    let fin = []
-    yo.forEach(element => {
-    element.forEach(e => {
-        fin.push(e)
-    })
-                    
-})
+    let yo = num.map((val) => res.filter((e) => e.val == val));
+    yo.map((val) => {
+      val.sort((a, b) => {
+        return a.label - b.label;
+      });
+    });
 
+    let fin = [];
+    yo.forEach((element) => {
+      element.forEach((e) => {
+        fin.push(e);
+      });
+    });
 
-    return fin.map(e => e.label)
-    
-    
-
-}
+    return fin.map((e) => e.label);
+  },
 };
