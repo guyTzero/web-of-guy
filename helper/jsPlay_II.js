@@ -823,5 +823,43 @@ export default {
   smallestEqual(nums) {
     let res = nums.map((e,k) =>   (k % 10) ==  e ? k : null ).filter(e => e !== null)
     return  res.length > 1 ? res[0] : res.length == 0 ?  -1 : res[0]
-  }
+  },
+   sortByBits (arr) {
+    function dec2binOne(v) {
+        let dec = '' + v;
+        return  ((dec >>> 0).toString(2).match(/1/g) || []).length 
+    }
+    let res = arr.map(e => {
+        return {val:dec2binOne(e),label:e}
+    })
+     res.sort((a, b) => {
+    return a.val - b.val 
+});
+    
+    let num = res.map(e => e.val)
+    num = new Set(num)
+    num = Array.from(num)
+
+    
+    let yo = num.map(val =>  res.filter(e => e.val == val))
+    yo.map(val =>  {
+        val.sort((a, b) => {
+            return a.label - b.label 
+        });
+    })
+
+    let fin = []
+    yo.forEach(element => {
+    element.forEach(e => {
+        fin.push(e)
+    })
+                    
+})
+
+
+    return fin.map(e => e.label)
+    
+    
+
+}
 };
