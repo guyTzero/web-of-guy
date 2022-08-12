@@ -868,4 +868,18 @@ export default {
 
     return fin.map((e) => e.label);
   },
+   uniqueOccurrences (arr) {
+    // arr = [1,2,2,1,1,3]
+  const countMap = arr.reduce((acc, num) => {
+    acc[num] = (acc[num] || 0) + 1
+    return acc
+  }, {})
+  console.log(countMap) //{ '1': 3, '2': 2, '3': 1 }
+  const values = Object.values(countMap)
+  console.log(values) //[ 3, 2, 1 ]
+  const set = new Set(values)
+  console.log(set) //Set(3) { 3, 2, 1 }
+
+  return values.length === set.size
+   };
 };
