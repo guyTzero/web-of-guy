@@ -881,5 +881,20 @@ export default {
   console.log(set) //Set(3) { 3, 2, 1 }
 
   return values.length === set.size
-   };
+   },
+  shortestToChar(s, c) {
+    let idx = s.split('').map((e,k) => e == c ? k : null ).filter(e => e !== null)
+    let res = []
+    for(let i = 0 ; i < s.length ; i++){
+        let less = null
+        for(let j = 0 ; j < idx.length ; j++){
+            let ans = Math.abs(i - idx[j])
+            if(less == null || less > ans){
+               less = ans
+               }
+        }  
+        res.push(less)
+    }
+    return res
+  }
 };
