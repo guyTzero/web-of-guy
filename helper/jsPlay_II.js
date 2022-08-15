@@ -896,5 +896,16 @@ export default {
         res.push(less)
     }
     return res
+  },
+  nextGreaterElement(nums1, nums2) {
+    let res = nums1.map(e => nums2.map((v,k) => {
+        if(e == v){
+            let def = nums2.map((ele,i) =>  i > k && ele > v ? ele : null ).filter(q => q !== null)
+            return def.length > 0 ? def[0] : -1
+        }else{
+            return null
+        }
+    }).filter(val => val).pop())
+    return res
   }
 };
