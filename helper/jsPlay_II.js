@@ -907,5 +907,15 @@ export default {
         }
     }).filter(val => val).pop())
     return res
+  },
+  sortArrayByParityII(nums) {
+    let even = nums.filter(e => e % 2 == 0 )
+    let odd = nums.filter(e => e % 2 !== 0 )
+    let res = []
+    even.forEach((e,k) => {
+        res.push(e)
+        res.push(odd[k])
+    })
+    return res
   }
 };
