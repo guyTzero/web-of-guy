@@ -917,5 +917,34 @@ export default {
         res.push(odd[k])
     })
     return res
+  },
+  largestLocal = function(grid) {
+    function splitToChunks(array, parts) {
+        let result = [];
+        for (let i = parts; i > 0; i--) {
+            result.push(array.splice(0, Math.ceil(array.length / i)));
+        }
+        return result;
+    }
+    let box = []
+    let cc = 0
+    let rr = 0
+    let limit = grid.length - 2
+    while(cc < limit && rr < limit){
+        let prep = []
+        for(let r = rr; r < rr+3 ; r++){
+            for(let c = cc; c < cc+3 ; c++){
+                prep.push(grid[r][c])
+            }
+        }
+        box.push(prep)
+        if(cc + 1 == limit){
+            cc = 0
+            rr = rr + 1
+        }else{
+            cc = cc + 1
+        }
+    }
+    return splitToChunks(box.map(arr => Math.max(...arr)),limit)
   }
 };
