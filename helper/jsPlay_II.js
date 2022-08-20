@@ -946,5 +946,57 @@ export default {
         }
     }
     return splitToChunks(box.map(arr => Math.max(...arr)),limit)
-  }
+  },
+    var luckyNumbers  = function(arr) {
+//     let luckyNum = null
+//     let dataInCollumn = []
+//     let dataInRow = []
+//     let check = matrix[0].length > matrix.length ? matrix[0].length : matrix.length
+//     for(let col = 0; col < check ; col++){
+//         let _dataInCollumn = []
+//         dataInRow.push(matrix[col])
+//         for(let row = 0; row < check ; row++){
+//             if(row < matrix.length && matrix[row][col]){
+//                 _dataInCollumn.push(matrix[row][col])
+//             }
+//         }
+//         dataInCollumn.push(_dataInCollumn.length > 0 ? _dataInCollumn : null)
+//     }
+//     dataInCollumn = dataInCollumn.filter(e => e)
+//     dataInRow = dataInRow.reverse().filter(e => e)
+
+//     console.log(dataInCollumn)
+//     console.log(dataInRow)
+    
+
+
+//     for(let i = 0; i < dataInRow.length ; i++){
+//         for(let j = 0; j < dataInRow[i].length ; j++){
+//             console.log(dataInRow[i][j])
+//             if(Math.max(...dataInCollumn[j]) == dataInRow[i][j] && Math.min(...dataInRow[i]) == dataInRow[i][j] ){
+//                 return [dataInRow[i][j]]
+//             }
+  
+//         }   
+//     } 
+    // mr guy wait fix
+       const column = arr.length;
+   for(let c = 0; c < column; c++){
+      let minRow = Math.min(...arr[c]);
+      let pos = arr[c].indexOf(minRow);
+      if(minRow === arr[c][pos]){
+         let tmpMaxColumn = arr[c][pos];
+         for(let j = 0; j < column; j++){
+            if(arr[j][pos] > tmpMaxColumn){
+               tmpMaxColumn = arr[j][pos];
+               break;
+            }
+         }
+         if(tmpMaxColumn === minRow){
+            return [tmpMaxColumn];
+         }
+      }
+   };
+   return [];
+}   
 };
