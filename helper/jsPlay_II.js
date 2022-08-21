@@ -1028,4 +1028,25 @@ export default {
         main.filter((x) => x === e).length == 1
     ).length;
   },
+  minimumOperations(nums) {
+    let action = 0
+    let array = nums
+    function allAreTrue(arr) {
+        return arr.every(element => element === 0);
+    }
+    while(allAreTrue(array) == false){
+        let min = Math.min.apply(null, array.filter(Boolean));
+        for(let i = 0 ; i < array.length ; i++){
+            if(array[i] > 0){
+                if(array[i] == min){
+                    array[i] = 0
+                }else{
+                    array[i] = array[i] - min
+                }
+            }
+        }
+        action = action + 1
+    }
+    return action
+  }
 };
