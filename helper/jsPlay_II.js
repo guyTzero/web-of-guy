@@ -998,5 +998,18 @@ export default {
       }
    };
    return [];
-}   
+},
+   countWords(words1, words2) {
+    let main = []
+    let sub = []
+
+    if(words1.length > words2.length){
+       main = words1
+        sub = words2
+       }else{
+        main = words2
+        sub = words1
+    }
+    return main.filter(e => sub.includes(e) && sub.filter(x => x === e).length == 1 && main.filter(x => x === e).length == 1).length
+};
 };
