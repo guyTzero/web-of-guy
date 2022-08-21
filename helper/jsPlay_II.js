@@ -868,148 +868,164 @@ export default {
 
     return fin.map((e) => e.label);
   },
-   uniqueOccurrences (arr) {
+  uniqueOccurrences(arr) {
     // arr = [1,2,2,1,1,3]
-  const countMap = arr.reduce((acc, num) => {
-    acc[num] = (acc[num] || 0) + 1
-    return acc
-  }, {})
-  console.log(countMap) //{ '1': 3, '2': 2, '3': 1 }
-  const values = Object.values(countMap)
-  console.log(values) //[ 3, 2, 1 ]
-  const set = new Set(values)
-  console.log(set) //Set(3) { 3, 2, 1 }
+    const countMap = arr.reduce((acc, num) => {
+      acc[num] = (acc[num] || 0) + 1;
+      return acc;
+    }, {});
+    console.log(countMap); //{ '1': 3, '2': 2, '3': 1 }
+    const values = Object.values(countMap);
+    console.log(values); //[ 3, 2, 1 ]
+    const set = new Set(values);
+    console.log(set); //Set(3) { 3, 2, 1 }
 
-  return values.length === set.size
-   },
+    return values.length === set.size;
+  },
   shortestToChar(s, c) {
-    let idx = s.split('').map((e,k) => e == c ? k : null ).filter(e => e !== null)
-    let res = []
-    for(let i = 0 ; i < s.length ; i++){
-        let less = null
-        for(let j = 0 ; j < idx.length ; j++){
-            let ans = Math.abs(i - idx[j])
-            if(less == null || less > ans){
-               less = ans
-               }
-        }  
-        res.push(less)
+    let idx = s
+      .split("")
+      .map((e, k) => (e == c ? k : null))
+      .filter((e) => e !== null);
+    let res = [];
+    for (let i = 0; i < s.length; i++) {
+      let less = null;
+      for (let j = 0; j < idx.length; j++) {
+        let ans = Math.abs(i - idx[j]);
+        if (less == null || less > ans) {
+          less = ans;
+        }
+      }
+      res.push(less);
     }
-    return res
+    return res;
   },
   nextGreaterElement(nums1, nums2) {
-    let res = nums1.map(e => nums2.map((v,k) => {
-        if(e == v){
-            let def = nums2.map((ele,i) =>  i > k && ele > v ? ele : null ).filter(q => q !== null)
-            return def.length > 0 ? def[0] : -1
-        }else{
-            return null
-        }
-    }).filter(val => val).pop())
-    return res
+    let res = nums1.map((e) =>
+      nums2
+        .map((v, k) => {
+          if (e == v) {
+            let def = nums2
+              .map((ele, i) => (i > k && ele > v ? ele : null))
+              .filter((q) => q !== null);
+            return def.length > 0 ? def[0] : -1;
+          } else {
+            return null;
+          }
+        })
+        .filter((val) => val)
+        .pop()
+    );
+    return res;
   },
   sortArrayByParityII(nums) {
-    let even = nums.filter(e => e % 2 == 0 )
-    let odd = nums.filter(e => e % 2 !== 0 )
-    let res = []
-    even.forEach((e,k) => {
-        res.push(e)
-        res.push(odd[k])
-    })
-    return res
+    let even = nums.filter((e) => e % 2 == 0);
+    let odd = nums.filter((e) => e % 2 !== 0);
+    let res = [];
+    even.forEach((e, k) => {
+      res.push(e);
+      res.push(odd[k]);
+    });
+    return res;
   },
-  largestLocal = function(grid) {
+  largestLocal(grid) {
     function splitToChunks(array, parts) {
-        let result = [];
-        for (let i = parts; i > 0; i--) {
-            result.push(array.splice(0, Math.ceil(array.length / i)));
-        }
-        return result;
+      let result = [];
+      for (let i = parts; i > 0; i--) {
+        result.push(array.splice(0, Math.ceil(array.length / i)));
+      }
+      return result;
     }
-    let box = []
-    let cc = 0
-    let rr = 0
-    let limit = grid.length - 2
-    while(cc < limit && rr < limit){
-        let prep = []
-        for(let r = rr; r < rr+3 ; r++){
-            for(let c = cc; c < cc+3 ; c++){
-                prep.push(grid[r][c])
-            }
+    let box = [];
+    let cc = 0;
+    let rr = 0;
+    let limit = grid.length - 2;
+    while (cc < limit && rr < limit) {
+      let prep = [];
+      for (let r = rr; r < rr + 3; r++) {
+        for (let c = cc; c < cc + 3; c++) {
+          prep.push(grid[r][c]);
         }
-        box.push(prep)
-        if(cc + 1 == limit){
-            cc = 0
-            rr = rr + 1
-        }else{
-            cc = cc + 1
-        }
+      }
+      box.push(prep);
+      if (cc + 1 == limit) {
+        cc = 0;
+        rr = rr + 1;
+      } else {
+        cc = cc + 1;
+      }
     }
-    return splitToChunks(box.map(arr => Math.max(...arr)),limit)
+    return splitToChunks(
+      box.map((arr) => Math.max(...arr)),
+      limit
+    );
   },
-    var luckyNumbers  = function(arr) {
-//     let luckyNum = null
-//     let dataInCollumn = []
-//     let dataInRow = []
-//     let check = matrix[0].length > matrix.length ? matrix[0].length : matrix.length
-//     for(let col = 0; col < check ; col++){
-//         let _dataInCollumn = []
-//         dataInRow.push(matrix[col])
-//         for(let row = 0; row < check ; row++){
-//             if(row < matrix.length && matrix[row][col]){
-//                 _dataInCollumn.push(matrix[row][col])
-//             }
-//         }
-//         dataInCollumn.push(_dataInCollumn.length > 0 ? _dataInCollumn : null)
-//     }
-//     dataInCollumn = dataInCollumn.filter(e => e)
-//     dataInRow = dataInRow.reverse().filter(e => e)
+  luckyNumbers(arr) {
+    //     let luckyNum = null
+    //     let dataInCollumn = []
+    //     let dataInRow = []
+    //     let check = matrix[0].length > matrix.length ? matrix[0].length : matrix.length
+    //     for(let col = 0; col < check ; col++){
+    //         let _dataInCollumn = []
+    //         dataInRow.push(matrix[col])
+    //         for(let row = 0; row < check ; row++){
+    //             if(row < matrix.length && matrix[row][col]){
+    //                 _dataInCollumn.push(matrix[row][col])
+    //             }
+    //         }
+    //         dataInCollumn.push(_dataInCollumn.length > 0 ? _dataInCollumn : null)
+    //     }
+    //     dataInCollumn = dataInCollumn.filter(e => e)
+    //     dataInRow = dataInRow.reverse().filter(e => e)
 
-//     console.log(dataInCollumn)
-//     console.log(dataInRow)
-    
+    //     console.log(dataInCollumn)
+    //     console.log(dataInRow)
 
+    //     for(let i = 0; i < dataInRow.length ; i++){
+    //         for(let j = 0; j < dataInRow[i].length ; j++){
+    //             console.log(dataInRow[i][j])
+    //             if(Math.max(...dataInCollumn[j]) == dataInRow[i][j] && Math.min(...dataInRow[i]) == dataInRow[i][j] ){
+    //                 return [dataInRow[i][j]]
+    //             }
 
-//     for(let i = 0; i < dataInRow.length ; i++){
-//         for(let j = 0; j < dataInRow[i].length ; j++){
-//             console.log(dataInRow[i][j])
-//             if(Math.max(...dataInCollumn[j]) == dataInRow[i][j] && Math.min(...dataInRow[i]) == dataInRow[i][j] ){
-//                 return [dataInRow[i][j]]
-//             }
-  
-//         }   
-//     } 
+    //         }
+    //     }
     // mr guy wait fix
-       const column = arr.length;
-   for(let c = 0; c < column; c++){
+    const column = arr.length;
+    for (let c = 0; c < column; c++) {
       let minRow = Math.min(...arr[c]);
       let pos = arr[c].indexOf(minRow);
-      if(minRow === arr[c][pos]){
-         let tmpMaxColumn = arr[c][pos];
-         for(let j = 0; j < column; j++){
-            if(arr[j][pos] > tmpMaxColumn){
-               tmpMaxColumn = arr[j][pos];
-               break;
-            }
-         }
-         if(tmpMaxColumn === minRow){
-            return [tmpMaxColumn];
-         }
+      if (minRow === arr[c][pos]) {
+        let tmpMaxColumn = arr[c][pos];
+        for (let j = 0; j < column; j++) {
+          if (arr[j][pos] > tmpMaxColumn) {
+            tmpMaxColumn = arr[j][pos];
+            break;
+          }
+        }
+        if (tmpMaxColumn === minRow) {
+          return [tmpMaxColumn];
+        }
       }
-   };
-   return [];
-},
-   countWords(words1, words2) {
-    let main = []
-    let sub = []
-
-    if(words1.length > words2.length){
-       main = words1
-        sub = words2
-       }else{
-        main = words2
-        sub = words1
     }
-    return main.filter(e => sub.includes(e) && sub.filter(x => x === e).length == 1 && main.filter(x => x === e).length == 1).length
-};
+    return [];
+  },
+  countWords(words1, words2) {
+    let main = [];
+    let sub = [];
+
+    if (words1.length > words2.length) {
+      main = words1;
+      sub = words2;
+    } else {
+      main = words2;
+      sub = words1;
+    }
+    return main.filter(
+      (e) =>
+        sub.includes(e) &&
+        sub.filter((x) => x === e).length == 1 &&
+        main.filter((x) => x === e).length == 1
+    ).length;
+  },
 };
