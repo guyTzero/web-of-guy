@@ -1048,5 +1048,10 @@ export default {
         action = action + 1
     }
     return action
+  },
+  intersection(nums1, nums2) {
+    let arrLong = nums1.length > nums2.length ? nums1 : nums2
+    let arrShort = nums1.length < nums2.length ? nums1 : nums2
+    return Array.from(new Set(arrShort.filter(e => arrLong.includes(e))))
   }
 };
