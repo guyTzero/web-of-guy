@@ -1053,5 +1053,25 @@ export default {
     let arrLong = nums1.length > nums2.length ? nums1 : nums2
     let arrShort = nums1.length < nums2.length ? nums1 : nums2
     return Array.from(new Set(arrShort.filter(e => arrLong.includes(e))))
-  }
+  },
+  balancedStringSplit(s) {
+    let count = 0
+    let left = 0
+    let right = 0
+    while(s.length !== 0){
+        let curr = s[0]
+        if(curr == 'L'){
+           left++
+         }else{
+           right++
+        }
+        if(left == right && right !== 0){
+            count++
+            left = 0
+            right = 0
+        }
+        s = s.substring(1);
+    }
+    return count
+}
 };
