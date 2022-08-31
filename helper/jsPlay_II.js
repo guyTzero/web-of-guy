@@ -1102,5 +1102,21 @@ export default {
            }
     }).filter(e => !e).length
     
-}
+},
+  minimumAbsDifference(arr) {
+    const ans = [];
+    // Put smallest numbers first
+    arr.sort((a, b) => a - b);
+    // minDiff should be changed on the first iteration
+    let minDiff = Infinity;
+    for (let i = 1; i < arr.length; i++) {
+        // The new minDiff changes if the current diff is smaller
+        minDiff = Math.min(minDiff, arr[i] - arr[i - 1]);
+    }
+    for (let i = 1; i < arr.length; i++) {
+        // Push all pairs that equal the minDiff into ans
+        if (arr[i] - arr[i - 1] === minDiff) ans.push([arr[i - 1], arr[i]]);
+    }
+    return ans;
+  }
 };
