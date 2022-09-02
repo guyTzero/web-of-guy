@@ -1118,5 +1118,29 @@ export default {
         if (arr[i] - arr[i - 1] === minDiff) ans.push([arr[i - 1], arr[i]]);
     }
     return ans;
-  }
+  },
+  islandPerimeter(grid) {
+    let score = 0
+    for(let i = 0 ; i < grid.length ; i++ ){
+        for(let j = 0 ; j < grid[i].length ; j++ ){
+            if(grid[i][j]){
+                let _score = 4
+                if(i > 0 && grid[i-1][j]){
+                   _score--
+                   }
+                if(i < grid.length -1 && grid[i+1][j]){
+                   _score--
+                   }
+                if(j > 0 && grid[i][j-1]){
+                   _score--
+                   }
+                if(j < grid[i].length -1 && grid[i][j+1]){
+                   _score--
+                   }
+                    score = score + _score
+               }
+        }
+    }
+    return score
+}
 };
