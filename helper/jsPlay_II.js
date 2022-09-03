@@ -1142,5 +1142,25 @@ export default {
         }
     }
     return score
+},
+  decodeMessage(key, message) {
+    let alphabet = 'abcdefghijklmnopqrstuvwxyz'
+
+    key = key.replaceAll(' ','')
+    let res = ''
+    for(let i = 0 ; i < key.length ; i++){
+        if(!res.includes(key[i])){
+           res = res + key[i]
+           }
+    }
+    let ans = ''
+    for(let i = 0 ; i < message.length ; i++){
+        if(message[i] !== ' '){
+        ans = ans +  alphabet[res.indexOf(message[i])]
+        }else{
+            ans = ans + ' '
+        }
+    }
+    return ans
 }
 };
