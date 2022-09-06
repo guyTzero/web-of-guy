@@ -1162,5 +1162,21 @@ export default {
         }
     }
     return ans
-}
+},
+  maxDepth(s) {
+    let count = 0
+    let st = []
+ 
+    for(let i=0;i<s.length;i++){
+        if (s[i] == '(')
+            st.push(i)
+        else if (s[i] == ')'){
+            if (count < st.length)
+                count = st.length
+            st.pop()
+        }
+    }
+         
+    return count
+  }
 };
