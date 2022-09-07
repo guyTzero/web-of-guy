@@ -1178,5 +1178,14 @@ export default {
     }
          
     return count
+  },
+  sortSentence(s) {
+    return s.split(' ').map(e => {
+        return {
+            no:e[e.length -1],
+            val:e.substring(0,e.length -1)
+        }}).sort((a, b) => { 
+        return a.no - b.no 
+    }).map(e => e.val).join(' ')
   }
 };
