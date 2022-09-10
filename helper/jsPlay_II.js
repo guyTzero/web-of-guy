@@ -1029,51 +1029,51 @@ export default {
     ).length;
   },
   minimumOperations(nums) {
-    let action = 0
-    let array = nums
+    let action = 0;
+    let array = nums;
     function allAreTrue(arr) {
-        return arr.every(element => element === 0);
+      return arr.every((element) => element === 0);
     }
-    while(allAreTrue(array) == false){
-        let min = Math.min.apply(null, array.filter(Boolean));
-        for(let i = 0 ; i < array.length ; i++){
-            if(array[i] > 0){
-                if(array[i] == min){
-                    array[i] = 0
-                }else{
-                    array[i] = array[i] - min
-                }
-            }
+    while (allAreTrue(array) == false) {
+      let min = Math.min.apply(null, array.filter(Boolean));
+      for (let i = 0; i < array.length; i++) {
+        if (array[i] > 0) {
+          if (array[i] == min) {
+            array[i] = 0;
+          } else {
+            array[i] = array[i] - min;
+          }
         }
-        action = action + 1
+      }
+      action = action + 1;
     }
-    return action
+    return action;
   },
   intersection(nums1, nums2) {
-    let arrLong = nums1.length > nums2.length ? nums1 : nums2
-    let arrShort = nums1.length < nums2.length ? nums1 : nums2
-    return Array.from(new Set(arrShort.filter(e => arrLong.includes(e))))
+    let arrLong = nums1.length > nums2.length ? nums1 : nums2;
+    let arrShort = nums1.length < nums2.length ? nums1 : nums2;
+    return Array.from(new Set(arrShort.filter((e) => arrLong.includes(e))));
   },
   balancedStringSplit(s) {
-    let count = 0
-    let left = 0
-    let right = 0
-    while(s.length !== 0){
-        let curr = s[0]
-        if(curr == 'L'){
-           left++
-         }else{
-           right++
-        }
-        if(left == right && right !== 0){
-            count++
-            left = 0
-            right = 0
-        }
-        s = s.substring(1);
+    let count = 0;
+    let left = 0;
+    let right = 0;
+    while (s.length !== 0) {
+      let curr = s[0];
+      if (curr == "L") {
+        left++;
+      } else {
+        right++;
+      }
+      if (left == right && right !== 0) {
+        count++;
+        left = 0;
+        right = 0;
+      }
+      s = s.substring(1);
     }
-    return count
-},
+    return count;
+  },
   minDeletionSize(strs) {
     function arraysEqual(a, b) {
       if (a === b) return true;
@@ -1085,24 +1085,24 @@ export default {
       }
       return true;
     }
-    let arr = []
-    for(let i = 0 ; i < strs[0].length ; i++){
-        let prep = strs.map(e => e[i])
-        arr.push(prep)
+    let arr = [];
+    for (let i = 0; i < strs[0].length; i++) {
+      let prep = strs.map((e) => e[i]);
+      arr.push(prep);
     }
 
-    return   arr.map(e => {
-        let a = e.map(e => e)
-        let b = e.sort()
-        if(arraysEqual(a,b)){
-           
-            return true
-           }else{
-               false
-           }
-    }).filter(e => !e).length
-    
-},
+    return arr
+      .map((e) => {
+        let a = e.map((e) => e);
+        let b = e.sort();
+        if (arraysEqual(a, b)) {
+          return true;
+        } else {
+          false;
+        }
+      })
+      .filter((e) => !e).length;
+  },
   minimumAbsDifference(arr) {
     const ans = [];
     // Put smallest numbers first
@@ -1110,139 +1110,139 @@ export default {
     // minDiff should be changed on the first iteration
     let minDiff = Infinity;
     for (let i = 1; i < arr.length; i++) {
-        // The new minDiff changes if the current diff is smaller
-        minDiff = Math.min(minDiff, arr[i] - arr[i - 1]);
+      // The new minDiff changes if the current diff is smaller
+      minDiff = Math.min(minDiff, arr[i] - arr[i - 1]);
     }
     for (let i = 1; i < arr.length; i++) {
-        // Push all pairs that equal the minDiff into ans
-        if (arr[i] - arr[i - 1] === minDiff) ans.push([arr[i - 1], arr[i]]);
+      // Push all pairs that equal the minDiff into ans
+      if (arr[i] - arr[i - 1] === minDiff) ans.push([arr[i - 1], arr[i]]);
     }
     return ans;
   },
   islandPerimeter(grid) {
-    let score = 0
-    for(let i = 0 ; i < grid.length ; i++ ){
-        for(let j = 0 ; j < grid[i].length ; j++ ){
-            if(grid[i][j]){
-                let _score = 4
-                if(i > 0 && grid[i-1][j]){
-                   _score--
-                   }
-                if(i < grid.length -1 && grid[i+1][j]){
-                   _score--
-                   }
-                if(j > 0 && grid[i][j-1]){
-                   _score--
-                   }
-                if(j < grid[i].length -1 && grid[i][j+1]){
-                   _score--
-                   }
-                    score = score + _score
-               }
+    let score = 0;
+    for (let i = 0; i < grid.length; i++) {
+      for (let j = 0; j < grid[i].length; j++) {
+        if (grid[i][j]) {
+          let _score = 4;
+          if (i > 0 && grid[i - 1][j]) {
+            _score--;
+          }
+          if (i < grid.length - 1 && grid[i + 1][j]) {
+            _score--;
+          }
+          if (j > 0 && grid[i][j - 1]) {
+            _score--;
+          }
+          if (j < grid[i].length - 1 && grid[i][j + 1]) {
+            _score--;
+          }
+          score = score + _score;
         }
+      }
     }
-    return score
-},
+    return score;
+  },
   decodeMessage(key, message) {
-    let alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    let alphabet = "abcdefghijklmnopqrstuvwxyz";
 
-    key = key.replaceAll(' ','')
-    let res = ''
-    for(let i = 0 ; i < key.length ; i++){
-        if(!res.includes(key[i])){
-           res = res + key[i]
-           }
+    key = key.replaceAll(" ", "");
+    let res = "";
+    for (let i = 0; i < key.length; i++) {
+      if (!res.includes(key[i])) {
+        res = res + key[i];
+      }
     }
-    let ans = ''
-    for(let i = 0 ; i < message.length ; i++){
-        if(message[i] !== ' '){
-        ans = ans +  alphabet[res.indexOf(message[i])]
-        }else{
-            ans = ans + ' '
-        }
+    let ans = "";
+    for (let i = 0; i < message.length; i++) {
+      if (message[i] !== " ") {
+        ans = ans + alphabet[res.indexOf(message[i])];
+      } else {
+        ans = ans + " ";
+      }
     }
-    return ans
-},
+    return ans;
+  },
   maxDepth(s) {
-    let count = 0
-    let st = []
- 
-    for(let i=0;i<s.length;i++){
-        if (s[i] == '(')
-            st.push(i)
-        else if (s[i] == ')'){
-            if (count < st.length)
-                count = st.length
-            st.pop()
-        }
+    let count = 0;
+    let st = [];
+
+    for (let i = 0; i < s.length; i++) {
+      if (s[i] == "(") st.push(i);
+      else if (s[i] == ")") {
+        if (count < st.length) count = st.length;
+        st.pop();
+      }
     }
-         
-    return count
+
+    return count;
   },
   sortSentence(s) {
-    return s.split(' ').map(e => {
+    return s
+      .split(" ")
+      .map((e) => {
         return {
-            no:e[e.length -1],
-            val:e.substring(0,e.length -1)
-        }}).sort((a, b) => { 
-        return a.no - b.no 
-    }).map(e => e.val).join(' ')
+          no: e[e.length - 1],
+          val: e.substring(0, e.length - 1),
+        };
+      })
+      .sort((a, b) => {
+        return a.no - b.no;
+      })
+      .map((e) => e.val)
+      .join(" ");
   },
 
-  IDKhowToCreatePrototypeAndUse(){
-var OrderedStream = function(n) {
+  IDKhowToCreatePrototypeAndUse() {
+    var OrderedStream = function (n) {};
 
-    
-};
+    /**
+     * @param {number} idKey
+     * @param {string} value
+     * @return {string[]}
+     */
 
-/** 
- * @param {number} idKey 
- * @param {string} value
- * @return {string[]}
- */
-
-var arr = []
-var cur = 1
-OrderedStream.prototype.insert = function(idKey, value) {
-    arr.push({ key: idKey , val : value })
-    // console.log(arr)
-    if(cur == idKey){
+    var arr = [];
+    var cur = 1;
+    OrderedStream.prototype.insert = function (idKey, value) {
+      arr.push({ key: idKey, val: value });
+      // console.log(arr)
+      if (cur == idKey) {
         arr.sort((a, b) => {
-            return a.key - b.key;
+          return a.key - b.key;
         });
-        let sortCorrect = true
-        
-        for(let i = 0 ; i < arr.length ; i++ ){
-            if(i > 0){
-                if(arr[i].key - arr[i-1].key !== 1 ){
-                    sortCorrect = false
-                }
+        let sortCorrect = true;
+
+        for (let i = 0; i < arr.length; i++) {
+          if (i > 0) {
+            if (arr[i].key - arr[i - 1].key !== 1) {
+              sortCorrect = false;
             }
-            
+          }
         }
         // console.log('sortCorrect',sortCorrect)
- 
-        let res
-        if(sortCorrect){
-         res = arr.map(e => {
-            if(e.key >= cur && e.key <= arr[arr.length-1].key){
-               return e.val
-               }
-        })     
-        cur = arr[arr.length-1].key+1
-        }else{
-         res = arr.map(e => {
-            if(e.key == cur){
-               return e.val
-               }
-        })
-        cur++
+
+        let res;
+        if (sortCorrect) {
+          res = arr.map((e) => {
+            if (e.key >= cur && e.key <= arr[arr.length - 1].key) {
+              return e.val;
+            }
+          });
+          cur = arr[arr.length - 1].key + 1;
+        } else {
+          res = arr.map((e) => {
+            if (e.key == cur) {
+              return e.val;
+            }
+          });
+          cur++;
         }
 
-        return res.filter(e => e)
-    }else{
-        return []
-    }
-}
-}
+        return res.filter((e) => e);
+      } else {
+        return [];
+      }
+    };
+  },
 };
