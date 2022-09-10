@@ -1187,5 +1187,62 @@ export default {
         }}).sort((a, b) => { 
         return a.no - b.no 
     }).map(e => e.val).join(' ')
-  }
+  },
+
+  IDKhowToCreatePrototypeAndUse(){
+var OrderedStream = function(n) {
+
+    
+};
+
+/** 
+ * @param {number} idKey 
+ * @param {string} value
+ * @return {string[]}
+ */
+
+var arr = []
+var cur = 1
+OrderedStream.prototype.insert = function(idKey, value) {
+    arr.push({ key: idKey , val : value })
+    // console.log(arr)
+    if(cur == idKey){
+        arr.sort((a, b) => {
+            return a.key - b.key;
+        });
+        let sortCorrect = true
+        
+        for(let i = 0 ; i < arr.length ; i++ ){
+            if(i > 0){
+                if(arr[i].key - arr[i-1].key !== 1 ){
+                    sortCorrect = false
+                }
+            }
+            
+        }
+        // console.log('sortCorrect',sortCorrect)
+ 
+        let res
+        if(sortCorrect){
+         res = arr.map(e => {
+            if(e.key >= cur && e.key <= arr[arr.length-1].key){
+               return e.val
+               }
+        })     
+        cur = arr[arr.length-1].key+1
+        }else{
+         res = arr.map(e => {
+            if(e.key == cur){
+               return e.val
+               }
+        })
+        cur++
+        }
+
+        return res.filter(e => e)
+    }else{
+        return []
+    }
+}
+}
 };
