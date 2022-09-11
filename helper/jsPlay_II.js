@@ -1245,4 +1245,41 @@ export default {
       }
     };
   },
+  arithmeticTriplets(nums, diff) {
+    let c = 0
+    let box = []
+    for(let i = 0 ; i < nums.length ; i++){
+        for(let j = 0 ; j < nums.length ; j++){
+            if(i !== j){
+                if(Math.abs( nums[i] - nums[j] )== diff){
+                    let res1 = nums[i]
+                    let res2 = nums[j]
+                    for(let k = 0 ; k < nums.length ; k++){
+                        if(nums[k] !== res1 && nums[k] !== res2){
+                            if(Math.abs(nums[k] - res1 ) == diff ){
+                                
+                                let arr = [nums[i] , nums[j] ,nums[k]]
+                                arr.sort((a,b) => a - b)
+                                if(!box.includes(arr.toString())){
+                                    c = c + 1
+                                    box.push(arr.toString())
+                                }
+                                
+                            }
+                            if(Math.abs(nums[k] - res2 ) == diff){
+                                let arr = [nums[i] , nums[j] ,nums[k]]
+                                arr.sort((a,b) => a - b)
+                                if(!box.includes(arr.toString())){
+                                    c = c + 1
+                                    box.push(arr.toString())
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return c
+}
 };
