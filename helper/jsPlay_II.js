@@ -1281,5 +1281,26 @@ export default {
         }
     }
     return c
+},
+  countGoodTriplets(arr, a, b, c) {
+  let sol = 0;
+  let goodGood = [];
+  let len = arr.length;
+  for (let i = 0; i < len; i++) {
+    for (let j = i + 1; j < len; j++) {
+      for (let k = j + 1; k < len; k++) {
+        // console.log(arr[i], arr[j], arr[k]);
+        if (
+          Math.abs(arr[i] - arr[j]) <= a &&
+          Math.abs(arr[j] - arr[k]) <= b &&
+          Math.abs(arr[i] - arr[k]) <= c
+        ) {
+          sol++;
+          goodGood.push([arr[i], arr[j], arr[k]]);
+        }
+      }
+    }
+  }
+  return sol;
 }
 };
