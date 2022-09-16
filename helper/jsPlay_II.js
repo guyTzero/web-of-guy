@@ -1246,72 +1246,70 @@ export default {
     };
   },
   arithmeticTriplets(nums, diff) {
-    let c = 0
-    let box = []
-    for(let i = 0 ; i < nums.length ; i++){
-        for(let j = 0 ; j < nums.length ; j++){
-            if(i !== j){
-                if(Math.abs( nums[i] - nums[j] )== diff){
-                    let res1 = nums[i]
-                    let res2 = nums[j]
-                    for(let k = 0 ; k < nums.length ; k++){
-                        if(nums[k] !== res1 && nums[k] !== res2){
-                            if(Math.abs(nums[k] - res1 ) == diff ){
-                                
-                                let arr = [nums[i] , nums[j] ,nums[k]]
-                                arr.sort((a,b) => a - b)
-                                if(!box.includes(arr.toString())){
-                                    c = c + 1
-                                    box.push(arr.toString())
-                                }
-                                
-                            }
-                            if(Math.abs(nums[k] - res2 ) == diff){
-                                let arr = [nums[i] , nums[j] ,nums[k]]
-                                arr.sort((a,b) => a - b)
-                                if(!box.includes(arr.toString())){
-                                    c = c + 1
-                                    box.push(arr.toString())
-                                }
-                            }
-                        }
-                    }
+    let c = 0;
+    let box = [];
+    for (let i = 0; i < nums.length; i++) {
+      for (let j = 0; j < nums.length; j++) {
+        if (i !== j) {
+          if (Math.abs(nums[i] - nums[j]) == diff) {
+            let res1 = nums[i];
+            let res2 = nums[j];
+            for (let k = 0; k < nums.length; k++) {
+              if (nums[k] !== res1 && nums[k] !== res2) {
+                if (Math.abs(nums[k] - res1) == diff) {
+                  let arr = [nums[i], nums[j], nums[k]];
+                  arr.sort((a, b) => a - b);
+                  if (!box.includes(arr.toString())) {
+                    c = c + 1;
+                    box.push(arr.toString());
+                  }
                 }
+                if (Math.abs(nums[k] - res2) == diff) {
+                  let arr = [nums[i], nums[j], nums[k]];
+                  arr.sort((a, b) => a - b);
+                  if (!box.includes(arr.toString())) {
+                    c = c + 1;
+                    box.push(arr.toString());
+                  }
+                }
+              }
             }
-        }
-    }
-    return c
-},
-  countGoodTriplets(arr, a, b, c) {
-  let sol = 0;
-  let goodGood = [];
-  let len = arr.length;
-  for (let i = 0; i < len; i++) {
-    for (let j = i + 1; j < len; j++) {
-      for (let k = j + 1; k < len; k++) {
-        // console.log(arr[i], arr[j], arr[k]);
-        if (
-          Math.abs(arr[i] - arr[j]) <= a &&
-          Math.abs(arr[j] - arr[k]) <= b &&
-          Math.abs(arr[i] - arr[k]) <= c
-        ) {
-          sol++;
-          goodGood.push([arr[i], arr[j], arr[k]]);
+          }
         }
       }
     }
-  }
-  return sol;
-},
-  countPairs(nums,k ) {
+    return c;
+  },
+  countGoodTriplets(arr, a, b, c) {
+    let sol = 0;
+    let goodGood = [];
+    let len = arr.length;
+    for (let i = 0; i < len; i++) {
+      for (let j = i + 1; j < len; j++) {
+        for (let k = j + 1; k < len; k++) {
+          // console.log(arr[i], arr[j], arr[k]);
+          if (
+            Math.abs(arr[i] - arr[j]) <= a &&
+            Math.abs(arr[j] - arr[k]) <= b &&
+            Math.abs(arr[i] - arr[k]) <= c
+          ) {
+            sol++;
+            goodGood.push([arr[i], arr[j], arr[k]]);
+          }
+        }
+      }
+    }
+    return sol;
+  },
+  countPairs(nums, k) {
     let result = 0;
     for (let i = 0; i < nums.length; i++) {
-        for (let j = i + 1; j < nums.length; j++) {
-            if (nums[i] === nums[j] && (i * j) % k === 0) {
-                result++;
-            }
+      for (let j = i + 1; j < nums.length; j++) {
+        if (nums[i] === nums[j] && (i * j) % k === 0) {
+          result++;
         }
+      }
     }
     return result;
-}
+  },
 };
