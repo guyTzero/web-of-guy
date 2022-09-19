@@ -1312,4 +1312,7 @@ export default {
     }
     return result;
   },
+  flipAndInvertImage(image) {
+    return image.map(e => e.reverse().map(ele =>  ele ? 0 : 1))
+  }
 };
