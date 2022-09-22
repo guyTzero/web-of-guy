@@ -1329,5 +1329,8 @@ export default {
         }
         
         return ans
+  },
+  replaceElements(arr) {
+    return arr.map((e,k) =>  isFinite(Math.max(...arr.filter((ele ,key) => k < key))) ? Math.max(...arr.filter((ele ,key) => k < key)) : -1   )
   }
 };
