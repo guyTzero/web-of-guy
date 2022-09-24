@@ -1332,5 +1332,24 @@ export default {
   },
   replaceElements(arr) {
     return arr.map((e,k) =>  isFinite(Math.max(...arr.filter((ele ,key) => k < key))) ? Math.max(...arr.filter((ele ,key) => k < key)) : -1   )
+  },
+  numberOfPairs(nums) {
+    if(nums.length == 1 ){
+        return [0,1]
+    }
+    let count = 0
+    for(let i = 0 ; i < nums.length ; i++){
+        for(let k = i + 1 ; k < nums.length ; k++){
+            if(nums[i] == nums[k]){
+                nums.splice(k, 1);
+                nums.splice(i, 1);
+                count++
+                i = -1
+                k = 0
+                break
+            }
+        }
+    }
+    return [count,nums.length]
   }
 };
