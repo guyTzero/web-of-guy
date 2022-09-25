@@ -1351,5 +1351,43 @@ export default {
         }
     }
     return [count,nums.length]
+  },
+  mergeSimilarItems(items1, items2) {
+    var arrMost 
+    var arrLess
+    if(items1.length >= items2.length){
+        arrMost = items1
+        arrLess = items2
+    }else{
+        arrMost = items2
+        arrLess = items1
+    }
+    let res = []
+    for(let i = 0 ; i < arrMost.length ; i++){
+        let action = false
+        for(let j = 0 ; j < arrLess.length ; j++){
+            if(arrMost[i][0] == arrLess[j][0]){
+                res.push([arrMost[i][0],arrMost[i][1] + arrLess[j][1] ])
+                action = true
+                arrMost[i].push('done')
+                arrLess[j].push('done')
+            }
+        }
+        if(!action){
+            res.push([arrMost[i][0],arrMost[i][1]])
+            arrMost[i].push('done')
+        }
+    }
+    for(let i = 0 ; i < arrMost.length ; i++){
+        if(arrMost[i].length < 3){
+            res.push(arrMost[i])
+        }
+    }
+    for(let i = 0 ; i < arrLess.length ; i++){
+        if(arrLess[i].length < 3){
+            res.push(arrLess[i])
+        }
+    }
+    return res.sort(function(a, b) {return a[0] - b[0]});
   }
 };
