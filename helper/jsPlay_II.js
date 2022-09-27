@@ -1389,5 +1389,25 @@ export default {
         }
     }
     return res.sort(function(a, b) {return a[0] - b[0]});
+  },
+  maximumUnits(boxTypes, truckSize) {
+    boxTypes.sort(function(a, b) {return b[1] - a[1] });    
+    let box = 0
+    let unit = 0
+    for(let i = 0 ; i < boxTypes.length ; i++){
+        if(box < truckSize){
+            if((box + boxTypes[i][0]) < truckSize){
+                box = box + boxTypes[i][0]
+                unit = unit + (boxTypes[i][0] * boxTypes[i][1])              
+            }else{
+                let left = truckSize - box
+                box = box + left
+                unit = unit + (left * boxTypes[i][1]) 
+            }
+        }else{
+            break
+        }
+    }
+    return unit
   }
 };
