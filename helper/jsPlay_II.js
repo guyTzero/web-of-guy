@@ -1409,5 +1409,10 @@ export default {
         }
     }
     return unit
+  },
+  sortPeople(names, heights) {
+    return names.map((e,i) => {
+        return{name:e,height:heights[i]}
+    }).sort(function(a, b) {return b.height - a.height  }).map(e => e.name)
   }
 };
