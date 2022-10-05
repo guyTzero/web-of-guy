@@ -1438,5 +1438,12 @@ export default {
     root.right = sortedArrayToBST(nums.slice(mid + 1));
 
     return root
+  },
+  frequencySort(nums) {
+    const map = new Map();
+    for (let n of nums) {
+        map.set(n, (map.get(n) + 1) || 1);
+    }
+    return nums.sort((a, b) => map.get(a) - map.get(b) || b - a)
   }
 };
