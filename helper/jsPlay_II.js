@@ -1466,5 +1466,8 @@ export default {
       first.push(...value);
     }
     return first.concat(...last);
+  },
+  toLowerCase(s) {
+    return s.toLowerCase()
   }
 };
