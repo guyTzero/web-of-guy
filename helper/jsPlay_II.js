@@ -1469,5 +1469,9 @@ export default {
   },
   toLowerCase(s) {
     return s.toLowerCase()
+  },
+  findDifference(nums1, nums2) {
+    return [ Array.from(new Set(nums1.filter(e => !nums2.includes(e)))) , 
+             Array.from(new Set(nums2.filter(e => !nums1.includes(e)))) ]
   }
 };
