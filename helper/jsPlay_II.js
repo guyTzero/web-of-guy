@@ -1473,5 +1473,30 @@ export default {
   findDifference(nums1, nums2) {
     return [ Array.from(new Set(nums1.filter(e => !nums2.includes(e)))) , 
              Array.from(new Set(nums2.filter(e => !nums1.includes(e)))) ]
+  },
+  commonChars(A) {
+    let result = [];
+    
+    A.sort((a, b)=>a.length-b.length); // it will sort the array
+    let firstString = A[0];
+    let count = 1;
+    
+    for(let i = 0; i < firstString.length; i++){ //for loop for 1st string
+        
+        for(let j = 1; j<A.length;j++){ //for loop through array
+            if(A[j].includes(firstString.charAt(i))) count ++;
+        }
+        if(count == A.length){
+            result.push(firstString.charAt(i));
+            
+            for(let j = 0; j<A.length;j++){ //for loop through array
+                A[j] = A[j].replace(firstString.charAt(i),"");
+                
+             }
+            
+        }
+        count = 1;
+    }
+    return result
   }
 };
