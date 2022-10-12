@@ -1520,5 +1520,16 @@ export default {
       },0)
 
       return xy+yz+xz 
+  },
+  intersection (nums) {
+    const res = [];
+    const shortest = nums.shift();
+    for (const num of shortest) {
+      if (nums.every((arr) => arr.includes(num))) {
+        res.push(num);
+      }
+    }
+    res.sort((x, y) => x - y);
+    return res;
   }
 };
