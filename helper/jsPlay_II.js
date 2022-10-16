@@ -1531,5 +1531,15 @@ export default {
     }
     res.sort((x, y) => x - y);
     return res;
+  },
+  allCellsDistOrder(R, C, r0, c0) => {
+  const result = [];
+  for (let i = 0; i < R; i++) {
+    for (let j = 0; j < C; j++) {
+      result.push([i, j]);
+    }
+  }
+  result.sort((a, b) => (Math.abs(a[0] - r0) + Math.abs(a[1] - c0)) - (Math.abs(b[0] - r0) + Math.abs(b[1] - c0)))
+  return result;
   }
 };
