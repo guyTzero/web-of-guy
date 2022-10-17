@@ -1541,5 +1541,19 @@ export default {
   }
   result.sort((a, b) => (Math.abs(a[0] - r0) + Math.abs(a[1] - c0)) - (Math.abs(b[0] - r0) + Math.abs(b[1] - c0)))
   return result;
-  }
+  },
+    canMakeArithmeticProgression (arra) {
+        arra.sort(function(a,b){
+        return (a-b);
+    });
+    let diff=arra[1]-arra[0];
+    for(let i=1;i<arra.length-1;i++){
+        let inDiff=arra[i+1]-arra[i];
+        if(inDiff!==diff){
+            return false;
+            break;
+        }
+        }
+        return true;
+    }
 };
