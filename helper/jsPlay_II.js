@@ -1594,5 +1594,22 @@ export default {
         if (setColors.size == 3) count++;
     }
     return count;
-}
+},
+  minStartValue(nums) {
+    for(let i = 1 ; i <= 1890 ; i++){
+        let check = true
+        let sum = i
+        for(let j = 0 ; j < nums.length ; j++){   
+            sum = sum + nums[j]
+            if(sum < 1){   
+                check = false
+                break
+            }
+        }
+        if(check){
+            return i
+        }
+    }
+    return 1
+  }
 };
