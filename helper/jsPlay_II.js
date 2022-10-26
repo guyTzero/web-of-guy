@@ -1611,5 +1611,26 @@ export default {
         }
     }
     return 1
-  }
+  },
+   maxIncreaseKeepingSkyline(grid) {
+    let rowMaxHeightArray = [] 
+    let columnMaxHeightArray = [] 
+    let howTallCanWeGo = 0
+
+    for (let i in grid){
+        rowMaxHeightArray.push(Math.max(...grid[i]))
+        for (let j in grid){
+            if(grid[j][i] > columnMaxHeightArray[i] || !columnMaxHeightArray[i]){
+                columnMaxHeightArray[i] = grid[j][i]
+            }
+        }
+    }
+    
+    for (let i = 0; i < grid.length; i++){
+        for (let j = 0; j < grid.length; j++){
+            howTallCanWeGo += Math.min(rowMaxHeightArray[i], columnMaxHeightArray[j]) - grid[i][j]
+        }
+    }
+    return howTallCanWeGo
+}
 };
