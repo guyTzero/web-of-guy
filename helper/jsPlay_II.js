@@ -1641,5 +1641,25 @@ export default {
             }
         }
     }
+},
+  groupThePeople(groupSizes) {
+  let result = [], groups = {};
+    
+    groupSizes.forEach((size, index) => {
+        if (size in groups) {
+            if (groups[size].length < size) {
+                groups[size].push(index)
+            }
+        
+        } else {
+            groups[size] = [index]
+        }
+        
+        if (groups[size].length === size) {
+            result.push(groups[size]);
+            groups[size] = [];
+        }
+    })
+    return result;
 }
 };
