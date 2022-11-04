@@ -1710,5 +1710,43 @@ export default {
     }
 
     return M + P + G + exprense[mi] + exprense[pi] + exprense[gi];
-  }
+  },
+    uniquePathsIII(){
+    var uniquePathsIII = function(grid) {
+    let cnt = 1 
+    let sx,sy 
+    for(let i=0;i<grid.length;i++){
+        for(let j=0;j<grid[0].length;j++){
+            if(grid[i][j] === 1){
+                sx = i
+                sy = j
+            }
+            else if(grid[i][j] === 0){
+                cnt++
+            }
+        }
+    }
+    return dfs(sx,sy,cnt,grid)
+};
+
+let check = (sx,sy,grid) => {
+    if(sx<0 || sx>=grid.length || sy<0 || sy>=grid[0].length || grid[sx][sy] == -1) return false
+    return true
+}
+
+let dfs = (sx,sy,cnt,grid) => {
+    if(!check(sx,sy,grid)) return 0
+    if(grid[sx][sy] === 2){ 
+        return cnt === 0 ? 1:0
+    }
+    let res = 0
+    grid[sx][sy] = -1  
+    res += dfs(sx+1,sy,cnt-1,grid)  
+    res += dfs(sx,sy+1,cnt-1,grid)
+    res += dfs(sx-1,sy,cnt-1,grid)
+    res += dfs(sx,sy-1,cnt-1,grid)
+    grid[sx][sy] = 0  
+    return res
+}
+}
 };
