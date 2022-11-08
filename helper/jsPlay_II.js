@@ -1313,117 +1313,130 @@ export default {
     return result;
   },
   flipAndInvertImage(image) {
-    return image.map(e => e.reverse().map(ele =>  ele ? 0 : 1))
+    return image.map((e) => e.reverse().map((ele) => (ele ? 0 : 1)));
   },
   minOperations(nums) {
-        let ans = 0;
-        for (let i = 1; i < nums.length; i++) {
-            let previous = nums[i-1];
-            let current = nums[i];
-            
-            if (current <= previous) {
-                current = previous + 1;
-                ans += (current - nums[i]);
-                nums[i] = current;
-            }
-        }
-        
-        return ans
+    let ans = 0;
+    for (let i = 1; i < nums.length; i++) {
+      let previous = nums[i - 1];
+      let current = nums[i];
+
+      if (current <= previous) {
+        current = previous + 1;
+        ans += current - nums[i];
+        nums[i] = current;
+      }
+    }
+
+    return ans;
   },
   replaceElements(arr) {
-    return arr.map((e,k) =>  isFinite(Math.max(...arr.filter((ele ,key) => k < key))) ? Math.max(...arr.filter((ele ,key) => k < key)) : -1   )
+    return arr.map((e, k) =>
+      isFinite(Math.max(...arr.filter((ele, key) => k < key)))
+        ? Math.max(...arr.filter((ele, key) => k < key))
+        : -1
+    );
   },
   numberOfPairs(nums) {
-    if(nums.length == 1 ){
-        return [0,1]
+    if (nums.length == 1) {
+      return [0, 1];
     }
-    let count = 0
-    for(let i = 0 ; i < nums.length ; i++){
-        for(let k = i + 1 ; k < nums.length ; k++){
-            if(nums[i] == nums[k]){
-                nums.splice(k, 1);
-                nums.splice(i, 1);
-                count++
-                i = -1
-                k = 0
-                break
-            }
+    let count = 0;
+    for (let i = 0; i < nums.length; i++) {
+      for (let k = i + 1; k < nums.length; k++) {
+        if (nums[i] == nums[k]) {
+          nums.splice(k, 1);
+          nums.splice(i, 1);
+          count++;
+          i = -1;
+          k = 0;
+          break;
         }
+      }
     }
-    return [count,nums.length]
+    return [count, nums.length];
   },
   mergeSimilarItems(items1, items2) {
-    var arrMost 
-    var arrLess
-    if(items1.length >= items2.length){
-        arrMost = items1
-        arrLess = items2
-    }else{
-        arrMost = items2
-        arrLess = items1
+    var arrMost;
+    var arrLess;
+    if (items1.length >= items2.length) {
+      arrMost = items1;
+      arrLess = items2;
+    } else {
+      arrMost = items2;
+      arrLess = items1;
     }
-    let res = []
-    for(let i = 0 ; i < arrMost.length ; i++){
-        let action = false
-        for(let j = 0 ; j < arrLess.length ; j++){
-            if(arrMost[i][0] == arrLess[j][0]){
-                res.push([arrMost[i][0],arrMost[i][1] + arrLess[j][1] ])
-                action = true
-                arrMost[i].push('done')
-                arrLess[j].push('done')
-            }
+    let res = [];
+    for (let i = 0; i < arrMost.length; i++) {
+      let action = false;
+      for (let j = 0; j < arrLess.length; j++) {
+        if (arrMost[i][0] == arrLess[j][0]) {
+          res.push([arrMost[i][0], arrMost[i][1] + arrLess[j][1]]);
+          action = true;
+          arrMost[i].push("done");
+          arrLess[j].push("done");
         }
-        if(!action){
-            res.push([arrMost[i][0],arrMost[i][1]])
-            arrMost[i].push('done')
-        }
+      }
+      if (!action) {
+        res.push([arrMost[i][0], arrMost[i][1]]);
+        arrMost[i].push("done");
+      }
     }
-    for(let i = 0 ; i < arrMost.length ; i++){
-        if(arrMost[i].length < 3){
-            res.push(arrMost[i])
-        }
+    for (let i = 0; i < arrMost.length; i++) {
+      if (arrMost[i].length < 3) {
+        res.push(arrMost[i]);
+      }
     }
-    for(let i = 0 ; i < arrLess.length ; i++){
-        if(arrLess[i].length < 3){
-            res.push(arrLess[i])
-        }
+    for (let i = 0; i < arrLess.length; i++) {
+      if (arrLess[i].length < 3) {
+        res.push(arrLess[i]);
+      }
     }
-    return res.sort(function(a, b) {return a[0] - b[0]});
+    return res.sort(function (a, b) {
+      return a[0] - b[0];
+    });
   },
   maximumUnits(boxTypes, truckSize) {
-    boxTypes.sort(function(a, b) {return b[1] - a[1] });    
-    let box = 0
-    let unit = 0
-    for(let i = 0 ; i < boxTypes.length ; i++){
-        if(box < truckSize){
-            if((box + boxTypes[i][0]) < truckSize){
-                box = box + boxTypes[i][0]
-                unit = unit + (boxTypes[i][0] * boxTypes[i][1])              
-            }else{
-                let left = truckSize - box
-                box = box + left
-                unit = unit + (left * boxTypes[i][1]) 
-            }
-        }else{
-            break
+    boxTypes.sort(function (a, b) {
+      return b[1] - a[1];
+    });
+    let box = 0;
+    let unit = 0;
+    for (let i = 0; i < boxTypes.length; i++) {
+      if (box < truckSize) {
+        if (box + boxTypes[i][0] < truckSize) {
+          box = box + boxTypes[i][0];
+          unit = unit + boxTypes[i][0] * boxTypes[i][1];
+        } else {
+          let left = truckSize - box;
+          box = box + left;
+          unit = unit + left * boxTypes[i][1];
         }
+      } else {
+        break;
+      }
     }
-    return unit
+    return unit;
   },
   sortPeople(names, heights) {
-    return names.map((e,i) => {
-        return{name:e,height:heights[i]}
-    }).sort(function(a, b) {return b.height - a.height  }).map(e => e.name)
+    return names
+      .map((e, i) => {
+        return { name: e, height: heights[i] };
+      })
+      .sort(function (a, b) {
+        return b.height - a.height;
+      })
+      .map((e) => e.name);
   },
   checkDistances(s, distance) {
     const index1s = new Array(26).fill(-1);
     for (let i = 0; i < s.length; i++) {
-        const code = s.charCodeAt(i) - 97;
-        if (index1s[code] === -1) {
-            index1s[code] = i;
-        } else if (distance[code] !== i - index1s[code] - 1) {
-            return false;
-        }
+      const code = s.charCodeAt(i) - 97;
+      if (index1s[code] === -1) {
+        index1s[code] = i;
+      } else if (distance[code] !== i - index1s[code] - 1) {
+        return false;
+      }
     }
     return true;
   },
@@ -1437,91 +1450,93 @@ export default {
     root.left = sortedArrayToBST(nums.slice(0, mid));
     root.right = sortedArrayToBST(nums.slice(mid + 1));
 
-    return root
+    return root;
   },
   frequencySort(nums) {
     const map = new Map();
     for (let n of nums) {
-        map.set(n, (map.get(n) + 1) || 1);
+      map.set(n, map.get(n) + 1 || 1);
     }
-    return nums.sort((a, b) => map.get(a) - map.get(b) || b - a)
+    return nums.sort((a, b) => map.get(a) - map.get(b) || b - a);
   },
   relativeSortArray(arr1, arr2) {
     let result = {};
-    let first = []
+    let first = [];
     let last = [];
     //Creating an object with keys of second array elements : as an empty array
-    for(let i=0;i<arr2.length;i++) {
-        result[' '+arr2[i]] = [];
+    for (let i = 0; i < arr2.length; i++) {
+      result[" " + arr2[i]] = [];
     }
-    for(let i=0;i<arr1.length;i++) {
-        if( result[' '+arr1[i]]!== undefined) {
-            result[' '+arr1[i]].push(arr1[i]);          //Adding the array elements in the specified key position.
-        } else {
-            last.push(arr1[i]);                         //adding the elements which are not present in second array to be appended later.
-        }
+    for (let i = 0; i < arr1.length; i++) {
+      if (result[" " + arr1[i]] !== undefined) {
+        result[" " + arr1[i]].push(arr1[i]); //Adding the array elements in the specified key position.
+      } else {
+        last.push(arr1[i]); //adding the elements which are not present in second array to be appended later.
+      }
     }
-    last = last.sort((a,b)=>a-b);
+    last = last.sort((a, b) => a - b);
     for (const [key, value] of Object.entries(result)) {
       first.push(...value);
     }
     return first.concat(...last);
   },
   toLowerCase(s) {
-    return s.toLowerCase()
+    return s.toLowerCase();
   },
   findDifference(nums1, nums2) {
-    return [ Array.from(new Set(nums1.filter(e => !nums2.includes(e)))) , 
-             Array.from(new Set(nums2.filter(e => !nums1.includes(e)))) ]
+    return [
+      Array.from(new Set(nums1.filter((e) => !nums2.includes(e)))),
+      Array.from(new Set(nums2.filter((e) => !nums1.includes(e)))),
+    ];
   },
   commonChars(A) {
     let result = [];
-    
-    A.sort((a, b)=>a.length-b.length); // it will sort the array
+
+    A.sort((a, b) => a.length - b.length); // it will sort the array
     let firstString = A[0];
     let count = 1;
-    
-    for(let i = 0; i < firstString.length; i++){ //for loop for 1st string
-        
-        for(let j = 1; j<A.length;j++){ //for loop through array
-            if(A[j].includes(firstString.charAt(i))) count ++;
+
+    for (let i = 0; i < firstString.length; i++) {
+      //for loop for 1st string
+
+      for (let j = 1; j < A.length; j++) {
+        //for loop through array
+        if (A[j].includes(firstString.charAt(i))) count++;
+      }
+      if (count == A.length) {
+        result.push(firstString.charAt(i));
+
+        for (let j = 0; j < A.length; j++) {
+          //for loop through array
+          A[j] = A[j].replace(firstString.charAt(i), "");
         }
-        if(count == A.length){
-            result.push(firstString.charAt(i));
-            
-            for(let j = 0; j<A.length;j++){ //for loop through array
-                A[j] = A[j].replace(firstString.charAt(i),"");
-                
-             }
-            
-        }
-        count = 1;
+      }
+      count = 1;
     }
-    return result
+    return result;
   },
   projectionArea(grid) {
-    
-    const xy = grid.reduce((acc,curr)=>{
-        const area = curr.filter(value => value>0).length
-        return acc + area
-    },0)
-    
-    const yz = grid.reduce((acc,curr) => {
-        const max =  Math.max(...curr) 
-        return acc + max
-      },0)
+    const xy = grid.reduce((acc, curr) => {
+      const area = curr.filter((value) => value > 0).length;
+      return acc + area;
+    }, 0);
 
-    const xz = grid[0].reduce((acc,curr,index) => {
-        const vertical =  grid.map(value =>{
-          return value[index]
-        })
-        const max =  Math.max(...vertical) 
-        return acc + max
-      },0)
+    const yz = grid.reduce((acc, curr) => {
+      const max = Math.max(...curr);
+      return acc + max;
+    }, 0);
 
-      return xy+yz+xz 
+    const xz = grid[0].reduce((acc, curr, index) => {
+      const vertical = grid.map((value) => {
+        return value[index];
+      });
+      const max = Math.max(...vertical);
+      return acc + max;
+    }, 0);
+
+    return xy + yz + xz;
   },
-  intersection (nums) {
+  intersection(nums) {
     const res = [];
     const shortest = nums.shift();
     for (const num of shortest) {
@@ -1532,136 +1547,140 @@ export default {
     res.sort((x, y) => x - y);
     return res;
   },
-  allCellsDistOrder(R, C, r0, c0) => {
-  const result = [];
-  for (let i = 0; i < R; i++) {
-    for (let j = 0; j < C; j++) {
-      result.push([i, j]);
+  allCellsDistOrder(R, C, r0, c0) {
+    const result = [];
+    for (let i = 0; i < R; i++) {
+      for (let j = 0; j < C; j++) {
+        result.push([i, j]);
+      }
     }
-  }
-  result.sort((a, b) => (Math.abs(a[0] - r0) + Math.abs(a[1] - c0)) - (Math.abs(b[0] - r0) + Math.abs(b[1] - c0)))
-  return result;
+    result.sort(
+      (a, b) =>
+        Math.abs(a[0] - r0) +
+        Math.abs(a[1] - c0) -
+        (Math.abs(b[0] - r0) + Math.abs(b[1] - c0))
+    );
+    return result;
   },
-    canMakeArithmeticProgression (arra) {
-        arra.sort(function(a,b){
-        return (a-b);
+  canMakeArithmeticProgression(arra) {
+    arra.sort(function (a, b) {
+      return a - b;
     });
-    let diff=arra[1]-arra[0];
-    for(let i=1;i<arra.length-1;i++){
-        let inDiff=arra[i+1]-arra[i];
-        if(inDiff!==diff){
-            return false;
-            break;
-        }
-        }
-        return true;
-    },
-    generatePascalsTriangle(numRows) {
-       let ret = [];
-    
-    for(let i = 0; i < numRows; i++)
-    {
-        ret[i] = [];
-        ret[i][0] = ret[i][i] = 1;
-        for(let j = 1; j < i; j++)
-        {
-               ret[i][j] = ret[i-1][j] + ret[i-1][j-1]; 
-        }
+    let diff = arra[1] - arra[0];
+    for (let i = 1; i < arra.length - 1; i++) {
+      let inDiff = arra[i + 1] - arra[i];
+      if (inDiff !== diff) {
+        return false;
+        break;
+      }
     }
-    return ret; 
-      },
-         subsetXORSum (nums) {
-   let bitOR = 0;
-   for (let  i=0; i < nums.length; ++i) {
-       bitOR |= nums[i]; 
-   }
-   return (bitOR * Math.pow(2, nums.length-1));
-},
- countPoints  (rings) {
+    return true;
+  },
+  generatePascalsTriangle(numRows) {
+    let ret = [];
+
+    for (let i = 0; i < numRows; i++) {
+      ret[i] = [];
+      ret[i][0] = ret[i][i] = 1;
+      for (let j = 1; j < i; j++) {
+        ret[i][j] = ret[i - 1][j] + ret[i - 1][j - 1];
+      }
+    }
+    return ret;
+  },
+  subsetXORSum(nums) {
+    let bitOR = 0;
+    for (let i = 0; i < nums.length; ++i) {
+      bitOR |= nums[i];
+    }
+    return bitOR * Math.pow(2, nums.length - 1);
+  },
+  countPoints(rings) {
     let n = rings.length;
 
     let map = new Map(); // map of  rod nums  to their  set of colors
     for (let i = 0; i < n; i += 2) {
-        let color = rings[i];
-        let rod = +rings[i + 1];
+      let color = rings[i];
+      let rod = +rings[i + 1];
 
-        if (!map.has(rod)) map.set(rod, new Set());
-        map.get(rod).add(color);
+      if (!map.has(rod)) map.set(rod, new Set());
+      map.get(rod).add(color);
     }
 
     let count = 0;
     for (let [rod, setColors] of map) {
-        if (setColors.size == 3) count++;
+      if (setColors.size == 3) count++;
     }
     return count;
-},
-  minStartValue(nums) {
-    for(let i = 1 ; i <= 1890 ; i++){
-        let check = true
-        let sum = i
-        for(let j = 0 ; j < nums.length ; j++){   
-            sum = sum + nums[j]
-            if(sum < 1){   
-                check = false
-                break
-            }
-        }
-        if(check){
-            return i
-        }
-    }
-    return 1
   },
-   maxIncreaseKeepingSkyline(grid) {
-    let rowMaxHeightArray = [] 
-    let columnMaxHeightArray = [] 
-    let howTallCanWeGo = 0
+  minStartValue(nums) {
+    for (let i = 1; i <= 1890; i++) {
+      let check = true;
+      let sum = i;
+      for (let j = 0; j < nums.length; j++) {
+        sum = sum + nums[j];
+        if (sum < 1) {
+          check = false;
+          break;
+        }
+      }
+      if (check) {
+        return i;
+      }
+    }
+    return 1;
+  },
+  maxIncreaseKeepingSkyline(grid) {
+    let rowMaxHeightArray = [];
+    let columnMaxHeightArray = [];
+    let howTallCanWeGo = 0;
 
-    for (let i in grid){
-        rowMaxHeightArray.push(Math.max(...grid[i]))
-        for (let j in grid){
-            if(grid[j][i] > columnMaxHeightArray[i] || !columnMaxHeightArray[i]){
-                columnMaxHeightArray[i] = grid[j][i]
-            }
+    for (let i in grid) {
+      rowMaxHeightArray.push(Math.max(...grid[i]));
+      for (let j in grid) {
+        if (grid[j][i] > columnMaxHeightArray[i] || !columnMaxHeightArray[i]) {
+          columnMaxHeightArray[i] = grid[j][i];
         }
+      }
     }
-    
-    for (let i = 0; i < grid.length; i++){
-        for (let j = 0; j < grid.length; j++){
-            howTallCanWeGo += Math.min(rowMaxHeightArray[i], columnMaxHeightArray[j]) - grid[i][j]
-        }
+
+    for (let i = 0; i < grid.length; i++) {
+      for (let j = 0; j < grid.length; j++) {
+        howTallCanWeGo +=
+          Math.min(rowMaxHeightArray[i], columnMaxHeightArray[j]) - grid[i][j];
+      }
     }
-    return howTallCanWeGo
-},
+    return howTallCanWeGo;
+  },
   twoSum(nums, target) {
-    for(let i = 0 ; i < nums.length ; i++){
-        for(let j = 0 ; j < nums.length ; j++){
-            if(i !== j && nums[i] + nums[j] == target){
-                return [i,j]
-            }
+    for (let i = 0; i < nums.length; i++) {
+      for (let j = 0; j < nums.length; j++) {
+        if (i !== j && nums[i] + nums[j] == target) {
+          return [i, j];
         }
+      }
     }
-},
+  },
   groupThePeople(groupSizes) {
-  let result = [], groups = {};
-    
+    let result = [],
+      groups = {};
+
     groupSizes.forEach((size, index) => {
-        if (size in groups) {
-            if (groups[size].length < size) {
-                groups[size].push(index)
-            }
-        
-        } else {
-            groups[size] = [index]
+      if (size in groups) {
+        if (groups[size].length < size) {
+          groups[size].push(index);
         }
-        
-        if (groups[size].length === size) {
-            result.push(groups[size]);
-            groups[size] = [];
-        }
-    })
+      } else {
+        groups[size] = [index];
+      }
+
+      if (groups[size].length === size) {
+        result.push(groups[size]);
+        groups[size] = [];
+      }
+    });
     return result;
-},
+  },
   findMedianSortedArrays(nums1, nums2) {
     const totalLength = nums1.length + nums2.length;
     const halfWayPoint = Math.floor(totalLength / 2);
@@ -1669,24 +1688,24 @@ export default {
     let nums2Pos = 0;
     let lastNum, secondToLastNum;
     for (let i = 0; i <= halfWayPoint; i++) {
-        secondToLastNum = lastNum;
-        if (
-            nums2[nums2Pos] == undefined ||
-            (nums1[nums1Pos] != undefined && nums1[nums1Pos] <= nums2[nums2Pos])
-        ) {
-            lastNum = nums1[nums1Pos];
-            nums1Pos++;
-        } else {
-            lastNum = nums2[nums2Pos];
-            nums2Pos++;
-        }
+      secondToLastNum = lastNum;
+      if (
+        nums2[nums2Pos] == undefined ||
+        (nums1[nums1Pos] != undefined && nums1[nums1Pos] <= nums2[nums2Pos])
+      ) {
+        lastNum = nums1[nums1Pos];
+        nums1Pos++;
+      } else {
+        lastNum = nums2[nums2Pos];
+        nums2Pos++;
+      }
     }
     return totalLength % 2 ? lastNum : (lastNum + secondToLastNum) / 2;
-},
+  },
   garbageCollection(garbage, travel) {
-    const exprense = [0, ];
+    const exprense = [0];
     for (let i = 0; i < travel.length; i++) {
-        exprense[i + 1] = exprense[i] + travel[i];
+      exprense[i + 1] = exprense[i] + travel[i];
     }
     let M = 0;
     let P = 0;
@@ -1695,91 +1714,98 @@ export default {
     let pi = 0;
     let gi = 0;
     for (let i = 0; i < garbage.length; i++) {
-        for (const c of garbage[i]) {
-            if (c === 'M') {
-                M++;
-                mi = i;
-            } else if (c === 'P') {
-                P++;
-                pi = i;
-            } else {
-                G++;
-                gi = i;
-            }
+      for (const c of garbage[i]) {
+        if (c === "M") {
+          M++;
+          mi = i;
+        } else if (c === "P") {
+          P++;
+          pi = i;
+        } else {
+          G++;
+          gi = i;
         }
+      }
     }
 
     return M + P + G + exprense[mi] + exprense[pi] + exprense[gi];
   },
-    uniquePathsIII(){
-    var uniquePathsIII = function(grid) {
-    let cnt = 1 
-    let sx,sy 
-    for(let i=0;i<grid.length;i++){
-        for(let j=0;j<grid[0].length;j++){
-            if(grid[i][j] === 1){
-                sx = i
-                sy = j
-            }
-            else if(grid[i][j] === 0){
-                cnt++
-            }
+  uniquePathsIII() {
+    var uniquePathsIII = function (grid) {
+      let cnt = 1;
+      let sx, sy;
+      for (let i = 0; i < grid.length; i++) {
+        for (let j = 0; j < grid[0].length; j++) {
+          if (grid[i][j] === 1) {
+            sx = i;
+            sy = j;
+          } else if (grid[i][j] === 0) {
+            cnt++;
+          }
         }
+      }
+      return dfs(sx, sy, cnt, grid);
+    };
+
+    let check = (sx, sy, grid) => {
+      if (
+        sx < 0 ||
+        sx >= grid.length ||
+        sy < 0 ||
+        sy >= grid[0].length ||
+        grid[sx][sy] == -1
+      )
+        return false;
+      return true;
+    };
+
+    let dfs = (sx, sy, cnt, grid) => {
+      if (!check(sx, sy, grid)) return 0;
+      if (grid[sx][sy] === 2) {
+        return cnt === 0 ? 1 : 0;
+      }
+      let res = 0;
+      grid[sx][sy] = -1;
+      res += dfs(sx + 1, sy, cnt - 1, grid);
+      res += dfs(sx, sy + 1, cnt - 1, grid);
+      res += dfs(sx - 1, sy, cnt - 1, grid);
+      res += dfs(sx, sy - 1, cnt - 1, grid);
+      grid[sx][sy] = 0;
+      return res;
+    };
+  },
+  earliestFullBloom(plantTime, growTime) {
+    let n = plantTime.length;
+    let plants = [];
+    for (var i = 0; i < n; i++) {
+      plants.push([plantTime[i], growTime[i]]);
     }
-    return dfs(sx,sy,cnt,grid)
-};
+    plants.sort((a, b) => {
+      if (a[1] === b[1]) return b[0] - a[0];
+      return b[1] - a[1];
+    });
 
-let check = (sx,sy,grid) => {
-    if(sx<0 || sx>=grid.length || sy<0 || sy>=grid[0].length || grid[sx][sy] == -1) return false
-    return true
-}
-
-let dfs = (sx,sy,cnt,grid) => {
-    if(!check(sx,sy,grid)) return 0
-    if(grid[sx][sy] === 2){ 
-        return cnt === 0 ? 1:0
+    let time = 0,
+      fullBloomTime = 0;
+    for (i = 0; i < n; i++) {
+      time += plants[i][0];
+      fullBloomTime = Math.max(fullBloomTime, time + plants[i][1]);
     }
-    let res = 0
-    grid[sx][sy] = -1  
-    res += dfs(sx+1,sy,cnt-1,grid)  
-    res += dfs(sx,sy+1,cnt-1,grid)
-    res += dfs(sx-1,sy,cnt-1,grid)
-    res += dfs(sx,sy-1,cnt-1,grid)
-    grid[sx][sy] = 0  
-    return res
-}
-},
-   earliestFullBloom (plantTime, growTime) {
-  let n = plantTime.length;
-  let plants = [];
-  for (var i = 0; i < n; i++) {
-    plants.push([plantTime[i], growTime[i]]);
-  }
-  plants.sort((a, b) => {
-    if (a[1] === b[1]) return b[0] - a[0];
-    return b[1] - a[1];
-  });
-
-  let time = 0, fullBloomTime = 0;
-  for (i = 0; i < n; i++) {
-    time += plants[i][0];
-    fullBloomTime = Math.max(fullBloomTime, time + plants[i][1]);
-  }
-  return fullBloomTime;
-},
+    return fullBloomTime;
+  },
   diagonalSort(M) {
-    let y = M.length, x = M[0].length - 1,
-        diag = new Uint8Array(y), k
+    let y = M.length,
+      x = M[0].length - 1,
+      diag = new Uint8Array(y),
+      k;
     for (let i = 2 - y; i < x; i++) {
-        diag.fill(101), k = 0
-        for (let j = 0; j < y; j++)
-            if (i+j >= 0 && i+j <= x)
-                diag[k++] = M[j][i+j]
-        diag.sort(), k = 0
-        for (let j = 0; j < y; j++)
-            if (i+j >= 0 && i+j <= x)
-                M[j][i+j] = diag[k++]
+      diag.fill(101), (k = 0);
+      for (let j = 0; j < y; j++)
+        if (i + j >= 0 && i + j <= x) diag[k++] = M[j][i + j];
+      diag.sort(), (k = 0);
+      for (let j = 0; j < y; j++)
+        if (i + j >= 0 && i + j <= x) M[j][i + j] = diag[k++];
     }
-    return M
-}
+    return M;
+  },
 };
