@@ -1766,5 +1766,20 @@ let dfs = (sx,sy,cnt,grid) => {
     fullBloomTime = Math.max(fullBloomTime, time + plants[i][1]);
   }
   return fullBloomTime;
+},
+  diagonalSort(M) {
+    let y = M.length, x = M[0].length - 1,
+        diag = new Uint8Array(y), k
+    for (let i = 2 - y; i < x; i++) {
+        diag.fill(101), k = 0
+        for (let j = 0; j < y; j++)
+            if (i+j >= 0 && i+j <= x)
+                diag[k++] = M[j][i+j]
+        diag.sort(), k = 0
+        for (let j = 0; j < y; j++)
+            if (i+j >= 0 && i+j <= x)
+                M[j][i+j] = diag[k++]
+    }
+    return M
 }
 };
