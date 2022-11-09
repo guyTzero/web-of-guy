@@ -1808,4 +1808,12 @@ export default {
     }
     return M;
   },
+  findArray(pref) {
+    let n = pref.length, res = Array(n);
+    res[0] = pref[0];
+    for (let i = 1; i < n; i++) {
+      res[i] = pref[i - 1] ^ pref[i];
+    }
+    return res
+  },
 };
