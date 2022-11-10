@@ -1816,4 +1816,16 @@ export default {
     }
     return res
   },
+  minOperations(boxes) {
+  boxes = boxes.split("").map(Number)
+  const ones = boxes
+    .map((el, i) => [el, i])
+    .filter(([el]) => el === 1)
+    .map(([_, i]) => i)
+
+  const res = Array.from({ length: boxes.length }, (_, i) =>
+    ones.reduce((acc, oneIdx) => (acc += Math.abs(i - oneIdx)), 0)
+  )
+  return res
+}
 };
