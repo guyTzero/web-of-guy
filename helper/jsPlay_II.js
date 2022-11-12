@@ -1827,5 +1827,32 @@ export default {
     ones.reduce((acc, oneIdx) => (acc += Math.abs(i - oneIdx)), 0)
   )
   return res
+},
+  constructMaximumBinaryTree(nums) {
+    if(nums.length == 0){
+        //needed because the way this is coded doesn't check for nums length
+        return null
+    }
+    if(nums.length == 1){
+        // this is a base case for returning a node. Eventually your tree will go down to a single node, so you return it to construct the entire tree.
+        return new TreeNode(nums[0])
+    }
+    // the main idea here is to get the maxIndex and value of the given array, construct a tree node from it, and then construct a tree by slicing left of the max value and right of the max value.
+    let maxIndex = getMaxIndex(nums)
+    let maxVal = nums[maxIndex]
+    let rootNode = new TreeNode(maxVal)
+    rootNode.left = constructMaximumBinaryTree(nums.slice(0,maxIndex))
+    rootNode.right = constructMaximumBinaryTree(nums.slice(maxIndex + 1, nums.length))
+    return rootNode
+}
+var getMaxIndex = function(arr){
+    // just a utility function for getting the max index.
+    let maxIndex = 0
+    for(let i = 0; i<arr.length; i++){
+        if(arr[i] > arr[maxIndex] ){
+            maxIndex = i
+        }
+    }
+    return maxIndex
 }
 };
