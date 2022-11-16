@@ -1854,5 +1854,20 @@ var getMaxIndex = function(arr){
         }
     }
     return maxIndex
-}
+},
+  numberOfBeams(bank) {
+    const getDeviceCount = (s) => s.split("").filter((x) => x === "1").length;
+    let sum = 0;
+
+    let prev = 0;                                   
+    for (let floor of bank) {                          
+        let curr = getDeviceCount(floor);              
+        if (curr) {
+            sum += curr * prev;
+            prev = curr;
+        }
+    }
+
+    return sum
+  }
 };
