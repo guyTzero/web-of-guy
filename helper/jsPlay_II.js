@@ -1869,5 +1869,22 @@ var getMaxIndex = function(arr){
     }
 
     return sum
-  }
+  },
+    partitionLabels(S) {
+    let last_index = new Map();
+    for (let i = 0; i < S.length; i++) {
+        last_index.set(S[i],  i);
+    }
+    let res = [];
+    let start = 0;
+    let end = 0;
+    for (let i = 0; i < S.length; i++) {
+        end = Math.max(end, last_index.get(S[i]));
+        if (i === end) {
+            res.push(end - start + 1);
+            start = end + 1;
+        }
+    }
+    return res;
+    }
 };
