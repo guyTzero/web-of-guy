@@ -1973,5 +1973,18 @@ var getMaxIndex = function(arr){
     res[i] = res[i - 1] * ((rowIndex - i + 1) / i);
   }
   return res;
+},
+  minDepth (root) {
+        //if root is null, there is no depth
+    if(!root) return 0
+    //if the root has no left child
+    //keep traverse with right child and increment the level by one
+    if (!root.left) return minDepth(root.right) +1
+    //if the root has no right child
+    //keep traverse with left child and increment the level by one
+    if (!root.right) return minDepth(root.left) + 1
+    //compare left and right, choose the smaller value and add one level 
+    //return the depth
+    return Math.min( minDepth(root.left), minDepth(root.right) ) + 1
 }
 };
