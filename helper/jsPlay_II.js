@@ -1986,5 +1986,9 @@ var getMaxIndex = function(arr){
     //compare left and right, choose the smaller value and add one level 
     //return the depth
     return Math.min( minDepth(root.left), minDepth(root.right) ) + 1
+},
+  isMatch(s, p) {
+        const regex = new RegExp('^' + p + '$', 'm');
+    return regex.test(s);
 }
 };
