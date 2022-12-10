@@ -15,3 +15,11 @@ select a.Name as `Employee`
 from `Employee` as a join `Employee` as b
 on a.ManagerId = b.Id
 and a.Salary > b.Salary
+
+--------------------------------------------------------------------------------
+
+SELECT IFNULL(
+(SELECT distinct Salary
+FROM Employee
+ORDER BY Salary desc limit 1,1)
+, null) as SecondHighestSalary ;
