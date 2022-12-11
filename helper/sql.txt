@@ -23,3 +23,7 @@ SELECT IFNULL(
 FROM Employee
 ORDER BY Salary desc limit 1,1)
 , null) as SecondHighestSalary ;
+
+--------------------------------------------------------------------------------
+
+select `Email` from `Person` group by `Email` having count(*)>1
