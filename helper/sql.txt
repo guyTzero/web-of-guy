@@ -66,3 +66,14 @@ FROM
 customer
 WHERE
 referee_id <> 2 or referee_id IS NULL;
+
+--------------------------------------------------------------------------------
+
+SELECT
+player_id, min(event_date) as first_login
+FROM
+Activity
+group by player_id ;
+
+--------------------------------------------------------------------------------
+
