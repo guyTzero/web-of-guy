@@ -83,3 +83,9 @@ order by count(distinct order_number) desc limit 1;
 
 --------------------------------------------------------------------------------
 
+SELECT name,population,area
+FROM World
+WHERE area >= 3000000 or population >= 25000000;
+
+--------------------------------------------------------------------------------
+
