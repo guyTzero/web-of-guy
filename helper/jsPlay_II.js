@@ -2071,5 +2071,21 @@ var getMaxIndex = function(arr){
         total += maxInRow;
     }
     return total;
-    }
+    },
+      pivotArray(a, pivot) {
+        let ans = new Array(a.length).fill(pivot);
+        let j = 0;
+        let k = a.length - 1;
+        for (let i = 0; i < a.length; i++) {
+          if (a[i] < pivot) {
+            ans[j] = a[i];
+            j++;
+          }
+          if (a[a.length - i - 1] > pivot) {
+            ans[k] = a[a.length - i - 1];
+            k--;
+          }
+        }
+        return ans;
+      }
 };
