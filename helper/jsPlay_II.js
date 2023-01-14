@@ -2087,5 +2087,24 @@ var getMaxIndex = function(arr){
           }
         }
         return ans;
-      }
+      },
+             maxWidthOfVerticalArea(points) {
+        if (!points.length) return 0;
+        
+        points.sort((a, b) => (a[0] - b[0]));
+        
+        let res = 0;
+        let prevX = points[0][0];
+        for (let i = 1; i < points.length; i++) {
+            let x = points[i][0];
+            if (x === prevX) {
+                continue;
+            } else {
+                res = Math.max(res, x - prevX);
+            }
+            prevX = x;
+        }
+        
+        return res;
+    }
 };
