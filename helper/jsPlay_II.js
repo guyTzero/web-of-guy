@@ -2126,5 +2126,22 @@ var getMaxIndex = function(arr){
     if (num >= 4) return 'IV' + intToRoman(num - 4);
     if (num >= 1) return 'I' + intToRoman(num - 1);
     return num;
-}
+},
+  searchRange(nums, target) {
+    let targetFirstOccurence = -1;
+
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] === target && targetFirstOccurence === -1) {
+            targetFirstOccurence = i;
+        } else if (nums[i] > target) {
+            if (targetFirstOccurence !== -1) {
+                return [targetFirstOccurence, i - 1];
+            } else {
+                return [-1, -1];
+            }
+        }
+    }
+
+    return targetFirstOccurence === -1 ? [-1, -1] : [targetFirstOccurence, nums.length - 1];
+  }
 };
