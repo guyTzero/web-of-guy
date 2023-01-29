@@ -1809,188 +1809,191 @@ export default {
     return M;
   },
   findArray(pref) {
-    let n = pref.length, res = Array(n);
+    let n = pref.length,
+      res = Array(n);
     res[0] = pref[0];
     for (let i = 1; i < n; i++) {
       res[i] = pref[i - 1] ^ pref[i];
     }
-    return res
+    return res;
   },
   minOperations(boxes) {
-  boxes = boxes.split("").map(Number)
-  const ones = boxes
-    .map((el, i) => [el, i])
-    .filter(([el]) => el === 1)
-    .map(([_, i]) => i)
+    boxes = boxes.split("").map(Number);
+    const ones = boxes
+      .map((el, i) => [el, i])
+      .filter(([el]) => el === 1)
+      .map(([_, i]) => i);
 
-  const res = Array.from({ length: boxes.length }, (_, i) =>
-    ones.reduce((acc, oneIdx) => (acc += Math.abs(i - oneIdx)), 0)
-  )
-  return res
-},
+    const res = Array.from({ length: boxes.length }, (_, i) =>
+      ones.reduce((acc, oneIdx) => (acc += Math.abs(i - oneIdx)), 0)
+    );
+    return res;
+  },
   constructMaximumBinaryTree(nums) {
-    if(nums.length == 0){
-        //needed because the way this is coded doesn't check for nums length
-        return null
+    if (nums.length == 0) {
+      //needed because the way this is coded doesn't check for nums length
+      return null;
     }
-    if(nums.length == 1){
-        // this is a base case for returning a node. Eventually your tree will go down to a single node, so you return it to construct the entire tree.
-        return new TreeNode(nums[0])
+    if (nums.length == 1) {
+      // this is a base case for returning a node. Eventually your tree will go down to a single node, so you return it to construct the entire tree.
+      return new TreeNode(nums[0]);
     }
     // the main idea here is to get the maxIndex and value of the given array, construct a tree node from it, and then construct a tree by slicing left of the max value and right of the max value.
-    let maxIndex = getMaxIndex(nums)
-    let maxVal = nums[maxIndex]
-    let rootNode = new TreeNode(maxVal)
-    rootNode.left = constructMaximumBinaryTree(nums.slice(0,maxIndex))
-    rootNode.right = constructMaximumBinaryTree(nums.slice(maxIndex + 1, nums.length))
-    return rootNode
-}
-var getMaxIndex = function(arr){
+    let maxIndex = getMaxIndex(nums);
+    let maxVal = nums[maxIndex];
+    let rootNode = new TreeNode(maxVal);
+    rootNode.left = constructMaximumBinaryTree(nums.slice(0, maxIndex));
+    rootNode.right = constructMaximumBinaryTree(
+      nums.slice(maxIndex + 1, nums.length)
+    );
+    return rootNode;
+  },
+  getMaxIndex(arr) {
     // just a utility function for getting the max index.
-    let maxIndex = 0
-    for(let i = 0; i<arr.length; i++){
-        if(arr[i] > arr[maxIndex] ){
-            maxIndex = i
-        }
+    let maxIndex = 0;
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] > arr[maxIndex]) {
+        maxIndex = i;
+      }
     }
-    return maxIndex
-},
+    return maxIndex;
+  },
   numberOfBeams(bank) {
     const getDeviceCount = (s) => s.split("").filter((x) => x === "1").length;
     let sum = 0;
 
-    let prev = 0;                                   
-    for (let floor of bank) {                          
-        let curr = getDeviceCount(floor);              
-        if (curr) {
-            sum += curr * prev;
-            prev = curr;
-        }
+    let prev = 0;
+    for (let floor of bank) {
+      let curr = getDeviceCount(floor);
+      if (curr) {
+        sum += curr * prev;
+        prev = curr;
+      }
     }
 
-    return sum
+    return sum;
   },
-    partitionLabels(S) {
+  partitionLabels(S) {
     let last_index = new Map();
     for (let i = 0; i < S.length; i++) {
-        last_index.set(S[i],  i);
+      last_index.set(S[i], i);
     }
     let res = [];
     let start = 0;
     let end = 0;
     for (let i = 0; i < S.length; i++) {
-        end = Math.max(end, last_index.get(S[i]));
-        if (i === end) {
-            res.push(end - start + 1);
-            start = end + 1;
-        }
+      end = Math.max(end, last_index.get(S[i]));
+      if (i === end) {
+        res.push(end - start + 1);
+        start = end + 1;
+      }
     }
     return res;
-    },
-      isBalanced(root) {
-              const ckeckHeight = node => {
-  if (node === null) return 0;
-  
-  const left = ckeckHeight(node.left);
-  const right = ckeckHeight(node.right);
-  
-  if (
-    // if a previous call has returned false,
-    // we need to pass false all the way up
-    left === false ||
-    right === false ||
-    Math.abs(left - right) > 1
-  ) {
-    return false;
-  }
-  
-  // height of a node
-  return Math.max(left, right) + 1;
-};
-  if (root === null) return true;
-  
-  return ckeckHeight(root) !== false;
-},
+  },
+  isBalanced(root) {
+    const ckeckHeight = (node) => {
+      if (node === null) return 0;
+
+      const left = ckeckHeight(node.left);
+      const right = ckeckHeight(node.right);
+
+      if (
+        // if a previous call has returned false,
+        // we need to pass false all the way up
+        left === false ||
+        right === false ||
+        Math.abs(left - right) > 1
+      ) {
+        return false;
+      }
+
+      // height of a node
+      return Math.max(left, right) + 1;
+    };
+    if (root === null) return true;
+
+    return ckeckHeight(root) !== false;
+  },
   threeSum(nums) {
-        // If less than 3 elements then we can't have 3 numbers that add to 0
-    if(nums.length < 3) return []
-    const output = []
+    // If less than 3 elements then we can't have 3 numbers that add to 0
+    if (nums.length < 3) return [];
+    const output = [];
 
     // Sort the array in descending order. Must add order function to sort. If not we will not get the right order. Sort converts everything to a string and sorts the array by charCode. Adding the order function to sort guarantees we will get the array in the proper descending order.
-    nums.sort((a,b) => a - b)
+    nums.sort((a, b) => a - b);
 
-    for(let i = 0; i < nums.length - 2;i++) {
-        // we don't want repeats, so skip numbers we've already seen
-        if (i > 0 && nums[i] === nums[i - 1]) continue
+    for (let i = 0; i < nums.length - 2; i++) {
+      // we don't want repeats, so skip numbers we've already seen
+      if (i > 0 && nums[i] === nums[i - 1]) continue;
 
-        let left = i+1
-        let right = nums.length-1
+      let left = i + 1;
+      let right = nums.length - 1;
 
-        // Current number at i will be added to the current sum. We will move a left and a right pointer in the subarray of elements to the right of i to try and get a sum that will equal 0
-        while (left < right) {
-            // Get the current sum with with number at i and numbers at the left and right pointers
-            const sum = nums[i] + nums[right] + nums[left]
-            // If we get 0 then we add all the numbers to output and move our left and right pointers to look for more numbers that will add to 0 with the current number at i
-            if(sum===0) {
-                output.push([nums[i], nums[left], nums[right]])
-                // We will move the pointers until we find a number that is not equal to each pointers current number
-                while(nums[left]===nums[left+1]) left++
-                while(nums[right]===nums[right+1]) right--
-                left++
-                right--
-            } else if (sum > 0) {
-                // If the sum is greater than 0 that means we need smaller numbers to get 0 so we move the right pointer to the left
-               right--
-            } else {
-                // If the sum is less than 0 that means we need higher numbers to get 0 so we move the left pointer to the right
-                left++
-            }
+      // Current number at i will be added to the current sum. We will move a left and a right pointer in the subarray of elements to the right of i to try and get a sum that will equal 0
+      while (left < right) {
+        // Get the current sum with with number at i and numbers at the left and right pointers
+        const sum = nums[i] + nums[right] + nums[left];
+        // If we get 0 then we add all the numbers to output and move our left and right pointers to look for more numbers that will add to 0 with the current number at i
+        if (sum === 0) {
+          output.push([nums[i], nums[left], nums[right]]);
+          // We will move the pointers until we find a number that is not equal to each pointers current number
+          while (nums[left] === nums[left + 1]) left++;
+          while (nums[right] === nums[right + 1]) right--;
+          left++;
+          right--;
+        } else if (sum > 0) {
+          // If the sum is greater than 0 that means we need smaller numbers to get 0 so we move the right pointer to the left
+          right--;
+        } else {
+          // If the sum is less than 0 that means we need higher numbers to get 0 so we move the left pointer to the right
+          left++;
         }
+      }
     }
 
-    return output
-},
+    return output;
+  },
   unequalTriplets(nums) {
     nums.sort((a, b) => a - b);
     let result = 0;
     let index = 0;
     while (index < nums.length) {
-        const left = index;
-        const num = nums[index];
-        while (index < nums.length && nums[index] === num) {
-            index++;
-        }
-        const mid = index - left;
-        result += left * mid * (nums.length - left - mid);
+      const left = index;
+      const num = nums[index];
+      while (index < nums.length && nums[index] === num) {
+        index++;
+      }
+      const mid = index - left;
+      result += left * mid * (nums.length - left - mid);
     }
 
     return result;
-},
+  },
   getRow(rowIndex) {
-      var res = Array(rowIndex + 1);
-  res[0] = 1;
-  for (var i = 1; i <= rowIndex; i++) {
-    res[i] = res[i - 1] * ((rowIndex - i + 1) / i);
-  }
-  return res;
-},
-  minDepth (root) {
-        //if root is null, there is no depth
-    if(!root) return 0
+    var res = Array(rowIndex + 1);
+    res[0] = 1;
+    for (var i = 1; i <= rowIndex; i++) {
+      res[i] = res[i - 1] * ((rowIndex - i + 1) / i);
+    }
+    return res;
+  },
+  minDepth(root) {
+    //if root is null, there is no depth
+    if (!root) return 0;
     //if the root has no left child
     //keep traverse with right child and increment the level by one
-    if (!root.left) return minDepth(root.right) +1
+    if (!root.left) return minDepth(root.right) + 1;
     //if the root has no right child
     //keep traverse with left child and increment the level by one
-    if (!root.right) return minDepth(root.left) + 1
-    //compare left and right, choose the smaller value and add one level 
+    if (!root.right) return minDepth(root.left) + 1;
+    //compare left and right, choose the smaller value and add one level
     //return the depth
-    return Math.min( minDepth(root.left), minDepth(root.right) ) + 1
-},
+    return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+  },
   isMatch(s, p) {
-        const regex = new RegExp('^' + p + '$', 'm');
+    const regex = new RegExp("^" + p + "$", "m");
     return regex.test(s);
-},
+  },
   maxArea(height) {
     let biggestFoundArea = 0;
     let left = 0;
@@ -1998,150 +2001,156 @@ var getMaxIndex = function(arr){
 
     // Run until the left and right markers meet
     while (left < right) {
-        // Set the maximum height of the current area
-        const maxHeight = Math.min(height[left], height[right]);
+      // Set the maximum height of the current area
+      const maxHeight = Math.min(height[left], height[right]);
 
-        // Calculate the current area
-        const currentArea = maxHeight * (right - left);
+      // Calculate the current area
+      const currentArea = maxHeight * (right - left);
 
-        // Update the biggest found area
-        biggestFoundArea = Math.max(biggestFoundArea, currentArea);
+      // Update the biggest found area
+      biggestFoundArea = Math.max(biggestFoundArea, currentArea);
 
-        // Move the left or right marker inwards (whichever is smaller)
-        if (height[left] < height[right]) {
-            left++;
-        } else {
-            right--;
-        }
+      // Move the left or right marker inwards (whichever is smaller)
+      if (height[left] < height[right]) {
+        left++;
+      } else {
+        right--;
+      }
     }
 
     return biggestFoundArea;
   },
-    maxDepth(root) {
+  maxDepth(root) {
     if (root === null) return 0;
-    return 1 + Math.max(maxDepth(root.left) , maxDepth(root.right));
-    },
-   threeSumClosest = (nums, target) => {
-  let len = nums.length, sum=0;
-  if(len === 0) return 0;
-  if(len <= 3) {
-    for(let i=0; i<len; i++){
-        sum += nums[i];
-    }
-    return sum;
-  }
-  nums.sort(function(a,b){
-      return a-b;
-  });
-  
-  let closest = nums[0]+nums[1]+nums[2];
-  for(let i=0; i<len; i++){
-    for(let j=i+1, k=len-1; j<len-1, j<k; ){
-      sum = nums[i] + nums[j] + nums[k];
-      if(sum === target){
-          return sum;
-      } else if(sum<target){
-        if((closest<sum && sum<target) ||
-           Math.abs(target-sum)<Math.abs(target-closest)){
-            closest = sum;
-        }
-        j++;
-      } else if(sum>target){
-        if(closest>sum && sum>target ||
-           Math.abs(target-sum) < Math.abs(target-closest)) {
-            closest = sum;
-        }
-        k--; //to reduce sum decrease tail
-      }
-        
-    }
-  }
-  return closest;
+    return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
   },
-    deleteGreatestValue(grid) {
-    let total = 0;
-    while(grid[0].length > 0) {
-        let maxInRow = 0;
-        for (let i = 0; i < grid.length; i++) {  
-            const max = Math.max(...grid[i]);
-            maxInRow = Math.max(max, maxInRow);
-            const index = grid[i].indexOf(max);
-            grid[i].splice(index, 1);
+  threeSumClosest(nums, target) {
+    let len = nums.length,
+      sum = 0;
+    if (len === 0) return 0;
+    if (len <= 3) {
+      for (let i = 0; i < len; i++) {
+        sum += nums[i];
+      }
+      return sum;
+    }
+    nums.sort(function (a, b) {
+      return a - b;
+    });
+
+    let closest = nums[0] + nums[1] + nums[2];
+    for (let i = 0; i < len; i++) {
+      for (let j = i + 1, k = len - 1; j < len - 1, j < k; ) {
+        sum = nums[i] + nums[j] + nums[k];
+        if (sum === target) {
+          return sum;
+        } else if (sum < target) {
+          if (
+            (closest < sum && sum < target) ||
+            Math.abs(target - sum) < Math.abs(target - closest)
+          ) {
+            closest = sum;
+          }
+          j++;
+        } else if (sum > target) {
+          if (
+            (closest > sum && sum > target) ||
+            Math.abs(target - sum) < Math.abs(target - closest)
+          ) {
+            closest = sum;
+          }
+          k--; //to reduce sum decrease tail
         }
-        total += maxInRow;
+      }
+    }
+    return closest;
+  },
+  deleteGreatestValue(grid) {
+    let total = 0;
+    while (grid[0].length > 0) {
+      let maxInRow = 0;
+      for (let i = 0; i < grid.length; i++) {
+        const max = Math.max(...grid[i]);
+        maxInRow = Math.max(max, maxInRow);
+        const index = grid[i].indexOf(max);
+        grid[i].splice(index, 1);
+      }
+      total += maxInRow;
     }
     return total;
-    },
-      pivotArray(a, pivot) {
-        let ans = new Array(a.length).fill(pivot);
-        let j = 0;
-        let k = a.length - 1;
-        for (let i = 0; i < a.length; i++) {
-          if (a[i] < pivot) {
-            ans[j] = a[i];
-            j++;
-          }
-          if (a[a.length - i - 1] > pivot) {
-            ans[k] = a[a.length - i - 1];
-            k--;
-          }
-        }
-        return ans;
-      },
-             maxWidthOfVerticalArea(points) {
-        if (!points.length) return 0;
-        
-        points.sort((a, b) => (a[0] - b[0]));
-        
-        let res = 0;
-        let prevX = points[0][0];
-        for (let i = 1; i < points.length; i++) {
-            let x = points[i][0];
-            if (x === prevX) {
-                continue;
-            } else {
-                res = Math.max(res, x - prevX);
-            }
-            prevX = x;
-        }
-        
-        return res;
-    },
+  },
+  pivotArray(a, pivot) {
+    let ans = new Array(a.length).fill(pivot);
+    let j = 0;
+    let k = a.length - 1;
+    for (let i = 0; i < a.length; i++) {
+      if (a[i] < pivot) {
+        ans[j] = a[i];
+        j++;
+      }
+      if (a[a.length - i - 1] > pivot) {
+        ans[k] = a[a.length - i - 1];
+        k--;
+      }
+    }
+    return ans;
+  },
+  maxWidthOfVerticalArea(points) {
+    if (!points.length) return 0;
 
- intToRoman  (num) {
-      const numerals = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
+    points.sort((a, b) => a[0] - b[0]);
 
-    if (num < 1) return '';
-    if (num >= 1000) return 'M' + intToRoman(num - 1000);
-    if (num >= 900) return 'CM' + intToRoman(num - 900);
-    if (num >= 500) return 'D' + intToRoman(num - 500);
-    if (num >= 400) return 'CD' + intToRoman(num - 400);
-    if (num >= 100) return 'C' + intToRoman(num - 100);
-    if (num >= 90) return 'XC' + intToRoman(num - 90);
-    if (num >= 50) return 'L' + intToRoman(num - 50);
-    if (num >= 40) return 'XL' + intToRoman(num - 40);
-    if (num >= 10) return 'X' + intToRoman(num - 10);
-    if (num >= 9) return 'IX' + intToRoman(num - 9);
-    if (num >= 5) return 'V' + intToRoman(num - 5);
-    if (num >= 4) return 'IV' + intToRoman(num - 4);
-    if (num >= 1) return 'I' + intToRoman(num - 1);
+    let res = 0;
+    let prevX = points[0][0];
+    for (let i = 1; i < points.length; i++) {
+      let x = points[i][0];
+      if (x === prevX) {
+        continue;
+      } else {
+        res = Math.max(res, x - prevX);
+      }
+      prevX = x;
+    }
+
+    return res;
+  },
+
+  intToRoman(num) {
+    const numerals = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
+
+    if (num < 1) return "";
+    if (num >= 1000) return "M" + intToRoman(num - 1000);
+    if (num >= 900) return "CM" + intToRoman(num - 900);
+    if (num >= 500) return "D" + intToRoman(num - 500);
+    if (num >= 400) return "CD" + intToRoman(num - 400);
+    if (num >= 100) return "C" + intToRoman(num - 100);
+    if (num >= 90) return "XC" + intToRoman(num - 90);
+    if (num >= 50) return "L" + intToRoman(num - 50);
+    if (num >= 40) return "XL" + intToRoman(num - 40);
+    if (num >= 10) return "X" + intToRoman(num - 10);
+    if (num >= 9) return "IX" + intToRoman(num - 9);
+    if (num >= 5) return "V" + intToRoman(num - 5);
+    if (num >= 4) return "IV" + intToRoman(num - 4);
+    if (num >= 1) return "I" + intToRoman(num - 1);
     return num;
-},
+  },
   searchRange(nums, target) {
     let targetFirstOccurence = -1;
 
     for (let i = 0; i < nums.length; i++) {
-        if (nums[i] === target && targetFirstOccurence === -1) {
-            targetFirstOccurence = i;
-        } else if (nums[i] > target) {
-            if (targetFirstOccurence !== -1) {
-                return [targetFirstOccurence, i - 1];
-            } else {
-                return [-1, -1];
-            }
+      if (nums[i] === target && targetFirstOccurence === -1) {
+        targetFirstOccurence = i;
+      } else if (nums[i] > target) {
+        if (targetFirstOccurence !== -1) {
+          return [targetFirstOccurence, i - 1];
+        } else {
+          return [-1, -1];
         }
+      }
     }
 
-    return targetFirstOccurence === -1 ? [-1, -1] : [targetFirstOccurence, nums.length - 1];
-  }
+    return targetFirstOccurence === -1
+      ? [-1, -1]
+      : [targetFirstOccurence, nums.length - 1];
+  },
 };
