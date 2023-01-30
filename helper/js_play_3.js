@@ -24,5 +24,36 @@ export default {
         }
     }
     return res;    
+},
+ differenceOfSum(nums) {
+
+    function sum(arr){
+        let total = 0
+        for(let i = 0 ; i < arr.length ;i++){
+            total = total + arr[i]
+        }
+        return total
+    }
+
+    let box1 = []
+    let box2 = []
+    for(let i = 0 ; i < nums.length ; i++){
+        if(nums[i] >= 10){
+            let box = nums[i].toString().split('')
+            for(let j = 0 ; j < box.length ; j++){
+             box1.push(parseInt(box[j]))
+             }
+        }else{
+            box2.push(nums[i])
+        }
+    }
+    let a = sum(box1.concat(box2))
+    let b = sum(nums)
+    if(a > b){
+        return a - b
+    }else{
+        return b - a
+    } 
+
 }
 }
