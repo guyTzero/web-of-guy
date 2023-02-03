@@ -124,5 +124,36 @@ letterCombinations(digits) {
 
         lastDigitPossibilities = newPossibilities;
     }
+},
+ countStudents(students, sandwiches) {
+    let circularSandwiches = 0;
+    let squareSandwiches = 0;
+
+    for (let i = 0; i < students.length; ++i) {
+        if (students[i] === 0) {
+            ++circularSandwiches;
+        } else {
+            ++squareSandwiches;
+        }
+    }
+
+    for (let i = 0; i < sandwiches.length; ++i) {
+        if (sandwiches[i] === 0) {
+            if (circularSandwiches === 0) {
+                return squareSandwiches;
+            }
+
+            --circularSandwiches;
+        } else {
+            if (squareSandwiches === 0) {
+                return circularSandwiches;
+            }
+
+            --squareSandwiches;
+        }
+    }
+
+    return circularSandwiches + squareSandwiches;
 }
+
 }
