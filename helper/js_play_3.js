@@ -174,6 +174,12 @@ letterCombinations(digits) {
     slowPointer.next = slowPointer.next.next;
 
     return newLinkedList.next;
+},
+ search(nums, target) {
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] === target) return i;
+    }
+    return -1;
 }
 
 }
