@@ -180,6 +180,18 @@ letterCombinations(digits) {
         if (nums[i] === target) return i;
     }
     return -1;
+},
+ swapPairs(head) {
+    let dummyList = new ListNode(null, head);
+    let current = dummyList;
+    while (current.next && current.next.next) {
+        let first = current.next;
+        current.next = current.next.next;
+        first.next = current.next.next;
+        current.next.next = first;
+        current = current.next.next;
+    }
+    return dummyList.next;
 }
 
 }
