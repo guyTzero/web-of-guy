@@ -192,6 +192,66 @@ letterCombinations(digits) {
         current = current.next.next;
     }
     return dummyList.next;
+},
+maxScoreWords(words,letters,score){
+ 
+    let letterCounts = new Array(26);
+    for(let i=0;i<26;i++)
+    {
+        letterCounts[i]=0;
+    }
+    for (let letter=0;letter< letters.length;letter++)
+            letterCounts[letters[letter].charCodeAt(0) -
+            'a'.charCodeAt(0)]++;
+  
+        return helper(words, 0,
+                      letterCounts,
+                      score);
+}
+
+function helper(words,start,letterCounts,score)
+{
+        if (start == words.length)
+            return 0;
+ 
+        let currScore = 0;
+  
+        let wordScore = 0;
+
+        let nextCounts
+            = [...letterCounts];
+  
+        for (let i = 0;
+             i < words[start].length;
+             ++i) {
+  
+            let idx = words[start][i].charCodeAt(0) -
+            'a'.charCodeAt(0);
+  
+            if (nextCounts[idx] == 0) {
+  
+                wordScore = -1;
+                break;
+            }
+  
+            wordScore += score[idx];
+  
+            nextCounts[idx]--;
+        }
+  
+        if (wordScore > 0)
+            currScore = helper(words,
+                               start + 1,
+                               nextCounts,
+                               score)
+                        + wordScore;
+  
+        currScore = Math.max(
+            currScore, helper(words, start + 1,
+                              letterCounts,
+                              score));
+  
+        return currScore;
 }
 
 }
