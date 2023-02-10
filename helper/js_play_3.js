@@ -252,6 +252,21 @@ function helper(words,start,letterCounts,score)
                               score));
   
         return currScore;
+},
+ processQueries (queries, m) {
+    let result = [];
+    let p = [];
+    for (let i = 1; i <= m; i++) {
+        p.push(i);
+    }
+    
+    for (let i of queries) {
+        let idx = p.indexOf(i);
+        result.push(idx);
+        let num = p.splice(idx, 1)[0];
+        p.unshift(num);
+    }
+    
+    return result;
 }
-
 }
