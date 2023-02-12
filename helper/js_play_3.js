@@ -268,5 +268,20 @@ function helper(words,start,letterCounts,score)
     }
     
     return result;
+},
+ validBox(board, row, col, value) {
+    const startRow = row - (row % 3), startCol = col - (col % 3);
+    
+    for (let i = startRow; i < startRow + 3; i++) {
+        for (let j = startCol; j < startCol + 3; j++) {
+            if (i !== row && j !== col) {
+                if (board[i][j] === value) {
+                    return false;
+                }
+            }
+        }
+    }
+    
+    return true;
 }
 }
