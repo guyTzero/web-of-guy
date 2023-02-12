@@ -269,6 +269,41 @@ function helper(words,start,letterCounts,score)
     
     return result;
 },
+validSudoku(board) {
+   for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            const value = board[i][j];
+            if (value !== '.') {
+                if (!validRow(board, i, j, value) || !validColumn(board, i, j, value) | !validBox(board, i, j, value)) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+},
+ validRow(board, row, col, value) {
+    for (let j = 0; j < 8; j++) {
+        if (j !== col) {
+            if (board[row][j] === value) {
+                return false; 
+            }
+        }
+    }
+    
+    return true;
+},
+ validColumn(board, row, col, value) {
+    for (let i = 0; i < 8; i++) {
+        if (i !== row) {
+            if (board[i][col] === value) {
+                return false; 
+            }
+        }
+    }
+    
+    return true;
+},
  validBox(board, row, col, value) {
     const startRow = row - (row % 3), startCol = col - (col % 3);
     
