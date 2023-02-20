@@ -381,5 +381,8 @@ export default {
 
         backtrack([], target, 0);
         return combinations;
+    },
+    someFunc(){
+        return 'some val'
     }
 }
