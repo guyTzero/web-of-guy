@@ -441,5 +441,20 @@ combinationSum2(candidates, target) {
         absoluteDividend -= absoluteDivisor << (shift - 1);
     }
     return sign === -1 ? -quotient : quotient;
+},
+    minPathSum(grid) {
+
+    const dp = new Array(grid.length).fill(0).map(() => Array(grid[0].length).fill(Infinity));
+
+    dp[0][0] = grid[0][0]
+
+    for (let i = 0; i < dp.length; i++) {
+        for(let j = 0; j < dp[0].length; j++) {
+   
+            if(i+1 < dp.length) dp[i+1][j] = Math.min(dp[i+1][j], dp[i][j]+grid[i+1][j])
+            if(j+1 < dp[0].length) dp[i][j+1] = Math.min(dp[i][j+1], dp[i][j]+grid[i][j+1])
+        }
+    }
+    return dp[dp.length-1][dp[0].length-1]
 }
 }
