@@ -456,5 +456,18 @@ combinationSum2(candidates, target) {
         }
     }
     return dp[dp.length-1][dp[0].length-1]
+},
+  jump(nums) {
+    let newMax = 0;
+    let jump = 0;
+    let oldMax = 0;
+    for (let i=0;i<nums.length-1;i++) {
+        newMax = Math.max(newMax, i+nums[i]);
+        if (i == oldMax) {
+            jump++;
+            oldMax = newMax;
+        }
+    }
+    return jump;
 }
 }
