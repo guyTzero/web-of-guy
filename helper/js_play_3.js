@@ -487,5 +487,31 @@ combinationSum2(candidates, target) {
     }
 
     return permutations
+},
+     solveNQueens (n) {
+        function backtrack(output, n, board = [], r = 0) {
+    // If we have placed n queens on the board, create board as a string
+    // and push it into our output
+    if (r === n) {
+        output.push(board.map(c => '.'.repeat(c) + 'Q' + '.'.repeat(n - c - 1)));
+        return;
+    }
+    // Find the column to saftely place a queen in the current row (r)
+    for (let c = 0; c < n; c++) {
+        // Check if the current column is safe from a vertical, horizontal, or diagonal attack
+        // from previously placed queens on the board
+        if (!board.some((bc, br) => bc === c || bc === c + r - br || bc === c - r + br)) {
+            // place a queen in the current column (c)
+            board.push(c);
+            // move to the next row
+            backtrack(output, n, board, r + 1);
+            // remove column from the board
+            board.pop();
+        }
+    }
+}
+    const output = [];
+    backtrack(output, n);
+    return output;
 }
 }
