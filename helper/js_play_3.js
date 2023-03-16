@@ -513,5 +513,8 @@ combinationSum2(candidates, target) {
     const output = [];
     backtrack(output, n);
     return output;
+},
+   multiply(num1, num2) {
+    return (BigInt(num1) * BigInt(num2)).toString();
 }
 }
