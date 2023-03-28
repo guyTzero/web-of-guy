@@ -551,5 +551,19 @@ combinationSum2(candidates, target) {
       swap(matrix, i, j, j, i);
     }
   }
-};
+},
+groupAnagrams(strs) {
+    const output = []
+    const map = {}
+    for(let i = 0; i < strs.length; i++) {
+        const strSorted = strs[i].split('').sort().join('')
+        if(map[strSorted]!==undefined) {
+            output[map[strSorted]].push(strs[i])
+        } else {
+            output.push([strs[i]])
+            map[strSorted] = output.length-1
+        }
+    }
+    return output 
+}
 }
