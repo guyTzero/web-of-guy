@@ -565,5 +565,31 @@ groupAnagrams(strs) {
         }
     }
     return output 
+},
+postorderTraversal(root) {
+  const stack = [];
+  const result = [];
+  let current = root;
+
+  while (current || stack.length) {
+    while (current) {
+      if (current.right) {
+        stack.push(current.right);
+      }
+      stack.push(current);
+      current = current.left;
+    }
+
+    const node = stack.pop();
+
+    if (node.right && stack.length && node.right === stack[stack.length - 1]) {
+      current = stack.pop();
+      stack.push(node);
+    } else {
+      result.push(node.val);
+    }
+  }
+
+  return result;
 }
 }
